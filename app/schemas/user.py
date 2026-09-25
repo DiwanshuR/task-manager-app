@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
-
+from app.models.user import UserRole
 
 class UserCreate(BaseModel):
     name: str = Field(..., min_length=1)
@@ -17,6 +17,7 @@ class UserOut(BaseModel):
     id: int
     name: str
     email: EmailStr
+    role : UserRole
     created_at: datetime
 
     class Config:

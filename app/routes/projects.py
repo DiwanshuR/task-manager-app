@@ -6,6 +6,8 @@ from app.models.project import Project
 from app.models.user import User
 from app.schemas.project import ProjectCreate, ProjectUpdate, ProjectOut
 from app.auth.dependencies import get_current_user
+from app.auth.dependencies import require_roles
+from app.models.user import UserRole
 
 router = APIRouter(prefix="/projects", tags=["Projects"])
 
@@ -14,7 +16,9 @@ router = APIRouter(prefix="/projects", tags=["Projects"])
 def create_project(
     payload: ProjectCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(
+        require_roles(UserRole.admin, UserRole.manager)
+    ),
 ):
     project = Project(name=payload.name, description=payload.description, owner_id=current_user.id)
     db.add(project)
@@ -33,7 +37,7 @@ def get_project(project_id: int, db: Session = Depends(get_db), current_user: Us
     project = db.query(Project).filter(Project.id == project_id).first()
     if project is None:
         raise HTTPException(status_code=404, detail="Project not found")
-    if project.owner_id != current_user.id:
+    if project.owner_id != current_user.id and current_user.role != UserRole.admin:
         raise HTTPException(status_code=403, detail="Not authorized to access this project")
     return project
 
@@ -48,7 +52,7 @@ def update_project(
     project = db.query(Project).filter(Project.id == project_id).first()
     if project is None:
         raise HTTPException(status_code=404, detail="Project not found")
-    if project.owner_id != current_user.id:
+    if project.owner_id != current_user.id and current_user.role != UserRole.admin:
         raise HTTPException(status_code=403, detail="Not authorized to modify this project")
 
     project.name = payload.name

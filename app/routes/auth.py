@@ -7,6 +7,8 @@ from app.models.user import User
 from app.schemas.user import UserCreate, UserOut, Token
 from app.auth.security import hash_password, verify_password, create_access_token
 from app.auth.dependencies import get_current_user
+from app.models.user import UserRole
+from app.auth.dependencies import require_roles
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
 
@@ -21,6 +23,7 @@ def register(payload: UserCreate, db: Session = Depends(get_db)):
         name=payload.name,
         email=payload.email,
         password_hash=hash_password(payload.password),
+        role=UserRole.member,  # Default role for new users
     )
     db.add(new_user)
     db.commit()
@@ -48,3 +51,11 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 @router.get("/current-user", response_model=UserOut)
 def current_user(user: User = Depends(get_current_user)):
     return user
+
+@router.delete("/users/{user_id}")
+def delete_user(
+    user_id: int,
+    current_user: User = Depends(require_roles(UserRole.admin)),
+):
+    # Only an admin reaches this code
+    ...
