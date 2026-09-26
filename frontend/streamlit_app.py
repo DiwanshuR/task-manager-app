@@ -24,14 +24,97 @@ st.set_page_config(page_title="Task Manager v2", layout="wide")
 # ---------- session state setup ----------
 if "token" not in st.session_state:
     st.session_state.token = None
+if "refresh_token" not in st.session_state:
+    st.session_state.refresh_token = None
 if "user" not in st.session_state:
     st.session_state.user = None
 
 
-def auth_headers():
-    return {"Authorization": f"Bearer {st.session_state.token}"}
+# def auth_headers():
+#     return {"Authorization": f"Bearer {st.session_state.token}"}
 
 
+def refresh_access_token():
+    refresh = st.session_state.get("refresh_token")
+
+    if not refresh:
+        return False
+
+    try:
+        response = requests.post(
+            f"{API_URL}/auth/refresh",
+            params={"refresh_token": refresh},
+            timeout=10,
+        )
+
+        if response.status_code != 200:
+            return False
+
+        data = response.json()
+        new_access = data.get("access_token")
+
+        if not new_access:
+            return False
+
+        st.session_state.token = new_access
+        return True
+
+    except requests.RequestException:
+        return False
+
+
+def api_request(method, path, **kwargs):
+    if not st.session_state.token:
+        return None
+
+    headers = kwargs.pop("headers", {})
+    headers = dict(headers)
+
+    headers["Authorization"] = (
+        f"Bearer {st.session_state.token}"
+    )
+
+    try:
+        response = requests.request(
+            method,
+            f"{API_URL}{path}",
+            headers=headers,
+            timeout=10,
+            **kwargs,
+        )
+
+        if response.status_code != 401:
+            return response
+
+        # Access token may have expired. Try refreshing once.
+        if not refresh_access_token():
+            st.session_state.token = None
+            st.session_state.refresh_token = None
+            st.session_state.user = None
+            return response
+
+        # Retry the original request once with the new token.
+        retry_response = requests.request(
+            method,
+            f"{API_URL}{path}",
+            headers=headers,
+            timeout=10,
+            **kwargs,
+        )
+
+        if retry_response.status_code == 401:
+            st.session_state.token = None
+            st.session_state.refresh_token = None
+            st.session_state.user = None
+            st.rerun()
+
+        return retry_response
+
+    except requests.RequestException as e:
+        st.error(f"API connection error: {e}")
+        return None
+    
+    
 # ---------- LOGIN / REGISTER SCREEN ----------
 def login_register_screen():
     st.title("Task Manager - Login")
@@ -49,10 +132,25 @@ def login_register_screen():
                 data={"username": email, "password": password},
             )
             if response.status_code == 200:
-                st.session_state.token = response.json()["access_token"]
-                me = requests.get(f"{API_URL}/auth/current-user", headers=auth_headers())
-                st.session_state.user = me.json()
-                st.rerun()
+                data = response.json()
+
+                st.session_state.token = data["access_token"]
+                st.session_state.refresh_token = data.get(
+                    "refresh_token"
+                )
+
+                me = api_request(
+                    "GET",
+                    "/auth/current-user"
+                )
+
+                if me is not None and me.status_code == 200:
+                    st.session_state.user = me.json()
+                    st.rerun()
+                else:
+                    st.session_state.token = None
+                    st.session_state.refresh_token = None
+                    st.error("Could not load your user profile.")
             else:
                 st.error(response.json().get("detail", "Login failed"))
 
@@ -76,13 +174,20 @@ def main_app():
     st.sidebar.write(f"Logged in as **{st.session_state.user['name']}**")
     if st.sidebar.button("Logout"):
         st.session_state.token = None
+        st.session_state.refresh_token = None
         st.session_state.user = None
         st.rerun()
 
     page = st.sidebar.radio("Go to", ["Dashboard", "Projects", "Tasks"])
 
-    projects_resp = requests.get(f"{API_URL}/projects/", headers=auth_headers())
-    projects = projects_resp.json() if projects_resp.status_code == 200 else []
+    projects_resp = api_request("GET","/projects/")
+
+    projects = (
+        projects_resp.json()
+        if projects_resp is not None
+        and projects_resp.status_code == 200
+        else []
+    )
 
     if page == "Dashboard":
         show_dashboard(projects)
@@ -95,9 +200,18 @@ def main_app():
 def show_dashboard(projects):
     st.title("Dashboard")
 
-    tasks_resp = requests.get(f"{API_URL}/tasks/", headers=auth_headers(), params={"limit": 100})
-    tasks = tasks_resp.json() if tasks_resp.status_code == 200 else []
+    tasks_resp = api_request(
+        "GET",
+        "/tasks/",
+        params={"limit": 100}
+    )
 
+    tasks = (
+        tasks_resp.json()
+        if tasks_resp is not None
+        and tasks_resp.status_code == 200
+        else []
+    )
     col1, col2, col3 = st.columns(3)
     col1.metric("Projects", len(projects))
     col2.metric("Total Tasks", len(tasks))
@@ -111,24 +225,40 @@ def show_projects(projects):
         name = st.text_input("Project name")
         description = st.text_area("Description")
         if st.button("Create Project"):
-            response = requests.post(
-                f"{API_URL}/projects/",
-                headers=auth_headers(),
-                json={"name": name, "description": description},
+            response = api_request(
+                "POST",
+                "/projects/",
+                json={
+                    "name": name,
+                    "description": description
+                }
             )
-            if response.status_code == 201:
+
+            if response is not None and response.status_code == 201:
                 st.success("Project created.")
                 st.rerun()
             else:
-                st.error(response.json().get("detail", "Could not create project"))
+                st.error(
+                    response.json().get("detail", "Could not create project")
+                    if response is not None
+                    else "Could not connect to the backend."
+                )
 
     for project in projects:
         with st.container(border=True):
             st.subheader(project["name"])
             st.write(project["description"] or "_No description_")
             if st.button("Delete", key=f"del_project_{project['id']}"):
-                requests.delete(f"{API_URL}/projects/{project['id']}", headers=auth_headers())
-                st.rerun()
+                response = api_request(
+                    "DELETE",
+                    f"/projects/{project['id']}"
+                )
+
+                if response is not None and response.status_code in (200, 204):
+                    st.success("Project deleted.")
+                    st.rerun()
+                else:
+                    st.error("Could not delete project.")
 
 
 def show_tasks(projects):
@@ -147,9 +277,9 @@ def show_tasks(projects):
         status = st.selectbox("Status", ["pending", "in_progress", "done"])
         priority = st.selectbox("Priority", ["low", "medium", "high"])
         if st.button("Create Task"):
-            response = requests.post(
-                f"{API_URL}/tasks/",
-                headers=auth_headers(),
+            response = api_request(
+                "POST",
+                "/tasks/",
                 json={
                     "title": title,
                     "description": description,
@@ -158,11 +288,16 @@ def show_tasks(projects):
                     "project_id": project_lookup[project_name],
                 },
             )
-            if response.status_code == 201:
+
+            if response is not None and response.status_code == 201:
                 st.success("Task created.")
                 st.rerun()
             else:
-                st.error(response.json().get("detail", "Could not create task"))
+                st.error(
+                    response.json().get("detail", "Could not create task")
+                    if response is not None
+                    else "Could not connect to the backend."
+                )
 
     st.divider()
     st.subheader("Filter tasks")
@@ -179,8 +314,18 @@ def show_tasks(projects):
     if search:
         params["search"] = search
 
-    tasks_resp = requests.get(f"{API_URL}/tasks/", headers=auth_headers(), params=params)
-    tasks = tasks_resp.json() if tasks_resp.status_code == 200 else []
+    tasks_resp = api_request(
+        "GET",
+        "/tasks/",
+        params=params
+    )
+
+    tasks = (
+        tasks_resp.json()
+        if tasks_resp is not None
+        and tasks_resp.status_code == 200
+        else []
+    )
 
     for task in tasks:
         with st.container(border=True):
@@ -189,8 +334,16 @@ def show_tasks(projects):
             cols[1].write(task["status"])
             cols[2].write(task["priority"])
             if cols[3].button("Delete", key=f"del_task_{task['id']}"):
-                requests.delete(f"{API_URL}/tasks/{task['id']}", headers=auth_headers())
-                st.rerun()
+                response = api_request(
+                    "DELETE",
+                    f"/tasks/{task['id']}"
+                )
+
+                if response is not None and response.status_code in (200, 204):
+                    st.success("Task deleted.")
+                    st.rerun()
+                else:
+                    st.error("Could not delete task.")
 
 
 # ---------- ENTRY POINT ----------

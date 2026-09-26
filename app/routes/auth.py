@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.user import User
 from app.schemas.user import UserCreate, UserOut, Token
-from app.auth.security import hash_password, verify_password, create_access_token
+from app.auth.security import create_refresh_token, hash_password, verify_password, create_access_token, decode_refresh_token
 from app.auth.dependencies import get_current_user
 from app.models.user import UserRole
 from app.auth.dependencies import require_roles
@@ -45,7 +45,12 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         )
 
     access_token = create_access_token(data={"sub": str(user.id)})
-    return {"access_token": access_token, "token_type": "bearer"}
+    refresh_token = create_refresh_token(data={"sub": str(user.id)})
+    return {
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+        "token_type": "bearer",
+    }
 
 
 @router.get("/current-user", response_model=UserOut)
@@ -59,3 +64,28 @@ def delete_user(
 ):
     # Only an admin reaches this code
     ...
+    
+@router.post("/refresh")
+def refresh_access_token(refresh_token: str):
+    payload = decode_refresh_token(refresh_token)
+
+    if payload is None:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid or expired refresh token",
+        )
+
+    user_id = payload.get("sub")
+
+    if not user_id:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid refresh token",
+        )
+
+    new_access_token = create_access_token({"sub": user_id})
+
+    return {
+        "access_token": new_access_token,
+        "token_type": "bearer",
+    }
