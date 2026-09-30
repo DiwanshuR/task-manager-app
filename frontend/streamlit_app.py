@@ -93,6 +93,11 @@ def api_request(method, path, **kwargs):
             st.session_state.user = None
             return response
 
+        # Use the newly refreshed access token.
+        headers["Authorization"] = (
+            f"Bearer {st.session_state.token}"
+        )
+        
         # Retry the original request once with the new token.
         retry_response = requests.request(
             method,

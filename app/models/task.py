@@ -1,6 +1,6 @@
 import enum
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Enum as SQLEnum
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, validates
 from sqlalchemy.sql import func
 from app.database import Base
 
@@ -31,3 +31,49 @@ class Task(Base):
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
     project = relationship("Project", back_populates="tasks")
+    
+    @validates("title")
+    def validate_title(self, key: str, value: str) -> str:
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError("Task title cannot be empty")
+        return value.strip()
+
+    @staticmethod
+    def is_valid_status(status: object) -> bool:
+        if isinstance(status, TaskStatus):
+            status = status.value
+
+        return status in ("pending", "in_progress", "done")
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "Task":
+        return cls(**data)
+
+    def __repr__(self) -> str:
+        return (
+            f"Task(id={self.id!r}, title={self.title!r}, "
+            f"status={self.status!r}, project_id={self.project_id!r})"
+        )
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Task):
+            return NotImplemented
+
+        return (
+            self.id,
+            self.title,
+            self.description,
+            self.status,
+            self.priority,
+            self.project_id,
+            self.created_by,
+        ) == (
+            other.id,
+            other.title,
+            other.description,
+            other.status,
+            other.priority,
+            other.project_id,
+            other.created_by,
+        )
+        

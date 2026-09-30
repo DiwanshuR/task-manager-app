@@ -7,6 +7,7 @@ from app.auth.security import decode_access_token
 from app.models.user import User
 from typing import Callable
 from app.models.user import UserRole, User
+from app.repositories.user_repository import SQLAlchemyUserRepository
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
@@ -28,8 +29,10 @@ def get_current_user(
     user_id = payload.get("sub")
     if user_id is None:
         raise credentials_exception
-
-    user = db.query(User).filter(User.id == int(user_id)).first()
+    
+    
+    repo = SQLAlchemyUserRepository(db)
+    user = repo.get_by_id(int(user_id))
     if user is None:
         raise credentials_exception
 

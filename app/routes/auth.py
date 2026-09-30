@@ -1,3 +1,7 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
@@ -9,36 +13,38 @@ from app.auth.security import create_refresh_token, hash_password, verify_passwo
 from app.auth.dependencies import get_current_user
 from app.models.user import UserRole
 from app.auth.dependencies import require_roles
+from app.repositories.user_repository import SQLAlchemyUserRepository
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
 
 
 @router.post("/register", response_model=UserOut, status_code=status.HTTP_201_CREATED)
 def register(payload: UserCreate, db: Session = Depends(get_db)):
-    existing = db.query(User).filter(User.email == payload.email).first()
+    repo = SQLAlchemyUserRepository(db)
+    existing = repo.get_by_email(payload.email)
     if existing:
         raise HTTPException(status_code=400, detail="Email is already registered")
 
-    new_user = User(
+    new_user = repo.create(
         name=payload.name,
         email=payload.email,
         password_hash=hash_password(payload.password),
-        role=UserRole.member,  # Default role for new users
+        role=UserRole.member,
     )
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
+    
     return new_user
 
 
 @router.post("/login", response_model=Token)
 def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == form_data.username).first()
+    repo = SQLAlchemyUserRepository(db)
+    user = repo.get_by_email(form_data.username)
 
     # Same error message whether the email doesn't exist or the password
     # is wrong -- telling an attacker which is which leaks which emails
     # are real accounts.
     if not user or not verify_password(form_data.password, user.password_hash):
+        logger.warning("Login Failed")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
@@ -46,6 +52,9 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 
     access_token = create_access_token(data={"sub": str(user.id)})
     refresh_token = create_refresh_token(data={"sub": str(user.id)})
+    
+    logger.info("Login succeeded user_id=%s", user.id)
+    
     return {
         "access_token": access_token,
         "refresh_token": refresh_token,

@@ -1,0 +1,3 @@
+2026-09-28 18:09:09,318 WARNING app.routes.auth Login Failed
+2026-09-28 18:09:24,820 INFO app.routes.auth Login succeeded user_id=4
+2026-09-28 18:10:31,322 INFO app.routes.auth Login succeeded user_id=4

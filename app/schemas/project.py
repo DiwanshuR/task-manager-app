@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from datetime import datetime
 from typing import Optional
 
@@ -6,12 +6,24 @@ from typing import Optional
 class ProjectCreate(BaseModel):
     name: str = Field(..., min_length=1)
     description: Optional[str] = None
-
+    @field_validator("name")
+    @classmethod
+    def name_must_contain_non_whitespace(cls, value: str) -> str:
+        value = value.strip()
+        if not value:
+            raise ValueError("Project name cannot be empty")
+        return value
 
 class ProjectUpdate(BaseModel):
     name: str = Field(..., min_length=1)
     description: Optional[str] = None
-
+    @field_validator("name")
+    @classmethod
+    def name_must_contain_non_whitespace(cls, value: str) -> str:
+        value = value.strip()
+        if not value:
+            raise ValueError("Project name cannot be empty")
+        return value
 
 class ProjectOut(BaseModel):
     id: int
