@@ -1,3 +1,341 @@
 2026-09-28 18:09:09,318 WARNING app.routes.auth Login Failed
 2026-09-28 18:09:24,820 INFO app.routes.auth Login succeeded user_id=4
 2026-09-28 18:10:31,322 INFO app.routes.auth Login succeeded user_id=4
+2026-09-30 16:42:36,711 INFO app.routes.auth Login succeeded user_id=4
+2026-09-30 16:54:01,380 INFO app.routes.auth Login succeeded user_id=4
+2026-10-01 12:19:15,549 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:19:16,179 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:19:16,187 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 400 Bad Request"
+2026-10-01 12:19:16,823 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:19:17,607 INFO app.routes.auth Login succeeded user_id=1
+2026-10-01 12:19:17,612 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-01 12:19:18,339 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:19:19,056 WARNING app.routes.auth Login Failed
+2026-10-01 12:19:19,058 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-01 12:27:01,535 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:27:02,186 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:27:02,193 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 400 Bad Request"
+2026-10-01 12:27:02,844 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:27:03,411 INFO app.routes.auth Login succeeded user_id=1
+2026-10-01 12:27:03,414 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-01 12:27:04,033 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:27:04,659 WARNING app.routes.auth Login Failed
+2026-10-01 12:27:04,662 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-01 12:27:05,338 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:27:05,882 INFO app.routes.auth Login succeeded user_id=1
+2026-10-01 12:27:05,884 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-01 12:27:05,950 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-01 12:27:06,594 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:27:07,143 INFO app.routes.auth Login succeeded user_id=1
+2026-10-01 12:27:07,145 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-01 12:27:07,164 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-01 12:27:07,206 INFO httpx HTTP Request: GET http://testserver/projects/ "HTTP/1.1 200 OK"
+2026-10-01 12:27:07,820 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:27:08,379 INFO app.routes.auth Login succeeded user_id=1
+2026-10-01 12:27:08,381 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-01 12:27:08,397 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-01 12:27:08,413 INFO httpx HTTP Request: PUT http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-01 12:27:09,017 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:27:09,568 INFO app.routes.auth Login succeeded user_id=1
+2026-10-01 12:27:09,571 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-01 12:27:10,273 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:27:10,862 INFO app.routes.auth Login succeeded user_id=2
+2026-10-01 12:27:10,865 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-01 12:27:10,884 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-01 12:27:10,898 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 403 Forbidden"
+2026-10-01 12:27:11,088 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-01 12:27:11,877 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:27:12,425 INFO app.routes.auth Login succeeded user_id=1
+2026-10-01 12:27:12,428 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-01 12:27:12,444 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-01 12:27:12,495 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-01 12:27:12,498 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-01 12:27:12,510 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-01 12:27:12,513 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-01 12:27:12,565 INFO httpx HTTP Request: GET http://testserver/tasks/?status=pending&project_id=1 "HTTP/1.1 200 OK"
+2026-10-01 12:27:13,186 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:27:13,736 INFO app.routes.auth Login succeeded user_id=1
+2026-10-01 12:27:13,738 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-01 12:27:14,273 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-01 12:27:14,821 INFO app.routes.auth Login succeeded user_id=2
+2026-10-01 12:27:14,824 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-01 12:27:14,842 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-01 12:27:14,854 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"
+2026-10-01 13:43:29,558 INFO app.routes.auth Login succeeded user_id=4
+2026-10-01 17:47:12,202 INFO app.routes.auth Login succeeded user_id=5
+2026-10-01 18:22:18,742 ERROR app.main Unhandled error on POST http://127.0.0.1:8000/auth/login
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2532, in get_property
+    return self._props[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'assigned_projects'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\routes\auth.py", line 41, in login
+    user = repo.get_by_email(form_data.username)
+  File "D:\Infoorigin-Project\Task-Manager\app\repositories\user_repository.py", line 59, in get_by_email
+    return self.db.query(User).filter(User.email == email).first()
+           ~~~~~~~~~~~~~^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2963, in query
+    return self._query_cls(entities, self, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 277, in __init__
+    self._set_entities(entities)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 290, in _set_entities
+    coercions.expect(
+    ~~~~~~~~~~~~~~~~^
+        roles.ColumnsClauseRole,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        post_inspect=True,
+        ^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\sql\coercions.py", line 389, in expect
+    insp._post_inspect
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 1244, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+                                           ~~~~~~~~~^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2734, in _post_inspect
+    self._check_configure()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2411, in _check_configure
+    _configure_registries({self.registry}, cascade=True)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 4228, in _configure_registries
+    _do_configure_registries(registries, cascade)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 4269, in _do_configure_registries
+    mapper._post_configure_properties()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2428, in _post_configure_properties
+    prop.init()
+    ~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\interfaces.py", line 595, in init
+    self.do_init()
+    ~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\relationships.py", line 1661, in do_init
+    self._generate_backref()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\relationships.py", line 2145, in _generate_backref
+    self._add_reverse_property(self.back_populates)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\relationships.py", line 1592, in _add_reverse_property
+    other = self.mapper.get_property(key, _configure_mappers=False)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2534, in get_property
+    raise sa_exc.InvalidRequestError(
+    ...<3 lines>...
+    ) from err
+sqlalchemy.exc.InvalidRequestError: Mapper 'Mapper[User(users)]' has no property 'assigned_projects'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2026-10-01 18:22:34,012 ERROR app.main Unhandled error on POST http://127.0.0.1:8000/auth/login
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\routes\auth.py", line 41, in login
+    user = repo.get_by_email(form_data.username)
+  File "D:\Infoorigin-Project\Task-Manager\app\repositories\user_repository.py", line 59, in get_by_email
+    return self.db.query(User).filter(User.email == email).first()
+           ~~~~~~~~~~~~~^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2963, in query
+    return self._query_cls(entities, self, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 277, in __init__
+    self._set_entities(entities)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 290, in _set_entities
+    coercions.expect(
+    ~~~~~~~~~~~~~~~~^
+        roles.ColumnsClauseRole,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        post_inspect=True,
+        ^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\sql\coercions.py", line 389, in expect
+    insp._post_inspect
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 1244, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+                                           ~~~~~~~~~^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2734, in _post_inspect
+    self._check_configure()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2411, in _check_configure
+    _configure_registries({self.registry}, cascade=True)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 4228, in _configure_registries
+    _do_configure_registries(registries, cascade)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 4265, in _do_configure_registries
+    raise e
+sqlalchemy.exc.InvalidRequestError: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Project(projects)]'. Original exception was: Mapper 'Mapper[User(users)]' has no property 'assigned_projects'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2026-10-01 18:24:40,060 INFO app.routes.auth Login succeeded user_id=4
+2026-10-01 18:50:26,483 INFO app.routes.auth Login succeeded user_id=4
+2026-10-05 15:34:30,110 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-05 15:34:30,740 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-05 15:34:30,750 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 400 Bad Request"
+2026-10-05 15:34:31,359 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-05 15:34:31,994 INFO app.routes.auth Login succeeded user_id=1
+2026-10-05 15:34:31,998 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-05 15:34:32,652 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-05 15:34:33,203 WARNING app.routes.auth Login Failed
+2026-10-05 15:34:33,206 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-05 15:34:33,839 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-05 15:34:34,403 INFO app.routes.auth Login succeeded user_id=1
+2026-10-05 15:34:34,407 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-05 15:34:34,444 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-05 15:34:35,050 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-05 15:34:35,660 INFO app.routes.auth Login succeeded user_id=1
+2026-10-05 15:34:35,666 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-05 15:34:35,710 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-05 15:34:35,736 INFO httpx HTTP Request: GET http://testserver/projects/ "HTTP/1.1 200 OK"
+2026-10-05 15:34:36,495 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-05 15:34:37,050 INFO app.routes.auth Login succeeded user_id=1
+2026-10-05 15:34:37,054 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-05 15:34:37,079 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-05 15:34:37,101 INFO httpx HTTP Request: PUT http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-05 15:34:37,711 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-05 15:34:38,277 INFO app.routes.auth Login succeeded user_id=1
+2026-10-05 15:34:38,281 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-05 15:34:38,823 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-05 15:34:39,434 INFO app.routes.auth Login succeeded user_id=2
+2026-10-05 15:34:39,440 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-05 15:34:39,483 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-05 15:34:39,510 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 403 Forbidden"
+2026-10-05 15:34:39,657 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-05 15:34:40,334 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-05 15:34:40,929 INFO app.routes.auth Login succeeded user_id=1
+2026-10-05 15:34:40,934 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-05 15:34:40,965 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-05 15:34:40,999 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-05 15:34:41,005 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-05 15:34:41,030 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-05 15:34:41,036 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-05 15:34:41,073 INFO httpx HTTP Request: GET http://testserver/tasks/?status=pending&project_id=1 "HTTP/1.1 200 OK"
+2026-10-05 15:34:41,779 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-05 15:34:42,359 INFO app.routes.auth Login succeeded user_id=1
+2026-10-05 15:34:42,363 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-05 15:34:42,920 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-05 15:34:43,484 INFO app.routes.auth Login succeeded user_id=2
+2026-10-05 15:34:43,488 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-05 15:34:43,520 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-05 15:34:43,537 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"

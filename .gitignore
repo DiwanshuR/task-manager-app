@@ -2,3 +2,4 @@ dvenv/
 __pycache__/
 *.pyc
 .env
+app.log
