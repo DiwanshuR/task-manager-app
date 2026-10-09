@@ -2,7 +2,9 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-from fastapi import APIRouter, Depends, HTTPException, status, Query
+from typing import Annotated
+
+from fastapi import APIRouter, Depends, Path, Query, status
 from sqlalchemy.orm import Session
 
 from app.database import get_db
@@ -15,6 +17,7 @@ from app.auth.dependencies import get_current_user
 from app.repositories.task_repository import SQLAlchemyTaskRepository
 from app.repositories.project_repository import SQLAlchemyProjectRepository
 from app.services.task_service import TaskService
+from app.schemas.error import API_ERROR_RESPONSES
 
 
 from app.exceptions import (
@@ -23,7 +26,11 @@ from app.exceptions import (
     UnauthorizedActionError,
 )
 
-router = APIRouter(prefix="/tasks", tags=["Tasks"])
+router = APIRouter(
+    prefix="/tasks",
+    tags=["Tasks"],
+    responses=API_ERROR_RESPONSES,
+)
 
 def _task_service(db: Session) -> TaskService:
     return TaskService(
@@ -65,9 +72,9 @@ def list_tasks(
     current_user: User = Depends(get_current_user),
     status_filter: TaskStatus | None = Query(None, alias="status"),
     priority: TaskPriority | None = None,
-    project_id: int | None = None,
+    project_id: int | None = Query(None, le=2_147_483_647),
     search: str | None = Query(None, description="Case-insensitive match on task title"),
-    skip: int = Query(0, ge=0),
+    skip: int = Query(0, ge=0, le=2_147_483_647),
     limit: int = Query(20, ge=1, le=100),
 ):
     service = _task_service(db)
@@ -96,9 +103,9 @@ def list_deleted_tasks(
     )
 
 
-@router.get("/{task_id}", response_model=TaskOut)
+@router.get("/{task_id:int}", response_model=TaskOut)
 def get_task(
-    task_id: int,
+    task_id: Annotated[int, Path(le=2_147_483_647)],
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
@@ -110,9 +117,9 @@ def get_task(
     )
 
 
-@router.put("/{task_id}", response_model=TaskOut)
+@router.put("/{task_id:int}", response_model=TaskOut)
 def update_task(
-    task_id: int,
+    task_id: Annotated[int, Path(le=2_147_483_647)],
     payload: TaskUpdate,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
@@ -127,12 +134,12 @@ def update_task(
 
 
 @router.post(
-    "/{task_id}/archive",
+    "/{task_id:int}/archive",
     response_model=TaskOut,
     status_code=status.HTTP_200_OK,
 )
 def archive_task(
-    task_id: int,
+    task_id: Annotated[int, Path(le=2_147_483_647)],
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
@@ -145,12 +152,12 @@ def archive_task(
 
 
 @router.post(
-    "/{task_id}/restore",
+    "/{task_id:int}/restore",
     response_model=TaskOut,
     status_code=status.HTTP_200_OK,
 )
 def restore_task(
-    task_id: int,
+    task_id: Annotated[int, Path(le=2_147_483_647)],
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
@@ -164,9 +171,9 @@ def restore_task(
     return task
 
 
-@router.delete("/{task_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{task_id:int}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_task(
-    task_id: int,
+    task_id: Annotated[int, Path(le=2_147_483_647)],
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):

@@ -1,12 +1,14 @@
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_serializer, field_validator
 from datetime import datetime
 from typing import Optional
+from app.schemas.datetime import as_utc
+from app.schemas.user import EmailAddress
 
 
 class ProjectCreate(BaseModel):
     name: str = Field(..., min_length=1)
     description: Optional[str] = None
-    member_emails: list[str] = Field(default_factory=list)
+    member_emails: list[EmailAddress] = Field(default_factory=list)
     
     @field_validator("name")
     @classmethod
@@ -34,8 +36,12 @@ class ProjectOut(BaseModel):
     owner_id: int
     created_at: datetime
 
+    @field_serializer("created_at")
+    def serialize_created_at(self, value: datetime) -> datetime:
+        return as_utc(value)
+
     class Config:
         from_attributes = True
         
 class ProjectMemberAssign(BaseModel):
-    emails: list[str]
+    emails: list[EmailAddress]

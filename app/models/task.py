@@ -61,7 +61,9 @@ class Task(Base):
         if isinstance(status, TaskStatus):
             status = status.value
 
-        return status in {task_status.value for task_status in TaskStatus}
+        return isinstance(status, str) and status in {
+            task_status.value for task_status in TaskStatus
+        }
 
     @classmethod
     def from_dict(cls, data: dict) -> "Task":

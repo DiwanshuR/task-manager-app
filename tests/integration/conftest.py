@@ -57,7 +57,7 @@ def client(db_session):
     previous_overrides = app.dependency_overrides.copy()
     app.dependency_overrides[get_db] = override_get_db
 
-    test_client = TestClient(app)
+    test_client = TestClient(app, raise_server_exceptions=False)
     try:
         yield test_client
     finally:

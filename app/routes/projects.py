@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from typing import Annotated
+
+from fastapi import APIRouter, Depends, Path, status
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
@@ -10,9 +12,19 @@ from app.auth.dependencies import get_current_user
 from app.auth.dependencies import require_roles
 from app.models.user import UserRole
 from app.repositories.project_repository import SQLAlchemyProjectRepository
-from app.exceptions import ProjectNotFoundError, UnauthorizedActionError
+from app.exceptions import (
+    NotFoundError,
+    PermissionDeniedError,
+    ProjectNotFoundError,
+    UnauthorizedActionError,
+)
+from app.schemas.error import API_ERROR_RESPONSES
 
-router = APIRouter(prefix="/projects", tags=["Projects"])
+router = APIRouter(
+    prefix="/projects",
+    tags=["Projects"],
+    responses=API_ERROR_RESPONSES,
+)
 
 
 @router.post("/", response_model=ProjectOut, status_code=status.HTTP_201_CREATED)
@@ -42,9 +54,9 @@ def create_project(
         missing_emails = sorted(emails - found_emails)
 
         if missing_emails:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Users not found: {', '.join(missing_emails)}",
+            raise NotFoundError(
+                f"Users not found: {', '.join(missing_emails)}",
+                details={"emails": missing_emails},
             )
 
     repo = SQLAlchemyProjectRepository(db)
@@ -54,9 +66,9 @@ def create_project(
         members=members,
     )
 
-@router.post("/{project_id}/members", response_model=ProjectOut)
+@router.post("/{project_id:int}/members", response_model=ProjectOut)
 def assign_project_members(
-    project_id: int,
+    project_id: Annotated[int, Path(le=2_147_483_647)],
     payload: ProjectMemberAssign,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
@@ -65,7 +77,7 @@ def assign_project_members(
     project = repo.get_by_id(project_id)
 
     if project is None:
-        raise HTTPException(status_code=404, detail="Project not found")
+        raise ProjectNotFoundError(project_id)
 
     is_admin = current_user.role == UserRole.admin
     is_owner_manager = (
@@ -74,9 +86,9 @@ def assign_project_members(
     )
 
     if not is_admin and not is_owner_manager:
-        raise HTTPException(
-            status_code=403,
-            detail="Only the project manager or an admin can assign members",
+        raise PermissionDeniedError(
+            "Only the project manager or an admin can assign members",
+            details={"project_id": project_id},
         )
 
     emails = {
@@ -97,9 +109,9 @@ def assign_project_members(
     missing_emails = sorted(emails - found_emails)
 
     if missing_emails:
-        raise HTTPException(
-            status_code=404,
-            detail=f"Users not found: {', '.join(missing_emails)}",
+        raise NotFoundError(
+            f"Users not found: {', '.join(missing_emails)}",
+            details={"emails": missing_emails},
         )
 
     existing_ids = {member.id for member in project.members}
@@ -116,9 +128,9 @@ def list_projects(db: Session = Depends(get_db), current_user: User = Depends(ge
     repo = SQLAlchemyProjectRepository(db)
     return repo.get_visible_to_user(current_user)
 
-@router.get("/{project_id}", response_model=ProjectOut)
+@router.get("/{project_id:int}", response_model=ProjectOut)
 def get_project(
-    project_id: int,
+    project_id: Annotated[int, Path(le=2_147_483_647)],
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
@@ -142,9 +154,9 @@ def get_project(
     return project
 
 
-@router.put("/{project_id}", response_model=ProjectOut)
+@router.put("/{project_id:int}", response_model=ProjectOut)
 def update_project(
-    project_id: int,
+    project_id: Annotated[int, Path(le=2_147_483_647)],
     payload: ProjectUpdate,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
@@ -153,10 +165,8 @@ def update_project(
     project = repo.get_by_id(project_id)
     
     if project is None:
-        # raise HTTPException(status_code=404, detail="Project not found")
         raise ProjectNotFoundError(project_id)
     if project.owner_id != current_user.id and current_user.role != UserRole.admin:
-        # raise HTTPException(status_code=403, detail="Not authorized to modify this project")
         raise UnauthorizedActionError(
             action="modify",
             resource="project",
@@ -166,14 +176,17 @@ def update_project(
     return repo.update(project, payload)
 
 
-@router.delete("/{project_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_project(project_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+@router.delete("/{project_id:int}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_project(
+    project_id: Annotated[int, Path(le=2_147_483_647)],
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
     repo = SQLAlchemyProjectRepository(db)
     project = repo.get_by_id(project_id)
     if project is None:
         raise ProjectNotFoundError(project_id)
     if project.owner_id != current_user.id:
-        # raise HTTPException(status_code=403, detail="Not authorized to delete this project")
         raise UnauthorizedActionError(
             action="delete",
             resource="project",

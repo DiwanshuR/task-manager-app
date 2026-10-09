@@ -2,7 +2,9 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from typing import Annotated
+
+from fastapi import APIRouter, Depends, Path, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
@@ -14,8 +16,14 @@ from app.auth.dependencies import get_current_user
 from app.models.user import UserRole
 from app.auth.dependencies import require_roles
 from app.repositories.user_repository import SQLAlchemyUserRepository
+from app.exceptions import AuthenticationError, ConflictError
+from app.schemas.error import API_ERROR_RESPONSES
 
-router = APIRouter(prefix="/auth", tags=["Auth"])
+router = APIRouter(
+    prefix="/auth",
+    tags=["Auth"],
+    responses=API_ERROR_RESPONSES,
+)
 
 
 @router.post("/register", response_model=UserOut, status_code=status.HTTP_201_CREATED)
@@ -23,7 +31,10 @@ def register(payload: UserCreate, db: Session = Depends(get_db)):
     repo = SQLAlchemyUserRepository(db)
     existing = repo.get_by_email(payload.email)
     if existing:
-        raise HTTPException(status_code=400, detail="Email is already registered")
+        raise ConflictError(
+            "Email is already registered",
+            details={"field": "email"},
+        )
 
     new_user = repo.create(
         name=payload.name,
@@ -45,9 +56,9 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     # are real accounts.
     if not user or not verify_password(form_data.password, user.password_hash):
         logger.warning("Login Failed")
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect email or password",
+        raise AuthenticationError(
+            "Incorrect email or password",
+            headers={"WWW-Authenticate": "Bearer"},
         )
 
     access_token = create_access_token(data={"sub": str(user.id)})
@@ -66,9 +77,9 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 def current_user(user: User = Depends(get_current_user)):
     return user
 
-@router.delete("/users/{user_id}")
+@router.delete("/users/{user_id:int}")
 def delete_user(
-    user_id: int,
+    user_id: Annotated[int, Path(le=2_147_483_647)],
     current_user: User = Depends(require_roles(UserRole.admin)),
 ):
     # Only an admin reaches this code
@@ -79,17 +90,17 @@ def refresh_access_token(refresh_token: str):
     payload = decode_refresh_token(refresh_token)
 
     if payload is None:
-        raise HTTPException(
-            status_code=401,
-            detail="Invalid or expired refresh token",
+        raise AuthenticationError(
+            "Invalid or expired refresh token",
+            headers={"WWW-Authenticate": "Bearer"},
         )
 
     user_id = payload.get("sub")
 
     if not user_id:
-        raise HTTPException(
-            status_code=401,
-            detail="Invalid refresh token",
+        raise AuthenticationError(
+            "Invalid refresh token",
+            headers={"WWW-Authenticate": "Bearer"},
         )
 
     new_access_token = create_access_token({"sub": user_id})

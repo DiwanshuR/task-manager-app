@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 def register_user(client, email="alex@example.com"):
     return client.post(
         "/auth/register",
@@ -14,6 +17,9 @@ def test_register_user(client):
 
     assert response.status_code == 201
     assert response.json()["email"] == "alex@example.com"
+    assert datetime.fromisoformat(
+        response.json()["created_at"]
+    ).utcoffset() is not None
 
 
 def test_register_rejects_duplicate_email(client):
@@ -21,7 +27,7 @@ def test_register_rejects_duplicate_email(client):
     second_response = register_user(client)
 
     assert first_response.status_code == 201
-    assert second_response.status_code == 400
+    assert second_response.status_code == 409
 
 
 def test_login_returns_tokens(client):
@@ -55,3 +61,27 @@ def test_login_rejects_wrong_password(client):
     )
 
     assert response.status_code == 401
+
+# 4. Test the user-enumeration case: assert the login error body for "unknown user" is byte-identical to "wrong password".
+def test_login_error_body_is_identical_for_unknown_user_and_wrong_password(
+    client,
+):
+    register_user(client)
+
+    wrong_password = client.post(
+        "/auth/login",
+        data={
+            "username": "alex@example.com",
+            "password": "WrongPassword123!",
+        },
+    )
+    unknown_user = client.post(
+        "/auth/login",
+        data={
+            "username": "unknown@example.com",
+            "password": "WrongPassword123!",
+        },
+    )
+
+    assert wrong_password.status_code == unknown_user.status_code == 401
+    assert wrong_password.content == unknown_user.content

@@ -33,6 +33,14 @@ def test_verify_password_rejects_the_wrong_password():
     password_hash = hash_password("TestPassword123!")
 
     assert verify_password("WrongPassword123!", password_hash) is False
+
+
+@pytest.mark.parametrize("password", ["🔐" * 24, "contains\x00null"])
+def test_password_hashing_handles_inputs_outside_bcrypt_raw_byte_limits(password):
+    password_hash = hash_password(password)
+
+    assert verify_password(password, password_hash) is True
+    assert verify_password(password + "wrong", password_hash) is False
     
 
 def test_hash_password_uses_a_different_salt_each_time():

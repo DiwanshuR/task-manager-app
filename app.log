@@ -2121,3 +2121,1988 @@ sqlalchemy.exc.DataError: (pymysql.err.DataError) (1265, "Data truncated for col
 2026-10-09 13:44:19,060 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
 2026-10-09 13:44:19,083 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
 2026-10-09 13:44:19,102 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"
+2026-10-09 14:11:57,707 ERROR app.main Unhandled error on GET /__boom
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\main.py", line 49, in deliberate_server_error
+    raise RuntimeError("Intentional exception-handler test failure")
+RuntimeError: Intentional exception-handler test failure
+2026-10-09 14:11:57,727 INFO httpx HTTP Request: GET http://testserver/__boom "HTTP/1.1 500 Internal Server Error"
+2026-10-09 14:37:36,297 ERROR app.main Unhandled error on GET /__boom
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\main.py", line 49, in deliberate_server_error
+    raise RuntimeError("Intentional exception-handler test failure")
+RuntimeError: Intentional exception-handler test failure
+2026-10-09 14:37:36,319 INFO httpx HTTP Request: GET http://testserver/__boom "HTTP/1.1 500 Internal Server Error"
+2026-10-09 14:37:36,426 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 14:37:36,586 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 14:37:36,700 INFO httpx HTTP Request: GET http://testserver/tasks/999999 "HTTP/1.1 404 Not Found"
+2026-10-09 14:37:36,778 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 14:37:36,811 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 14:37:36,816 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 14:37:36,873 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 14:37:36,970 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 14:37:37,054 ERROR app.main Unhandled error on GET /__boom
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\main.py", line 49, in deliberate_server_error
+    raise RuntimeError("Intentional exception-handler test failure")
+RuntimeError: Intentional exception-handler test failure
+2026-10-09 14:37:37,064 INFO httpx HTTP Request: GET http://testserver/__boom "HTTP/1.1 500 Internal Server Error"
+2026-10-09 14:39:57,805 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 14:39:58,303 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 14:39:58,321 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 409 Conflict"
+2026-10-09 14:39:59,037 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 14:39:59,540 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 14:39:59,546 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 14:40:00,002 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 14:40:00,472 WARNING app.routes.auth Login Failed
+2026-10-09 14:40:00,475 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 14:40:00,838 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 14:40:01,172 WARNING app.routes.auth Login Failed
+2026-10-09 14:40:01,175 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 14:40:01,187 WARNING app.routes.auth Login Failed
+2026-10-09 14:40:01,190 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 14:53:37,181 WARNING app.routes.auth Login Failed
+2026-10-09 14:57:28,830 WARNING app.routes.auth Login Failed
+2026-10-09 14:57:29,018 WARNING app.routes.auth Login Failed
+2026-10-09 14:57:29,371 WARNING app.routes.auth Login Failed
+2026-10-09 14:57:29,730 WARNING app.routes.auth Login Failed
+2026-10-09 14:57:29,793 WARNING app.routes.auth Login Failed
+2026-10-09 15:01:04,110 WARNING app.routes.auth Login Failed
+2026-10-09 15:01:04,245 WARNING app.routes.auth Login Failed
+2026-10-09 15:01:04,311 WARNING app.routes.auth Login Failed
+2026-10-09 15:01:04,517 WARNING app.routes.auth Login Failed
+2026-10-09 15:01:04,774 WARNING app.routes.auth Login Failed
+2026-10-09 15:01:04,857 WARNING app.routes.auth Login Failed
+2026-10-09 15:01:04,924 WARNING app.routes.auth Login Failed
+2026-10-09 15:03:28,390 WARNING app.routes.auth Login Failed
+2026-10-09 15:03:41,645 ERROR app.main Unhandled error on POST /auth/register
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\routes\auth.py", line 40, in register
+    password_hash=hash_password(payload.password),
+                  ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\app\auth\security.py", line 13, in hash_password
+    hashed_bytes = bcrypt.hashpw(plain_password.encode("utf-8"), bcrypt.gensalt())
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-10-09 15:03:41,785 ERROR app.main Unhandled error on POST /auth/register
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\routes\auth.py", line 40, in register
+    password_hash=hash_password(payload.password),
+                  ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\app\auth\security.py", line 13, in hash_password
+    hashed_bytes = bcrypt.hashpw(plain_password.encode("utf-8"), bcrypt.gensalt())
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-10-09 15:05:46,226 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:05:46,758 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:05:46,772 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 409 Conflict"
+2026-10-09 15:05:47,270 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:05:47,810 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 15:05:47,814 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:05:48,320 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:05:48,823 WARNING app.routes.auth Login Failed
+2026-10-09 15:05:48,827 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 15:05:49,373 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:05:49,849 WARNING app.routes.auth Login Failed
+2026-10-09 15:05:49,855 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 15:05:49,869 WARNING app.routes.auth Login Failed
+2026-10-09 15:05:49,873 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 15:06:33,387 WARNING app.routes.auth Login Failed
+2026-10-09 15:06:33,501 WARNING app.routes.auth Login Failed
+2026-10-09 15:06:33,592 WARNING app.routes.auth Login Failed
+2026-10-09 15:06:34,220 WARNING app.routes.auth Login Failed
+2026-10-09 15:09:07,945 WARNING app.routes.auth Login Failed
+2026-10-09 15:09:08,927 WARNING app.routes.auth Login Failed
+2026-10-09 15:09:09,034 WARNING app.routes.auth Login Failed
+2026-10-09 15:09:57,887 ERROR app.main Unhandled error on PUT /tasks/0
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 481, in app
+    solved_result = await solve_dependencies(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\dependencies\utils.py", line 702, in solve_dependencies
+    ) = await request_body_to_args(  # body_params checked above
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\dependencies\utils.py", line 977, in request_body_to_args
+    v_, errors_ = _validate_value_with_model_field(
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        field=first_field, value=body_to_process, values=values, loc=loc
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\dependencies\utils.py", line 742, in _validate_value_with_model_field
+    return field.validate(value, values, loc=loc)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\_compat\v2.py", line 182, in validate
+    self._type_adapter.validate_python(value, from_attributes=True),
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pydantic\type_adapter.py", line 441, in validate_python
+    return self.validator.validate_python(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        object,
+        ^^^^^^^
+    ...<6 lines>...
+        by_name=by_name,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\app\schemas\task.py", line 48, in status_must_be_valid
+    if not Task.is_valid_status(value):
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\app\models\task.py", line 64, in is_valid_status
+    return status in {task_status.value for task_status in TaskStatus}
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'dict'
+2026-10-09 15:09:59,997 WARNING app.routes.auth Login Failed
+2026-10-09 15:10:00,133 WARNING app.routes.auth Login Failed
+2026-10-09 15:10:00,403 WARNING app.routes.auth Login Failed
+2026-10-09 15:10:00,483 WARNING app.routes.auth Login Failed
+2026-10-09 15:10:00,589 WARNING app.routes.auth Login Failed
+2026-10-09 15:10:00,981 WARNING app.routes.auth Login Failed
+2026-10-09 15:10:01,103 WARNING app.routes.auth Login Failed
+2026-10-09 15:10:01,189 WARNING app.routes.auth Login Failed
+2026-10-09 15:10:21,886 INFO app.routes.tasks Task created task_id=1 project_id=23 user_id=1
+2026-10-09 15:10:23,068 INFO app.routes.tasks Task deleted task_id=1 user_id=1
+2026-10-09 15:10:28,914 ERROR app.main Unhandled error on POST /tasks/7278027213140012302336/archive
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\routes\tasks.py", line 145, in archive_task
+    return service.archive(
+           ~~~~~~~~~~~~~~~^
+        task_id,
+        ^^^^^^^^
+        user_id=current_user.id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        role=current_user.role,
+        ^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\app\services\task_service.py", line 150, in archive
+    task = self.task_repository.get_by_id(task_id)
+  File "D:\Infoorigin-Project\Task-Manager\app\repositories\task_repository.py", line 99, in get_by_id
+    .first()
+     ~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2373, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2271, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 2368, in _handle_dbapi_exception
+    raise exc_info[1].with_traceback(exc_info[2])
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+OverflowError: Python int too large to convert to SQLite INTEGER
+2026-10-09 15:10:29,050 ERROR app.main Unhandled error on POST /tasks/7278027213140012302336/archive
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\routes\tasks.py", line 145, in archive_task
+    return service.archive(
+           ~~~~~~~~~~~~~~~^
+        task_id,
+        ^^^^^^^^
+        user_id=current_user.id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        role=current_user.role,
+        ^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\app\services\task_service.py", line 150, in archive
+    task = self.task_repository.get_by_id(task_id)
+  File "D:\Infoorigin-Project\Task-Manager\app\repositories\task_repository.py", line 99, in get_by_id
+    .first()
+     ~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2373, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2271, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 2368, in _handle_dbapi_exception
+    raise exc_info[1].with_traceback(exc_info[2])
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+OverflowError: Python int too large to convert to SQLite INTEGER
+2026-10-09 15:10:30,522 ERROR app.main Unhandled error on POST /tasks/-40904145228050498322432/archive
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\routes\tasks.py", line 145, in archive_task
+    return service.archive(
+           ~~~~~~~~~~~~~~~^
+        task_id,
+        ^^^^^^^^
+        user_id=current_user.id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        role=current_user.role,
+        ^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\app\services\task_service.py", line 150, in archive
+    task = self.task_repository.get_by_id(task_id)
+  File "D:\Infoorigin-Project\Task-Manager\app\repositories\task_repository.py", line 99, in get_by_id
+    .first()
+     ~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2373, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2271, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 2368, in _handle_dbapi_exception
+    raise exc_info[1].with_traceback(exc_info[2])
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+OverflowError: Python int too large to convert to SQLite INTEGER
+2026-10-09 15:10:30,644 ERROR app.main Unhandled error on GET /projects/155352934128652222464
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\routes\projects.py", line 136, in get_project
+    project = repo.get_by_id(project_id)
+  File "D:\Infoorigin-Project\Task-Manager\app\repositories\project_repository.py", line 44, in get_by_id
+    return self.db.query(Project).filter(Project.id == project_id).first()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2373, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2271, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 2368, in _handle_dbapi_exception
+    raise exc_info[1].with_traceback(exc_info[2])
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+OverflowError: Python int too large to convert to SQLite INTEGER
+2026-10-09 15:10:30,794 ERROR app.main Unhandled error on GET /projects/155352934128652222464
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\routes\projects.py", line 136, in get_project
+    project = repo.get_by_id(project_id)
+  File "D:\Infoorigin-Project\Task-Manager\app\repositories\project_repository.py", line 44, in get_by_id
+    return self.db.query(Project).filter(Project.id == project_id).first()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2373, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2271, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 2368, in _handle_dbapi_exception
+    raise exc_info[1].with_traceback(exc_info[2])
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+OverflowError: Python int too large to convert to SQLite INTEGER
+2026-10-09 15:10:33,782 INFO app.routes.tasks Task created task_id=1 project_id=8 user_id=1
+2026-10-09 15:14:35,752 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 15:14:36,298 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:14:36,842 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 15:14:36,847 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:14:36,910 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 15:14:36,996 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 15:14:37,001 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 15:14:37,105 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-09 15:14:37,109 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 15:14:37,204 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 15:14:37,250 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 15:14:37,287 INFO httpx HTTP Request: GET http://testserver/tasks/?status=pending&project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 15:14:37,826 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:14:38,341 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 15:14:38,344 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:14:38,827 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:14:39,311 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 15:14:39,316 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:14:39,341 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 15:14:39,360 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"
+2026-10-09 15:14:39,855 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:14:40,305 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 15:14:40,309 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:14:40,325 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 15:14:40,817 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:14:41,294 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 15:14:41,298 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:14:41,312 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 15:14:41,800 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:14:42,287 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 15:14:42,291 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:14:42,307 INFO httpx HTTP Request: POST http://testserver/tasks/2147483648/archive "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 15:14:42,322 INFO httpx HTTP Request: GET http://testserver/projects/2147483648 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 15:14:42,348 INFO httpx HTTP Request: PUT http://testserver/tasks/deleted "HTTP/1.1 405 Method Not Allowed"
+2026-10-09 15:14:42,375 ERROR app.main Unhandled error on GET /__boom
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\main.py", line 50, in deliberate_server_error
+    raise RuntimeError("Intentional exception-handler test failure")
+RuntimeError: Intentional exception-handler test failure
+2026-10-09 15:14:42,389 INFO httpx HTTP Request: GET http://testserver/__boom "HTTP/1.1 500 Internal Server Error"
+2026-10-09 15:14:42,562 INFO httpx HTTP Request: GET http://testserver/openapi.json "HTTP/1.1 200 OK"
+2026-10-09 15:14:42,629 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 15:14:42,665 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 15:14:42,708 INFO httpx HTTP Request: GET http://testserver/tasks/999999 "HTTP/1.1 404 Not Found"
+2026-10-09 15:14:42,746 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 15:14:42,769 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 15:14:42,777 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 15:14:42,803 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 15:14:42,829 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 15:14:42,853 ERROR app.main Unhandled error on GET /__boom
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\main.py", line 50, in deliberate_server_error
+    raise RuntimeError("Intentional exception-handler test failure")
+RuntimeError: Intentional exception-handler test failure
+2026-10-09 15:14:42,862 INFO httpx HTTP Request: GET http://testserver/__boom "HTTP/1.1 500 Internal Server Error"
+2026-10-09 15:15:25,848 WARNING app.routes.auth Login Failed
+2026-10-09 15:15:25,926 WARNING app.routes.auth Login Failed
+2026-10-09 15:15:26,089 WARNING app.routes.auth Login Failed
+2026-10-09 15:15:26,151 WARNING app.routes.auth Login Failed
+2026-10-09 15:15:26,593 WARNING app.routes.auth Login Failed
+2026-10-09 15:15:45,371 INFO app.routes.tasks Task created task_id=2 project_id=42 user_id=1
+2026-10-09 15:15:45,613 INFO app.routes.tasks Task created task_id=3 project_id=42 user_id=1
+2026-10-09 15:15:45,978 ERROR app.main Unhandled error on GET /tasks/
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\routes\tasks.py", line 82, in list_tasks
+    return service.list(
+           ~~~~~~~~~~~~^
+        user_id=current_user.id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        limit=limit,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\app\services\task_service.py", line 73, in list
+    return self.task_repository.get_all(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        owner_id=user_id,
+        ^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        limit=limit,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\app\repositories\task_repository.py", line 93, in get_all
+    return query.offset(skip).limit(limit).all()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 2711, in all
+    return self._iter().all()  # type: ignore
+           ~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2373, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2271, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 2368, in _handle_dbapi_exception
+    raise exc_info[1].with_traceback(exc_info[2])
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+OverflowError: Python int too large to convert to SQLite INTEGER
+2026-10-09 15:15:46,357 INFO app.routes.tasks Task deleted task_id=2 user_id=1
+2026-10-09 15:15:47,129 INFO app.routes.tasks Task created task_id=4 project_id=27 user_id=1
+2026-10-09 15:15:48,652 INFO app.routes.tasks Task restored task_id=2 user_id=1
+2026-10-09 15:16:27,223 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 15:16:27,720 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:16:28,226 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 15:16:28,230 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:16:28,299 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 15:16:28,358 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 15:16:28,362 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 15:16:28,410 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-09 15:16:28,415 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 15:16:28,487 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 15:16:28,595 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 15:16:28,649 INFO httpx HTTP Request: GET http://testserver/tasks/?status=pending&project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 15:16:29,173 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:16:29,685 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 15:16:29,689 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:16:30,160 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:16:30,617 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 15:16:30,619 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:16:30,638 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 15:16:30,656 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"
+2026-10-09 15:16:31,136 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:16:31,618 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 15:16:31,622 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:16:31,639 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 15:16:32,123 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:16:32,636 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 15:16:32,639 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:16:32,655 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 15:16:33,157 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:16:33,639 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 15:16:33,642 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:16:33,658 INFO httpx HTTP Request: POST http://testserver/tasks/2147483648/archive "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 15:16:33,673 INFO httpx HTTP Request: GET http://testserver/projects/2147483648 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 15:16:33,703 INFO httpx HTTP Request: PUT http://testserver/tasks/deleted "HTTP/1.1 405 Method Not Allowed"
+2026-10-09 15:16:34,156 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 15:16:34,622 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 15:16:34,626 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 15:16:34,643 INFO httpx HTTP Request: GET http://testserver/tasks/?skip=9223372036854775808 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 15:16:34,675 ERROR app.main Unhandled error on GET /__boom
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\main.py", line 50, in deliberate_server_error
+    raise RuntimeError("Intentional exception-handler test failure")
+RuntimeError: Intentional exception-handler test failure
+2026-10-09 15:16:34,695 INFO httpx HTTP Request: GET http://testserver/__boom "HTTP/1.1 500 Internal Server Error"
+2026-10-09 15:16:34,866 INFO httpx HTTP Request: GET http://testserver/openapi.json "HTTP/1.1 200 OK"
+2026-10-09 15:16:34,939 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 15:16:34,973 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 15:16:35,024 INFO httpx HTTP Request: GET http://testserver/tasks/999999 "HTTP/1.1 404 Not Found"
+2026-10-09 15:16:35,065 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 15:16:35,091 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 15:16:35,096 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 15:16:35,119 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 15:16:35,149 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 15:16:35,170 ERROR app.main Unhandled error on GET /__boom
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\main.py", line 50, in deliberate_server_error
+    raise RuntimeError("Intentional exception-handler test failure")
+RuntimeError: Intentional exception-handler test failure
+2026-10-09 15:16:35,180 INFO httpx HTTP Request: GET http://testserver/__boom "HTTP/1.1 500 Internal Server Error"
+2026-10-09 15:17:21,301 WARNING app.routes.auth Login Failed
+2026-10-09 15:17:21,349 WARNING app.routes.auth Login Failed
+2026-10-09 15:17:21,592 WARNING app.routes.auth Login Failed
+2026-10-09 15:17:37,215 INFO app.routes.tasks Task created task_id=4 project_id=74 user_id=1
+2026-10-09 17:02:44,204 ERROR app.main Unhandled error on GET /__boom
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\main.py", line 50, in deliberate_server_error
+    raise RuntimeError("Intentional exception-handler test failure")
+RuntimeError: Intentional exception-handler test failure
+2026-10-09 17:02:44,223 INFO httpx HTTP Request: GET http://testserver/__boom "HTTP/1.1 500 Internal Server Error"
+2026-10-09 17:02:44,406 INFO httpx HTTP Request: GET http://testserver/openapi.json "HTTP/1.1 200 OK"
+2026-10-09 17:02:44,466 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 17:02:44,555 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 17:02:44,599 INFO httpx HTTP Request: GET http://testserver/tasks/999999 "HTTP/1.1 404 Not Found"
+2026-10-09 17:02:44,654 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 17:02:44,680 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 17:02:44,685 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 17:02:44,710 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 17:02:44,750 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 17:02:44,781 ERROR app.main Unhandled error on GET /__boom
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\main.py", line 50, in deliberate_server_error
+    raise RuntimeError("Intentional exception-handler test failure")
+RuntimeError: Intentional exception-handler test failure
+2026-10-09 17:02:44,792 INFO httpx HTTP Request: GET http://testserver/__boom "HTTP/1.1 500 Internal Server Error"
+2026-10-09 17:03:32,520 ERROR app.main Unhandled error on GET /__boom
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\main.py", line 50, in deliberate_server_error
+    raise RuntimeError("Intentional exception-handler test failure")
+RuntimeError: Intentional exception-handler test failure
+2026-10-09 17:03:32,539 INFO httpx HTTP Request: GET http://testserver/__boom "HTTP/1.1 500 Internal Server Error"
+2026-10-09 17:03:32,771 INFO httpx HTTP Request: GET http://testserver/openapi.json "HTTP/1.1 200 OK"
+2026-10-09 17:03:32,848 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 17:03:32,965 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 17:03:33,039 INFO httpx HTTP Request: GET http://testserver/tasks/999999 "HTTP/1.1 404 Not Found"
+2026-10-09 17:03:33,103 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 17:03:33,143 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 17:03:33,148 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 17:03:33,175 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 17:03:33,212 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 17:03:33,247 ERROR app.main Unhandled error on GET /__boom
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\main.py", line 50, in deliberate_server_error
+    raise RuntimeError("Intentional exception-handler test failure")
+RuntimeError: Intentional exception-handler test failure
+2026-10-09 17:03:33,256 INFO httpx HTTP Request: GET http://testserver/__boom "HTTP/1.1 500 Internal Server Error"
