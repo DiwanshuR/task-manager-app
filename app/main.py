@@ -10,8 +10,10 @@ from app.routes import auth, projects, tasks
 from app.models import user, project, task  # noqa: F401  -- registers tables with Base
 
 from app.exceptions import (
+    ArchivedTaskError,
     ProjectNotFoundError,
     TaskNotFoundError,
+    TaskStateConflictError,
     UnauthorizedActionError,
 )
 
@@ -64,6 +66,28 @@ async def task_not_found_handler(request: Request, exc: TaskNotFoundError):
             "error": "task_not_found",
             "detail": str(exc),
             "task_id": exc.task_id,
+        },
+    )
+
+
+@app.exception_handler(ArchivedTaskError)
+async def archived_task_handler(request: Request, exc: ArchivedTaskError):
+    return JSONResponse(
+        status_code=status.HTTP_409_CONFLICT,
+        content={"error": "task_archived", "detail": str(exc)},
+    )
+
+
+@app.exception_handler(TaskStateConflictError)
+async def task_state_conflict_handler(
+    request: Request,
+    exc: TaskStateConflictError,
+):
+    return JSONResponse(
+        status_code=status.HTTP_409_CONFLICT,
+        content={
+            "error": "invalid_task_transition",
+            "detail": str(exc),
         },
     )
 

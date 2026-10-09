@@ -4,7 +4,8 @@ from sqlalchemy.orm import Session
 
 from app.models.project import Project
 from app.schemas.project import ProjectCreate, ProjectUpdate
-
+from app.models.user import User, UserRole
+from sqlalchemy import or_
 
 class ProjectRepository(ABC):
     @abstractmethod
@@ -42,12 +43,30 @@ class SQLAlchemyProjectRepository(ProjectRepository):
     def get_by_id(self, project_id: int) -> Project | None:
         return self.db.query(Project).filter(Project.id == project_id).first()
 
-    def create(self, payload: ProjectCreate, *, owner_id: int) -> Project:
+    def get_visible_to_user(self, user: User) -> list[Project]:
+        query = self.db.query(Project)
+
+        if user.role == UserRole.admin:
+            return query.all()
+
+        return (
+            query.filter(
+                or_(
+                    Project.owner_id == user.id,
+                    Project.members.any(User.id == user.id),
+                )
+            )
+            .all()
+        )
+    
+    def create(self, payload: ProjectCreate, *, owner_id: int, members=None) -> Project:
         project = Project(
             name=payload.name,
             description=payload.description,
             owner_id=owner_id,
         )
+        
+        project.members = members or []
         self.db.add(project)
         self.db.commit()
         self.db.refresh(project)

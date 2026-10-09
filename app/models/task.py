@@ -5,10 +5,27 @@ from sqlalchemy.sql import func
 from app.database import Base
 
 
+
 class TaskStatus(str, enum.Enum):
     pending = "pending"
     in_progress = "in_progress"
     done = "done"
+    archived = "archived"
+
+
+TASK_STATUS_TRANSITIONS = {
+    TaskStatus.pending: frozenset({TaskStatus.in_progress, TaskStatus.archived}),
+    TaskStatus.in_progress: frozenset({TaskStatus.done, TaskStatus.archived}),
+    TaskStatus.done: frozenset({TaskStatus.archived}),
+    TaskStatus.archived: frozenset(),
+}
+
+
+def can_transition_task_status(
+    current: TaskStatus,
+    target: TaskStatus,
+) -> bool:
+    return target in TASK_STATUS_TRANSITIONS[current]
 
 
 class TaskPriority(str, enum.Enum):
@@ -29,6 +46,7 @@ class Task(Base):
     created_by = Column(Integer, ForeignKey("users.id"), nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+    deleted_at = Column(DateTime(timezone=True), nullable=True)
 
     project = relationship("Project", back_populates="tasks")
     
@@ -43,7 +61,7 @@ class Task(Base):
         if isinstance(status, TaskStatus):
             status = status.value
 
-        return status in ("pending", "in_progress", "done")
+        return status in {task_status.value for task_status in TaskStatus}
 
     @classmethod
     def from_dict(cls, data: dict) -> "Task":

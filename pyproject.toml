@@ -1,0 +1,7 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers -ra"
+markers = [
+    "unit: tests of pure business logic",
+    "integration: tests involving the application, database, or HTTP",
+]

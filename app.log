@@ -339,3 +339,1785 @@ sqlalchemy.exc.InvalidRequestError: One or more mappers failed to initialize - c
 2026-10-05 15:34:43,488 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
 2026-10-05 15:34:43,520 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
 2026-10-05 15:34:43,537 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"
+2026-10-08 19:23:04,626 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-08 19:23:05,610 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-08 19:23:05,620 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 400 Bad Request"
+2026-10-08 19:23:06,919 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-08 19:23:07,885 INFO app.routes.auth Login succeeded user_id=1
+2026-10-08 19:23:07,900 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-08 19:23:08,862 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-08 19:23:09,565 WARNING app.routes.auth Login Failed
+2026-10-08 19:23:09,568 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-08 19:23:10,356 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-08 19:23:11,170 INFO app.routes.auth Login succeeded user_id=1
+2026-10-08 19:23:11,173 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-08 19:23:11,214 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-08 19:23:12,226 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-08 19:23:12,798 INFO app.routes.auth Login succeeded user_id=1
+2026-10-08 19:23:12,802 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-08 19:23:12,822 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-08 19:23:12,840 INFO httpx HTTP Request: GET http://testserver/projects/ "HTTP/1.1 200 OK"
+2026-10-08 19:23:13,950 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-08 19:23:14,969 INFO app.routes.auth Login succeeded user_id=1
+2026-10-08 19:23:14,973 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-08 19:23:14,994 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-08 19:23:15,015 INFO httpx HTTP Request: PUT http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-08 19:23:15,997 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-08 19:23:17,017 INFO app.routes.auth Login succeeded user_id=1
+2026-10-08 19:23:17,020 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-08 19:23:17,635 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-08 19:23:18,270 INFO app.routes.auth Login succeeded user_id=2
+2026-10-08 19:23:18,273 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-08 19:23:18,298 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-08 19:23:18,320 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 403 Forbidden"
+2026-10-08 19:23:18,589 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-08 19:23:19,285 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-08 19:23:19,870 INFO app.routes.auth Login succeeded user_id=1
+2026-10-08 19:23:19,874 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-08 19:23:19,893 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-08 19:23:19,920 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-08 19:23:19,924 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-08 19:23:19,945 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-08 19:23:19,948 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-08 19:23:19,970 INFO httpx HTTP Request: GET http://testserver/tasks/?status=pending&project_id=1 "HTTP/1.1 200 OK"
+2026-10-08 19:23:20,659 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-08 19:23:21,300 INFO app.routes.auth Login succeeded user_id=1
+2026-10-08 19:23:21,303 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-08 19:23:21,965 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-08 19:23:22,732 INFO app.routes.auth Login succeeded user_id=2
+2026-10-08 19:23:22,734 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-08 19:23:22,752 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-08 19:23:22,764 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"
+2026-10-09 09:35:48,331 INFO app.routes.auth Login succeeded user_id=4
+2026-10-09 09:37:29,399 INFO app.routes.auth Login succeeded user_id=5
+2026-10-09 09:38:27,141 INFO app.routes.tasks Task created task_id=5 project_id=10 user_id=5
+2026-10-09 10:30:00,645 INFO httpx HTTP Request: GET http://testserver/auth/current-user "HTTP/1.1 200 OK"
+2026-10-09 10:30:00,814 INFO httpx HTTP Request: GET http://testserver/auth/current-user "HTTP/1.1 200 OK"
+2026-10-09 10:30:00,976 INFO httpx HTTP Request: GET http://testserver/auth/current-user "HTTP/1.1 200 OK"
+2026-10-09 10:30:51,880 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:30:52,782 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:30:52,810 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 400 Bad Request"
+2026-10-09 10:30:53,656 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:30:54,409 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:30:54,417 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:30:57,321 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:31:01,985 WARNING app.routes.auth Login Failed
+2026-10-09 10:31:01,995 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 10:31:03,271 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:31:05,058 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:31:05,116 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:31:06,035 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 10:31:08,829 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:31:09,901 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:31:09,909 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:31:09,953 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:31:09,989 INFO httpx HTTP Request: GET http://testserver/projects/ "HTTP/1.1 200 OK"
+2026-10-09 10:31:10,934 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:31:11,932 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:31:11,940 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:31:11,979 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:31:12,021 INFO httpx HTTP Request: PUT http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-09 10:31:13,282 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:31:14,484 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:31:14,498 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:31:15,720 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:31:16,560 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 10:31:16,567 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:31:16,604 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:31:16,642 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 10:31:16,717 INFO httpx HTTP Request: GET http://testserver/auth/current-user "HTTP/1.1 200 OK"
+2026-10-09 10:31:16,797 INFO httpx HTTP Request: GET http://testserver/auth/current-user "HTTP/1.1 200 OK"
+2026-10-09 10:31:16,862 INFO httpx HTTP Request: GET http://testserver/auth/current-user "HTTP/1.1 200 OK"
+2026-10-09 10:31:16,943 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 10:31:17,809 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:31:18,571 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:31:18,579 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:31:18,611 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:31:18,655 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 10:31:18,664 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 10:31:18,688 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-09 10:31:18,696 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 10:31:18,730 INFO httpx HTTP Request: GET http://testserver/tasks/?status=pending&project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 10:31:19,514 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:31:20,353 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:31:20,360 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:31:21,202 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:31:21,998 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 10:31:22,004 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:31:22,046 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:31:22,079 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"
+2026-10-09 10:40:01,092 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:40:01,997 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:40:02,027 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 400 Bad Request"
+2026-10-09 10:40:03,072 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:40:04,241 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:40:04,249 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:40:05,313 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:40:06,824 WARNING app.routes.auth Login Failed
+2026-10-09 10:40:06,831 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 10:40:08,180 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:40:09,420 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:40:09,431 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:40:09,500 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 10:40:10,489 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:40:13,096 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:40:13,104 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:40:13,317 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:40:13,359 INFO httpx HTTP Request: GET http://testserver/projects/ "HTTP/1.1 200 OK"
+2026-10-09 10:40:14,736 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:40:15,921 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:40:15,934 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:40:15,999 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:40:16,147 INFO httpx HTTP Request: PUT http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-09 10:40:17,679 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:40:19,221 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:40:19,229 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:40:20,536 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:40:21,546 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 10:40:21,556 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:40:21,603 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:40:21,644 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 10:40:21,724 INFO httpx HTTP Request: GET http://testserver/auth/current-user "HTTP/1.1 200 OK"
+2026-10-09 10:40:21,781 INFO httpx HTTP Request: GET http://testserver/auth/current-user "HTTP/1.1 200 OK"
+2026-10-09 10:40:21,843 INFO httpx HTTP Request: GET http://testserver/auth/current-user "HTTP/1.1 200 OK"
+2026-10-09 10:40:21,959 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 10:40:22,923 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:40:25,214 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:40:25,223 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:40:25,360 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:40:25,556 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 10:40:25,564 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 10:40:25,668 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 422 Unprocessable Entity"
+2026-10-09 10:40:27,687 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:40:28,544 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:40:28,555 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:40:29,490 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:40:30,587 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 10:40:30,593 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:40:30,642 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:40:30,712 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"
+2026-10-09 10:42:01,511 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:42:02,290 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:42:02,310 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 400 Bad Request"
+2026-10-09 10:42:03,090 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:42:03,830 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:42:03,837 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:42:04,599 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:42:05,329 WARNING app.routes.auth Login Failed
+2026-10-09 10:42:05,336 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 10:42:06,183 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:42:06,893 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:42:06,898 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:42:06,952 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 10:42:07,708 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:42:08,468 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:42:08,476 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:42:08,511 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:42:08,545 INFO httpx HTTP Request: GET http://testserver/projects/ "HTTP/1.1 200 OK"
+2026-10-09 10:42:09,334 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:42:10,085 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:42:10,095 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:42:10,130 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:42:10,161 INFO httpx HTTP Request: PUT http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-09 10:42:10,897 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:42:12,083 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:42:12,089 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:42:12,807 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:42:13,535 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 10:42:13,543 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:42:13,575 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:42:13,610 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 10:42:13,673 INFO httpx HTTP Request: GET http://testserver/auth/current-user "HTTP/1.1 200 OK"
+2026-10-09 10:42:13,721 INFO httpx HTTP Request: GET http://testserver/auth/current-user "HTTP/1.1 200 OK"
+2026-10-09 10:42:13,791 INFO httpx HTTP Request: GET http://testserver/auth/current-user "HTTP/1.1 200 OK"
+2026-10-09 10:42:13,856 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 10:42:14,616 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:42:15,340 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:42:15,346 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:42:15,378 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:42:15,411 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 10:42:15,416 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 10:42:15,435 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-09 10:42:15,443 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 10:42:15,474 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 10:42:15,502 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 10:42:15,531 INFO httpx HTTP Request: GET http://testserver/tasks/?status=pending&project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 10:42:16,346 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:42:17,103 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 10:42:17,111 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:42:17,840 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 10:42:18,662 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 10:42:18,668 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 10:42:18,718 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 10:42:18,749 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"
+2026-10-09 11:13:09,843 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:10,621 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:10,648 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 400 Bad Request"
+2026-10-09 11:13:11,421 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:12,175 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:13:12,182 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:13:12,961 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:13,705 WARNING app.routes.auth Login Failed
+2026-10-09 11:13:13,711 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 11:13:14,504 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:15,244 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:13:15,251 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:13:15,303 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 11:13:16,091 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:16,910 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:13:16,918 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:13:16,974 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:17,019 INFO httpx HTTP Request: GET http://testserver/projects/ "HTTP/1.1 200 OK"
+2026-10-09 11:13:18,239 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:19,029 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:13:19,036 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:13:19,070 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:19,103 INFO httpx HTTP Request: PUT http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:19,864 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:20,639 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:13:20,648 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:13:21,396 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:22,151 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 11:13:22,158 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:13:22,193 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:22,226 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:13:22,316 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:22,415 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:22,425 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:22,482 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:22,596 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:22,654 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:22,661 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:22,730 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:22,839 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:22,869 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:22,875 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:22,906 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:23,002 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,035 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:23,042 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,074 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:23,165 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,202 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:23,209 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,244 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:23,336 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,381 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:23,386 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,414 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:23,510 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,544 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:23,551 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,574 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-09 11:13:23,581 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,673 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,712 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:23,717 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,740 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=2
+2026-10-09 11:13:23,746 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,833 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,880 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:23,887 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,910 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=3
+2026-10-09 11:13:23,916 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:23,994 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:24,032 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:24,040 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:24,077 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:24,155 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:24,191 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:24,199 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:24,234 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:24,314 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:24,348 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:24,354 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:24,403 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:24,469 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:24,526 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:24,532 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:24,562 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:13:24,633 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:24,664 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:24,669 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:24,698 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:13:24,786 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:24,826 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:24,832 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:24,882 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 403 Forbidden"
+2026-10-09 11:13:25,024 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:25,087 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:25,094 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:25,142 INFO app.routes.tasks Task deleted task_id=1 user_id=1
+2026-10-09 11:13:25,150 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 204 No Content"
+2026-10-09 11:13:25,245 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:25,283 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:25,289 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:25,321 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:13:25,414 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:25,454 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:25,461 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:25,494 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:13:25,581 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:25,619 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:13:25,627 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:25,659 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:13:25,753 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:25,805 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:25,812 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:25,876 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:13:27,061 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:27,837 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 11:13:27,844 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:13:27,889 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:27,924 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 11:13:27,933 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:27,970 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:28,003 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:28,034 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:28,121 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:28,154 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 11:13:28,160 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:28,182 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 403 Forbidden"
+2026-10-09 11:13:28,214 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:28,307 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:28,337 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 11:13:28,343 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:28,378 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:13:28,411 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:28,440 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:28,466 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:28,492 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:28,523 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:28,551 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:28,578 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:28,608 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:28,639 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:28,726 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:28,758 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 11:13:28,764 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:28,787 INFO app.routes.tasks Task deleted task_id=1 user_id=3
+2026-10-09 11:13:28,792 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 204 No Content"
+2026-10-09 11:13:28,812 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 404 Not Found"
+2026-10-09 11:13:28,898 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:28,929 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:28,935 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:28,963 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:28,989 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:29,079 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:29,112 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:29,120 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:29,147 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:29,177 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:29,257 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:29,286 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:29,292 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:29,324 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:13:29,352 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:29,439 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:29,468 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:29,474 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:29,503 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:29,528 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:29,557 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:29,640 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:29,691 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:29,698 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:29,734 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:29,773 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:29,807 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:29,890 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:29,930 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:29,937 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:29,971 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:30,007 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:13:30,042 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:30,134 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:30,166 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:30,171 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:30,203 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:30,240 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:30,270 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:30,297 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:30,386 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:30,420 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:30,425 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:30,454 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:30,487 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:30,514 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:30,542 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:30,627 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:30,660 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:30,667 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:30,700 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:30,730 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:30,769 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:13:30,840 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:31,139 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:31,375 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:31,386 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:31,516 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:13:31,546 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:31,580 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:31,667 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:31,703 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:31,710 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:31,743 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:13:31,786 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:31,829 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:31,915 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:31,985 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:31,991 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:32,039 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:13:32,076 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:13:32,109 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:32,193 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:32,232 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:32,238 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:32,281 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:13:32,311 INFO httpx HTTP Request: GET http://testserver/tasks/999999 "HTTP/1.1 404 Not Found"
+2026-10-09 11:13:32,420 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 11:13:33,205 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:33,978 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:13:33,985 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:13:34,024 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:34,062 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:13:34,071 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:34,095 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-09 11:13:34,104 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:34,144 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 11:13:34,176 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 11:13:34,229 INFO httpx HTTP Request: GET http://testserver/tasks/?status=pending&project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 11:13:35,054 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:35,868 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:13:35,876 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:13:36,633 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:13:37,428 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 11:13:37,434 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:13:37,468 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:13:37,503 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"
+2026-10-09 11:14:29,023 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:29,986 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:30,014 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 400 Bad Request"
+2026-10-09 11:14:31,311 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:32,481 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:14:32,486 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:14:33,429 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:34,185 WARNING app.routes.auth Login Failed
+2026-10-09 11:14:34,192 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 11:14:35,052 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:36,272 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:14:36,280 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:14:36,332 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 11:14:37,145 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:38,039 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:14:38,047 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:14:38,087 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:38,126 INFO httpx HTTP Request: GET http://testserver/projects/ "HTTP/1.1 200 OK"
+2026-10-09 11:14:38,945 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:39,770 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:14:39,777 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:14:39,808 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:39,837 INFO httpx HTTP Request: PUT http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:40,679 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:41,519 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:14:41,526 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:14:42,510 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:43,388 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 11:14:43,395 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:14:43,432 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:43,470 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:14:43,565 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:43,648 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:43,659 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:43,713 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:43,808 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:43,838 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:43,846 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:43,877 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:43,986 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:44,076 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:44,085 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:44,126 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:44,230 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:44,268 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:44,276 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:44,328 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:44,436 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:44,475 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:44,483 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:44,516 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:44,621 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:44,665 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:44,671 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:44,713 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:44,819 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:44,866 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:44,873 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:44,903 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-09 11:14:44,910 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,007 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,049 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:45,057 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,082 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=2
+2026-10-09 11:14:45,091 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,219 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,265 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:45,272 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,298 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=3
+2026-10-09 11:14:45,305 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,409 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,451 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:45,458 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,500 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:45,618 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,672 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:45,681 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,731 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:45,836 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,896 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:45,909 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:45,973 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:46,077 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:46,115 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:46,122 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:46,160 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:14:46,257 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:46,297 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:46,304 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:46,337 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:14:46,431 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:46,467 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:46,473 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:46,496 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 403 Forbidden"
+2026-10-09 11:14:46,615 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:46,654 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:46,663 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:46,697 INFO app.routes.tasks Task deleted task_id=1 user_id=1
+2026-10-09 11:14:46,703 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 204 No Content"
+2026-10-09 11:14:46,841 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:46,889 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:46,897 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:46,974 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:14:47,116 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:47,154 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:47,161 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:47,198 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:14:47,297 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:47,334 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:14:47,340 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:47,371 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:14:47,463 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:47,500 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:47,506 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:47,544 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:14:48,508 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:49,752 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 11:14:49,758 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:14:49,802 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:49,840 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 11:14:49,847 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:49,883 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:49,919 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:49,950 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:50,041 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:50,078 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 11:14:50,085 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:50,112 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 403 Forbidden"
+2026-10-09 11:14:50,151 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:50,248 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:50,286 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 11:14:50,293 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:50,329 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:14:50,355 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:50,394 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:50,428 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:50,458 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:50,489 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:50,518 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:50,545 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:50,575 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:50,607 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:50,696 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:50,747 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 11:14:50,753 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:50,781 INFO app.routes.tasks Task deleted task_id=1 user_id=3
+2026-10-09 11:14:50,789 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 204 No Content"
+2026-10-09 11:14:50,813 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 404 Not Found"
+2026-10-09 11:14:51,076 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:51,126 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:51,134 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:51,174 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:51,203 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:51,279 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:51,312 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:51,319 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:51,347 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:51,377 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:51,460 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:51,496 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:51,503 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:51,537 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:14:51,563 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:51,649 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:51,688 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:51,694 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:51,734 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:51,763 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:51,797 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:51,881 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:51,918 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:51,924 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:51,959 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:51,999 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,040 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,129 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:52,174 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:52,180 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:52,217 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,250 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,278 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,355 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:52,388 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:52,394 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:52,425 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,455 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,488 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:52,515 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,592 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:52,627 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:52,635 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:52,668 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,706 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,736 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:52,764 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,840 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:52,873 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:52,879 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:52,912 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,947 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:52,979 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:14:53,004 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:53,076 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:53,106 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:53,111 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:53,141 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:14:53,173 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:53,205 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:53,283 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:53,331 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:53,337 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:53,376 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:14:53,408 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:53,438 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:53,519 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:53,554 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:53,560 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:53,592 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:14:53,624 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:14:53,653 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:53,736 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:53,769 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:53,776 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:53,806 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:14:53,827 INFO httpx HTTP Request: GET http://testserver/tasks/999999 "HTTP/1.1 404 Not Found"
+2026-10-09 11:14:53,960 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 11:14:54,746 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:55,529 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:14:55,536 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:14:55,575 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:55,613 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:14:55,622 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:55,646 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-09 11:14:55,655 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:55,694 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 11:14:55,731 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 11:14:55,772 INFO httpx HTTP Request: GET http://testserver/tasks/?status=pending&project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 11:14:56,579 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:57,347 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:14:57,358 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:14:58,127 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:14:58,864 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 11:14:58,873 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:14:58,910 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:14:58,943 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"
+2026-10-09 11:16:15,430 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:16,253 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:16,275 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 400 Bad Request"
+2026-10-09 11:16:17,186 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:17,967 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:16:17,975 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:16:18,778 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:19,545 WARNING app.routes.auth Login Failed
+2026-10-09 11:16:19,553 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 11:16:20,365 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:21,148 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:16:21,159 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:16:21,214 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 11:16:22,011 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:22,806 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:16:22,812 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:16:22,858 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:22,888 INFO httpx HTTP Request: GET http://testserver/projects/ "HTTP/1.1 200 OK"
+2026-10-09 11:16:23,725 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:24,531 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:16:24,538 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:16:24,574 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:24,608 INFO httpx HTTP Request: PUT http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:25,445 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:26,696 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:16:26,704 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:16:27,833 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:28,625 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 11:16:28,631 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:16:28,667 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:28,708 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:16:28,794 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:28,860 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:28,867 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:28,903 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:28,994 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,031 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:29,037 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,065 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:29,178 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,213 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:29,221 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,249 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:29,344 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,377 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:29,384 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,414 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:29,512 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,547 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:29,556 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,579 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:29,667 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,703 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:29,710 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,737 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:29,838 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,871 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:29,877 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,898 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-09 11:16:29,905 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:29,983 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:30,014 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:30,021 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:30,041 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=2
+2026-10-09 11:16:30,047 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:30,132 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:30,176 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:30,182 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:30,223 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=3
+2026-10-09 11:16:30,230 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:30,369 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:30,420 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:30,432 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:30,507 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:30,618 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:30,679 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:30,686 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:30,741 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:30,862 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:30,899 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:30,906 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:30,957 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:31,038 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:31,075 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:31,082 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:31,151 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:16:31,229 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:31,286 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:31,295 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:31,335 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:16:31,481 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:31,546 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:31,554 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:31,612 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 403 Forbidden"
+2026-10-09 11:16:31,761 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:31,810 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:31,816 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:31,853 INFO app.routes.tasks Task deleted task_id=1 user_id=1
+2026-10-09 11:16:31,859 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 204 No Content"
+2026-10-09 11:16:31,956 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:31,993 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:32,000 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:32,038 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:16:32,128 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:32,173 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:32,180 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:32,210 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:16:32,309 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:32,347 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 11:16:32,354 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:32,384 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:16:32,465 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:32,507 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:32,514 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:32,546 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:16:33,425 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:34,236 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 11:16:34,245 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:16:34,288 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:34,330 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 11:16:34,335 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:34,383 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:34,417 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:34,447 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:34,536 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:34,572 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 11:16:34,578 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:34,599 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 403 Forbidden"
+2026-10-09 11:16:34,624 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:34,732 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:34,765 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 11:16:34,773 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:34,810 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:16:34,848 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:34,876 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:34,902 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:34,951 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:34,982 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:35,011 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:35,060 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:35,101 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:35,156 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:35,493 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:35,538 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 11:16:35,546 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:35,578 INFO app.routes.tasks Task deleted task_id=1 user_id=3
+2026-10-09 11:16:35,584 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 204 No Content"
+2026-10-09 11:16:35,608 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 404 Not Found"
+2026-10-09 11:16:35,695 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:35,730 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:35,738 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:35,775 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:35,805 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:35,899 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:35,937 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:35,943 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:35,970 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:35,994 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:36,087 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:36,123 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:36,129 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:36,162 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:16:36,185 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:36,278 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:36,312 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:36,319 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:36,356 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:36,381 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:36,413 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:36,485 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:36,516 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:36,522 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:36,551 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:36,581 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:36,610 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:36,684 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:36,718 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:36,725 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:36,754 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:36,785 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:16:36,820 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:36,908 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:36,940 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:36,947 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:36,982 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:37,012 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:37,053 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:37,161 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:37,562 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:37,675 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:37,682 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:37,863 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:37,925 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:37,965 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:38,005 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:38,152 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:38,194 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:38,201 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:38,259 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:38,298 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:38,333 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:16:38,363 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:38,448 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:38,493 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:38,499 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:38,534 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:16:38,558 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:38,597 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:38,676 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:38,715 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:38,722 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:38,756 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:16:38,779 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:38,819 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:38,896 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:38,933 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:38,941 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:38,970 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 11:16:38,995 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 11:16:39,037 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:39,121 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:39,154 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:39,161 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:39,188 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 11:16:39,211 INFO httpx HTTP Request: GET http://testserver/tasks/999999 "HTTP/1.1 404 Not Found"
+2026-10-09 11:16:39,326 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 11:16:40,112 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:40,897 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:16:40,902 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:16:40,940 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:40,980 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 11:16:40,987 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:41,019 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-09 11:16:41,027 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:41,064 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 11:16:41,098 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 11:16:41,135 INFO httpx HTTP Request: GET http://testserver/tasks/?status=pending&project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 11:16:41,920 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:42,672 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 11:16:42,680 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:16:43,430 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 11:16:44,336 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 11:16:44,343 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 11:16:44,388 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 11:16:44,421 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"
+2026-10-09 11:46:48,326 INFO app.routes.auth Login succeeded user_id=4
+2026-10-09 11:47:02,515 ERROR app.main Unhandled error on POST http://127.0.0.1:8000/tasks/5/archive
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\cursors.py", line 170, in execute
+    result = self._query(query)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\cursors.py", line 335, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\connections.py", line 581, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\connections.py", line 857, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\connections.py", line 1290, in read
+    first_packet = self.connection._read_packet()
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\connections.py", line 810, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+pymysql.err.DataError: (1265, "Data truncated for column 'status' at row 1")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\cors.py", line 88, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "D:\Infoorigin-Project\Task-Manager\app\routes\tasks.py", line 128, in archive_task
+    return service.archive(
+           ~~~~~~~~~~~~~~~^
+        task_id,
+        ^^^^^^^^
+        user_id=current_user.id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        role=current_user.role,
+        ^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\app\services\task_service.py", line 178, in archive
+    return self.task_repository.update(task, payload)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\app\repositories\task_repository.py", line 103, in update
+    self.db.commit()
+    ~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 2035, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 1316, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 1290, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 4353, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 4488, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\session.py", line 4449, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 465, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 86, in save_obj
+    _emit_update_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        update,
+        ^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 913, in _emit_update_statements
+    c = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\cursors.py", line 170, in execute
+    result = self._query(query)
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\cursors.py", line 335, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\connections.py", line 581, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\connections.py", line 857, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\connections.py", line 1290, in read
+    first_packet = self.connection._read_packet()
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\connections.py", line 810, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "D:\Infoorigin-Project\Task-Manager\dvenv\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+sqlalchemy.exc.DataError: (pymysql.err.DataError) (1265, "Data truncated for column 'status' at row 1")
+[SQL: UPDATE tasks SET status=%(status)s, updated_at=now() WHERE tasks.id = %(tasks_id)s]
+[parameters: {'status': 'archived', 'tasks_id': 5}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2026-10-09 12:04:02,210 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 12:04:02,732 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 12:04:02,735 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 12:04:02,793 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:02,860 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 12:04:02,864 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:02,894 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:02,917 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:02,936 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:03,004 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:03,033 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 12:04:03,039 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:03,067 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 403 Forbidden"
+2026-10-09 12:04:03,098 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:03,176 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:03,199 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 12:04:03,203 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:03,227 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:03,245 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:03,262 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:03,297 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 12:04:03,856 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:03,880 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 12:04:03,884 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:03,905 INFO app.routes.tasks Task deleted task_id=1 user_id=3
+2026-10-09 12:04:03,910 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 204 No Content"
+2026-10-09 12:04:03,923 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 404 Not Found"
+2026-10-09 12:04:03,944 INFO httpx HTTP Request: GET http://testserver/tasks/deleted "HTTP/1.1 200 OK"
+2026-10-09 12:04:03,958 INFO httpx HTTP Request: GET http://testserver/tasks/deleted "HTTP/1.1 403 Forbidden"
+2026-10-09 12:04:03,971 INFO httpx HTTP Request: POST http://testserver/tasks/1/restore "HTTP/1.1 403 Forbidden"
+2026-10-09 12:04:03,993 INFO app.routes.tasks Task restored task_id=1 user_id=3
+2026-10-09 12:04:03,998 INFO httpx HTTP Request: POST http://testserver/tasks/1/restore "HTTP/1.1 200 OK"
+2026-10-09 12:04:04,023 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:04,036 INFO httpx HTTP Request: POST http://testserver/tasks/1/restore "HTTP/1.1 404 Not Found"
+2026-10-09 12:04:04,091 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:04,125 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:04,129 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:04,166 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:04,191 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:04,260 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:04,300 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:04,306 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:04,335 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:04,366 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:04,434 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:04,464 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:04,468 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:04,500 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:04,525 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:04,588 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:04,622 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:04,627 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:04,659 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:04,679 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:04,696 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:04,750 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:04,771 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:04,776 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:04,797 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:04,824 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:04,848 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:04,917 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:04,948 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:04,953 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:04,985 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,006 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,030 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,084 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:05,106 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:05,109 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:05,131 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,162 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,182 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:05,206 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,284 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:05,324 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:05,329 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:05,355 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,374 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,392 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:05,413 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,466 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:05,493 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:05,497 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:05,523 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,544 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,565 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,588 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,661 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:05,689 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:05,694 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:05,734 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,752 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:05,769 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,822 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:05,845 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:05,850 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:05,868 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,889 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:05,906 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:05,959 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:05,982 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:05,987 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:06,016 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:06,036 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:06,057 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:06,114 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:06,142 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:06,146 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:06,163 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 12:04:06,186 INFO httpx HTTP Request: GET http://testserver/tasks/999999 "HTTP/1.1 404 Not Found"
+2026-10-09 12:04:35,895 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 12:04:36,354 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 12:04:36,357 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 12:04:36,396 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:36,442 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 12:04:36,446 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:36,469 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:36,492 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:36,510 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:36,568 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:36,591 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 12:04:36,596 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:36,615 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 403 Forbidden"
+2026-10-09 12:04:36,635 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:36,701 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:36,729 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 12:04:36,734 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:36,762 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:36,780 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:36,797 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:36,820 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:36,838 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:36,858 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:36,873 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:36,892 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:36,907 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:36,923 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:36,980 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,008 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 12:04:37,015 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,037 INFO app.routes.tasks Task deleted task_id=1 user_id=3
+2026-10-09 12:04:37,041 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 204 No Content"
+2026-10-09 12:04:37,057 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 404 Not Found"
+2026-10-09 12:04:37,080 INFO httpx HTTP Request: GET http://testserver/tasks/deleted "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,096 INFO httpx HTTP Request: GET http://testserver/tasks/deleted "HTTP/1.1 403 Forbidden"
+2026-10-09 12:04:37,111 INFO httpx HTTP Request: POST http://testserver/tasks/1/restore "HTTP/1.1 403 Forbidden"
+2026-10-09 12:04:37,131 INFO app.routes.tasks Task restored task_id=1 user_id=3
+2026-10-09 12:04:37,137 INFO httpx HTTP Request: POST http://testserver/tasks/1/restore "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,157 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,174 INFO httpx HTTP Request: POST http://testserver/tasks/1/restore "HTTP/1.1 404 Not Found"
+2026-10-09 12:04:37,225 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,247 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:37,251 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,275 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,293 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,348 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,374 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:37,378 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,397 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:37,416 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,469 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,498 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:37,504 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,527 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,547 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,610 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,632 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:37,639 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,662 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,680 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:37,698 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,751 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,777 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:37,781 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,808 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,827 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,845 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,896 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,922 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:37,925 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:37,949 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,974 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:37,992 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,047 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,074 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:38,078 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,107 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,127 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,144 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:38,161 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,211 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,235 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:38,240 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,262 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,290 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,310 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:38,327 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,379 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,405 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:38,408 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,431 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,458 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,477 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,494 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,551 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,574 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:38,578 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,600 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,621 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:38,642 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,687 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,711 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:38,715 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,738 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,758 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:38,777 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,828 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,853 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:38,857 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,878 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,900 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:04:38,919 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:04:38,973 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:38,992 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:04:38,996 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:04:39,014 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 12:04:39,028 INFO httpx HTTP Request: GET http://testserver/tasks/999999 "HTTP/1.1 404 Not Found"
+2026-10-09 12:05:52,510 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 12:05:52,979 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 12:05:52,985 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,040 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:53,104 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 12:05:53,109 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:53,137 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,159 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,179 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,247 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:53,271 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 12:05:53,276 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:53,293 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 403 Forbidden"
+2026-10-09 12:05:53,319 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,390 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:53,416 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 12:05:53,421 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:53,446 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,465 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,483 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:53,500 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:53,522 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,540 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:53,556 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:53,574 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,591 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:53,608 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:53,659 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:53,700 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 12:05:53,704 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:53,725 INFO app.routes.tasks Task deleted task_id=1 user_id=3
+2026-10-09 12:05:53,729 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 204 No Content"
+2026-10-09 12:05:53,750 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 404 Not Found"
+2026-10-09 12:05:53,776 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,798 INFO httpx HTTP Request: GET http://testserver/tasks/deleted "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,816 INFO httpx HTTP Request: GET http://testserver/tasks/deleted "HTTP/1.1 403 Forbidden"
+2026-10-09 12:05:53,833 INFO httpx HTTP Request: POST http://testserver/tasks/1/restore "HTTP/1.1 403 Forbidden"
+2026-10-09 12:05:53,858 INFO app.routes.tasks Task restored task_id=1 user_id=3
+2026-10-09 12:05:53,862 INFO httpx HTTP Request: POST http://testserver/tasks/1/restore "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,887 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:53,901 INFO httpx HTTP Request: POST http://testserver/tasks/1/restore "HTTP/1.1 404 Not Found"
+2026-10-09 12:05:53,949 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:53,973 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:53,977 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:53,999 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,023 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,070 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:54,093 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:54,096 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:54,116 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:54,137 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,206 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:54,239 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:54,244 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:54,272 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,294 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,343 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:54,368 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:54,374 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:54,396 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,418 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:54,440 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,491 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:54,518 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:54,522 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:54,547 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,573 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,590 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,642 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:54,670 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:54,675 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:54,699 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,724 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,744 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,800 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:54,829 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:54,838 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:54,862 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,890 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,909 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:54,926 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:54,979 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:55,006 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:55,010 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:55,040 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,062 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,089 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:55,112 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,170 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:55,193 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:55,198 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:55,222 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,244 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,267 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,285 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,350 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:55,375 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:55,379 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:55,407 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,425 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:55,442 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,494 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:55,518 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:55,522 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:55,546 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,566 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:55,584 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,635 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:55,659 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:55,664 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:55,688 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,710 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 12:05:55,729 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 12:05:55,784 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:55,808 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 12:05:55,813 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 12:05:55,832 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 12:05:55,847 INFO httpx HTTP Request: GET http://testserver/tasks/999999 "HTTP/1.1 404 Not Found"
+2026-10-09 13:44:04,824 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:05,221 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:05,229 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 400 Bad Request"
+2026-10-09 13:44:05,612 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:05,993 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 13:44:05,996 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 13:44:06,411 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:06,778 WARNING app.routes.auth Login Failed
+2026-10-09 13:44:06,781 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-10-09 13:44:07,185 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:07,543 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 13:44:07,546 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 13:44:07,566 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 13:44:07,965 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:08,379 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 13:44:08,383 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 13:44:08,415 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:08,445 INFO httpx HTTP Request: GET http://testserver/projects/ "HTTP/1.1 200 OK"
+2026-10-09 13:44:09,080 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:09,531 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 13:44:09,534 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 13:44:09,550 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:09,563 INFO httpx HTTP Request: PUT http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:10,015 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:10,351 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 13:44:10,354 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 13:44:10,642 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:10,977 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 13:44:10,981 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 13:44:10,999 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,024 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 13:44:11,086 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,133 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:11,137 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,157 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:11,220 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,254 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:11,259 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,277 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:11,331 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,354 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:11,359 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,377 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:11,437 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,467 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:11,470 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,486 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:11,539 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,563 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:11,566 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,581 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:11,630 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,663 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:11,667 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,685 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:11,740 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,761 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:11,765 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,779 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-09 13:44:11,782 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,850 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,871 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:11,876 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,891 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=2
+2026-10-09 13:44:11,896 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,966 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:11,989 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:11,994 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,009 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=3
+2026-10-09 13:44:12,013 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,081 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,103 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:12,107 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,129 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:12,182 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,201 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:12,205 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,226 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:12,287 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,310 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:12,315 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,337 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:12,392 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,421 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:12,425 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,446 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 13:44:12,505 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,529 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:12,533 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,553 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 13:44:12,627 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,648 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:12,652 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,666 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 403 Forbidden"
+2026-10-09 13:44:12,719 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,738 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:12,742 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,758 INFO app.routes.tasks Task deleted task_id=1 user_id=1
+2026-10-09 13:44:12,761 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 204 No Content"
+2026-10-09 13:44:12,815 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,836 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:12,840 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,857 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 13:44:12,907 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,930 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:12,934 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:12,950 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 13:44:13,004 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:13,027 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=3
+2026-10-09 13:44:13,031 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:13,047 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 13:44:13,088 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:13,110 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:13,113 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:13,130 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 13:44:13,535 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:13,940 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 13:44:13,945 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 13:44:13,977 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:13,999 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 13:44:14,003 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:14,031 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:14,053 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:14,072 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:14,169 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:14,317 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 13:44:14,322 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:14,445 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 403 Forbidden"
+2026-10-09 13:44:14,467 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:14,522 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:14,554 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 13:44:14,558 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:14,582 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 13:44:14,598 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:14,612 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:14,627 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:14,642 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:14,656 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:14,677 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:14,692 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:14,705 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:14,718 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:14,771 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:14,891 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=2
+2026-10-09 13:44:14,895 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:14,911 INFO app.routes.tasks Task deleted task_id=1 user_id=3
+2026-10-09 13:44:14,914 INFO httpx HTTP Request: DELETE http://testserver/tasks/1 "HTTP/1.1 204 No Content"
+2026-10-09 13:44:14,926 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 404 Not Found"
+2026-10-09 13:44:14,942 INFO httpx HTTP Request: GET http://testserver/tasks/?project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:14,958 INFO httpx HTTP Request: GET http://testserver/tasks/deleted "HTTP/1.1 200 OK"
+2026-10-09 13:44:14,968 INFO httpx HTTP Request: GET http://testserver/tasks/deleted "HTTP/1.1 403 Forbidden"
+2026-10-09 13:44:14,978 INFO httpx HTTP Request: POST http://testserver/tasks/1/restore "HTTP/1.1 403 Forbidden"
+2026-10-09 13:44:14,994 INFO app.routes.tasks Task restored task_id=1 user_id=3
+2026-10-09 13:44:14,998 INFO httpx HTTP Request: POST http://testserver/tasks/1/restore "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,014 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,026 INFO httpx HTTP Request: POST http://testserver/tasks/1/restore "HTTP/1.1 404 Not Found"
+2026-10-09 13:44:15,075 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,100 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:15,103 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,121 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,135 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,178 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,199 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:15,203 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,218 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:15,231 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,276 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,296 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:15,299 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,318 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,332 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,374 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,405 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:15,409 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,428 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,441 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:15,454 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,502 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,520 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:15,524 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,541 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,556 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,569 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,619 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,647 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:15,651 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,671 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,687 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,701 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,746 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,766 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:15,769 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,788 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,804 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,818 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:15,832 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,882 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,912 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:15,917 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:15,937 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,953 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:15,965 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:15,980 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:16,033 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:16,067 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:16,070 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:16,088 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:16,105 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:16,120 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 13:44:16,134 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:16,183 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:16,204 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:16,208 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:16,227 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 13:44:16,241 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:16,254 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:16,318 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:16,337 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:16,341 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:16,360 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 13:44:16,374 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:16,387 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:16,434 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:16,460 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:16,464 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:16,482 INFO httpx HTTP Request: POST http://testserver/tasks/1/archive "HTTP/1.1 200 OK"
+2026-10-09 13:44:16,493 INFO httpx HTTP Request: PUT http://testserver/tasks/1 "HTTP/1.1 409 Conflict"
+2026-10-09 13:44:16,506 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:16,542 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:16,559 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:16,562 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:16,575 INFO httpx HTTP Request: GET http://testserver/tasks/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 13:44:16,585 INFO httpx HTTP Request: GET http://testserver/tasks/999999 "HTTP/1.1 404 Not Found"
+2026-10-09 13:44:16,647 INFO httpx HTTP Request: GET http://testserver/tasks/ "HTTP/1.1 401 Unauthorized"
+2026-10-09 13:44:17,053 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:17,422 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 13:44:17,426 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 13:44:17,443 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:17,460 INFO app.routes.tasks Task created task_id=1 project_id=1 user_id=1
+2026-10-09 13:44:17,464 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:17,475 INFO app.routes.tasks Task created task_id=2 project_id=1 user_id=1
+2026-10-09 13:44:17,479 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:17,497 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 13:44:17,512 INFO httpx HTTP Request: PUT http://testserver/tasks/2 "HTTP/1.1 200 OK"
+2026-10-09 13:44:17,529 INFO httpx HTTP Request: GET http://testserver/tasks/?status=pending&project_id=1 "HTTP/1.1 200 OK"
+2026-10-09 13:44:17,936 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:18,323 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 13:44:18,326 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 13:44:18,696 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 13:44:19,056 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 13:44:19,060 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 13:44:19,083 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 13:44:19,102 INFO httpx HTTP Request: POST http://testserver/tasks/ "HTTP/1.1 403 Forbidden"

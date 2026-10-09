@@ -38,12 +38,26 @@ def test_task_create_and_filter_by_status(client, create_user):
     pending = create_task(
         client, manager["headers"], project["id"], "Pending task", "pending"
     )
-    done = create_task(
-        client, manager["headers"], project["id"], "Finished task", "done"
+    created = create_task(
+        client, manager["headers"], project["id"], "Finished task"
     )
 
     assert pending.status_code == 201, pending.text
-    assert done.status_code == 201, done.text
+    assert created.status_code == 201, created.text
+
+    task_id = created.json()["id"]
+    for status in ("in_progress", "done"):
+        done = client.put(
+            f"/tasks/{task_id}",
+            headers=manager["headers"],
+            json={
+                "title": "Finished task",
+                "description": "Task for testing",
+                "status": status,
+                "priority": "medium",
+            },
+        )
+        assert done.status_code == 200, done.text
 
     response = client.get(
         "/tasks/",

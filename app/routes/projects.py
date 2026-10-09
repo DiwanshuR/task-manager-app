@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 
 from app.database import get_db
 from app.models.project import Project
 from app.models.user import User
-from app.schemas.project import ProjectCreate, ProjectUpdate, ProjectOut
+from app.schemas.project import ProjectCreate, ProjectUpdate, ProjectOut, ProjectMemberAssign
 from app.auth.dependencies import get_current_user
 from app.auth.dependencies import require_roles
 from app.models.user import UserRole
@@ -22,35 +23,122 @@ def create_project(
         require_roles(UserRole.admin, UserRole.manager)
     ),
 ):
-    # project = Project(name=payload.name, description=payload.description, owner_id=current_user.id)
-    # db.add(project)
-    # db.commit()
-    # db.refresh(project)
-    # return project
-    repo = SQLAlchemyProjectRepository(db)  # we used repository directly now
-    return repo.create(payload, owner_id=current_user.id)
+    # Normalize and de-duplicate email addresses.
+    emails = {
+        email.strip().casefold()
+        for email in payload.member_emails
+        if email.strip()
+    }
 
+    members = []
+    if emails:
+        members = (
+            db.query(User)
+            .filter(func.lower(User.email).in_(emails))
+            .all()
+        )
+
+        found_emails = {user.email.casefold() for user in members}
+        missing_emails = sorted(emails - found_emails)
+
+        if missing_emails:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Users not found: {', '.join(missing_emails)}",
+            )
+
+    repo = SQLAlchemyProjectRepository(db)
+    return repo.create(
+        payload,
+        owner_id=current_user.id,
+        members=members,
+    )
+
+@router.post("/{project_id}/members", response_model=ProjectOut)
+def assign_project_members(
+    project_id: int,
+    payload: ProjectMemberAssign,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    repo = SQLAlchemyProjectRepository(db)
+    project = repo.get_by_id(project_id)
+
+    if project is None:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    is_admin = current_user.role == UserRole.admin
+    is_owner_manager = (
+        current_user.role == UserRole.manager
+        and project.owner_id == current_user.id
+    )
+
+    if not is_admin and not is_owner_manager:
+        raise HTTPException(
+            status_code=403,
+            detail="Only the project manager or an admin can assign members",
+        )
+
+    emails = {
+        email.strip().casefold()
+        for email in payload.emails
+        if email.strip()
+    }
+
+    users = (
+        db.query(User)
+        .filter(func.lower(User.email).in_(emails))
+        .all()
+        if emails
+        else []
+    )
+
+    found_emails = {user.email.casefold() for user in users}
+    missing_emails = sorted(emails - found_emails)
+
+    if missing_emails:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Users not found: {', '.join(missing_emails)}",
+        )
+
+    existing_ids = {member.id for member in project.members}
+    project.members.extend(
+        user for user in users if user.id not in existing_ids
+    )
+
+    db.commit()
+    db.refresh(project)
+    return project
 
 @router.get("/", response_model=list[ProjectOut])
 def list_projects(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     repo = SQLAlchemyProjectRepository(db)
-    return repo.get_all(owner_id=current_user.id)
+    return repo.get_visible_to_user(current_user)
 
 @router.get("/{project_id}", response_model=ProjectOut)
-def get_project(project_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+def get_project(
+    project_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
     repo = SQLAlchemyProjectRepository(db)
     project = repo.get_by_id(project_id)
+
     if project is None:
-        # raise HTTPException(status_code=404, detail="Project not found")
         raise ProjectNotFoundError(project_id)
-    
-    if project.owner_id != current_user.id and current_user.role != UserRole.admin:
-        # raise HTTPException(status_code=403, detail="Not authorized to access this project")
+
+    is_admin = current_user.role == UserRole.admin
+    is_owner = project.owner_id == current_user.id
+    is_member = any(member.id == current_user.id for member in project.members)
+
+    if not (is_admin or is_owner or is_member):
         raise UnauthorizedActionError(
             action="access",
             resource="project",
             resource_id=project_id,
         )
+
     return project
 
 

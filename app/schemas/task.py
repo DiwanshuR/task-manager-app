@@ -22,10 +22,8 @@ class TaskCreate(BaseModel):
     @field_validator("status", mode="before")
     @classmethod
     def status_must_be_valid(cls, value: object) -> object:
-        if not Task.is_valid_status(value):
-            raise ValueError(
-                "Status must be pending, in_progress, or done"
-            )
+        if getattr(value, "value", value) != TaskStatus.pending.value:
+            raise ValueError("New tasks must start as pending")
         return value
 
 

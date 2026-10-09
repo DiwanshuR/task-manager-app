@@ -2,7 +2,12 @@ import bcrypt
 from datetime import datetime, timedelta, timezone
 from jose import jwt, JWTError
 from app.config import settings
+from typing import Callable
 
+Clock = Callable[[], datetime]
+
+def _current_time(now: Clock | None) -> datetime:
+    return now() if now is not None else datetime.now(timezone.utc)
 
 def hash_password(plain_password: str) -> str:
     hashed_bytes = bcrypt.hashpw(plain_password.encode("utf-8"), bcrypt.gensalt())
@@ -10,13 +15,23 @@ def hash_password(plain_password: str) -> str:
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return bcrypt.checkpw(plain_password.encode("utf-8"), hashed_password.encode("utf-8"))
+    if not isinstance(plain_password, str) or not isinstance(hashed_password, str):
+        return False
+
+    try:
+        return bcrypt.checkpw(
+            plain_password.encode("utf-8"),
+            hashed_password.encode("utf-8"),
+        )
+    except (ValueError, TypeError):
+        # A malformed/corrupted hash should fail authentication, not crash.
+        return False
 
 
-def create_access_token(data: dict) -> str:
+def create_access_token(data: dict, now: Clock | None = None) -> str:
     payload = data.copy()
     payload["type"] = "access"
-    payload["exp"] = datetime.now(timezone.utc) + timedelta(
+    payload["exp"] = _current_time(now) + timedelta(
         minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
     )
     return jwt.encode(
@@ -25,10 +40,10 @@ def create_access_token(data: dict) -> str:
         algorithm=settings.ALGORITHM
     )
 
-def create_refresh_token(data: dict) -> str:
+def create_refresh_token(data: dict, now: Clock | None = None) -> str:
     payload = data.copy()
     payload["type"] = "refresh"
-    payload["exp"] = datetime.now(timezone.utc) + timedelta(
+    payload["exp"] = _current_time(now) + timedelta(
         days=settings.REFRESH_TOKEN_EXPIRE_DAYS
     )
 
@@ -39,27 +54,41 @@ def create_refresh_token(data: dict) -> str:
     )
 
 
-def decode_access_token(token: str) -> dict | None:
+def _decode_token(
+    token: str,
+    expected_type: str,
+    now: Clock | None = None,
+) -> dict | None:
     try:
-        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
-        if payload.get("type") != "access":
-            return None
-
-        return payload
-    except JWTError:
-        return None
-
-def decode_refresh_token(token: str) -> dict | None:
-    try:
+        # Verify the signature and algorithm, but check exp ourselves below
+        # so the test can supply a controlled clock.
         payload = jwt.decode(
             token,
             settings.SECRET_KEY,
             algorithms=[settings.ALGORITHM],
+            options={"verify_exp": False},
         )
 
-        if payload.get("type") != "refresh":
+        if payload.get("type") != expected_type:
+            return None
+
+        exp = payload.get("exp")
+        if isinstance(exp, bool) or not isinstance(exp, (int, float)):
+            return None
+
+        if _current_time(now).timestamp() >= exp:
             return None
 
         return payload
-    except JWTError:
+    except (JWTError, ValueError, TypeError, OverflowError):
+        # Malformed or invalid tokens should fail closed, not leak parsing errors.
         return None
+
+
+def decode_access_token(token: str, now: Clock | None = None) -> dict | None:
+    return _decode_token(token, "access", now)
+
+
+def decode_refresh_token(token: str, now: Clock | None = None) -> dict | None:
+    return _decode_token(token, "refresh", now)
+

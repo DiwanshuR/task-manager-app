@@ -150,6 +150,7 @@ hr { border-color: var(--color-border) !important; }
 .tm-chip-pending   { background: var(--color-brass-soft); color: var(--color-brass); border-color: #E4D3A5; }
 .tm-chip-in_progress { background: #E7EEF5; color: var(--color-navy); border-color: #C7D6E5; }
 .tm-chip-done       { background: var(--color-success-soft); color: var(--color-success); border-color: #C7DECC; }
+.tm-chip-archived   { background: #E8E8E5; color: var(--color-ink-muted); border-color: var(--color-border); }
 .tm-chip-low        { background: #F1F1EE; color: var(--color-ink-muted); border-color: var(--color-border); }
 .tm-chip-medium     { background: var(--color-brass-soft); color: var(--color-brass); border-color: #E4D3A5; }
 .tm-chip-high       { background: var(--color-danger-soft); color: var(--color-danger); border-color: #E3C5C3; }
@@ -173,7 +174,12 @@ hr { border-color: var(--color-border) !important; }
 
 st.markdown(APP_CSS, unsafe_allow_html=True)
 
-STATUS_LABEL = {"pending": "Pending", "in_progress": "In progress", "done": "Done"}
+STATUS_LABEL = {
+    "pending": "Pending",
+    "in_progress": "In progress",
+    "done": "Done",
+    "archived": "Archived",
+}
 PRIORITY_LABEL = {"low": "Low", "medium": "Medium", "high": "High"}
 
 
@@ -472,6 +478,11 @@ def show_projects(projects, can_create):
             with st.form("create_project_form"):
                 name = st.text_input("Project name")
                 description = st.text_area("Description")
+                member_emails_text = st.text_area(
+                    "Assign members by email",
+                    placeholder="alex@example.com, sam@example.com",
+                    help="Enter existing account emails separated by commas.",
+                )
                 submitted = st.form_submit_button(
                     "Create project",
                     type="primary",
@@ -481,19 +492,29 @@ def show_projects(projects, can_create):
                 if not name.strip():
                     st.warning("Enter a project name.")
                 else:
+                    member_emails = [
+                        email.strip()
+                        for email in member_emails_text.split(",")
+                        if email.strip()
+                    ]
+
                     response = api_request(
                         "POST",
                         "/projects/",
                         json={
                             "name": name.strip(),
                             "description": description.strip(),
+                            "member_emails": member_emails,
                         },
                     )
                     if response is not None and response.status_code == 201:
-                        st.success("Project created.")
+                        st.success("Project created and members assigned.")
                         st.rerun()
                     else:
-                        st.error(response_error(response, "Could not create project."))
+                        st.error(
+                            response_error(response, "Could not create project.")
+                        )
+
     else:
         st.info("Your account can view projects but cannot create them.")
 
@@ -582,9 +603,8 @@ def show_tasks(projects):
             project_name = st.selectbox("Project", project_names)
             title = st.text_input("Task title")
             description = st.text_area("Description")
-            status_col, priority_col = st.columns(2)
-            status = status_col.selectbox("Status", ["pending", "in_progress", "done"])
-            priority = priority_col.selectbox("Priority", ["low", "medium", "high"])
+            st.caption("New tasks start as Pending.")
+            priority = st.selectbox("Priority", ["low", "medium", "high"])
             submitted = st.form_submit_button("Create task", type="primary")
 
         if submitted:
@@ -597,7 +617,6 @@ def show_tasks(projects):
                     json={
                         "title": title.strip(),
                         "description": description.strip(),
-                        "status": status,
                         "priority": priority,
                         "project_id": project_by_name[project_name]["id"],
                     },
@@ -619,7 +638,7 @@ def show_tasks(projects):
         filter_col1, filter_col2, filter_col3 = st.columns([1, 1, 2])
         status_filter = filter_col1.selectbox(
             "Status",
-            ["Any status", "pending", "in_progress", "done"],
+            ["Any status", "pending", "in_progress", "done", "archived"],
         )
         priority_filter = filter_col2.selectbox(
             "Priority",
@@ -660,8 +679,16 @@ def show_tasks(projects):
         return
 
     st.caption(f"{len(tasks)} task(s) on this page")
+    user = st.session_state.user or {}
+    role = user.get("role", "member")
 
     for task in tasks:
+        is_archived = task["status"] == "archived"
+        can_edit = (
+            role in {"admin", "manager"}
+            or task["created_by"] == user.get("id")
+        )
+        is_read_only = is_archived or not can_edit
         with st.container(border=True):
             task_col, status_col, priority_col = st.columns([3, 1, 1])
             task_col.markdown(f"**{task['title']}**")
@@ -678,23 +705,31 @@ def show_tasks(projects):
                         "Task title",
                         value=task["title"],
                         key=f"task_title_{task['id']}",
+                        disabled=is_read_only,
                     )
                     edited_description = st.text_area(
                         "Description",
                         value=task.get("description") or "",
                         key=f"task_description_{task['id']}",
+                        disabled=is_read_only,
                     )
+                    status_choices = [task["status"]]
+                    if task["status"] == "pending":
+                        status_choices.append("in_progress")
+                    elif task["status"] == "in_progress":
+                        status_choices.append("done")
                     edited_status = st.selectbox(
                         "Status",
-                        ["pending", "in_progress", "done"],
-                        index=["pending", "in_progress", "done"].index(task["status"]),
+                        status_choices,
                         key=f"task_status_{task['id']}",
+                        disabled=is_read_only,
                     )
                     edited_priority = st.selectbox(
                         "Priority",
                         ["low", "medium", "high"],
                         index=["low", "medium", "high"].index(task["priority"]),
                         key=f"task_priority_{task['id']}",
+                        disabled=is_read_only,
                     )
                     edited_project = st.selectbox(
                         "Project",
@@ -710,8 +745,12 @@ def show_tasks(projects):
                             )
                         ),
                         key=f"task_project_{task['id']}",
+                        disabled=is_read_only,
                     )
-                    save = st.form_submit_button("Save changes")
+                    save = st.form_submit_button(
+                        "Save changes",
+                        disabled=is_read_only,
+                    )
 
                 if save:
                     if not edited_title.strip():
@@ -736,7 +775,23 @@ def show_tasks(projects):
                                 response_error(response, "Could not update task.")
                             )
 
-            if st.button("Delete task", key=f"delete_task_{task['id']}"):
+            if is_archived:
+                st.caption("Archived tasks are read-only.")
+            elif role in {"admin", "manager"} and st.button(
+                "Archive task",
+                key=f"archive_task_{task['id']}",
+            ):
+                response = api_request("POST", f"/tasks/{task['id']}/archive")
+                if response is not None and response.status_code == 200:
+                    st.success("Task archived.")
+                    st.rerun()
+                else:
+                    st.error(response_error(response, "Could not archive task."))
+
+            if role == "admin" and not is_archived and st.button(
+                "Delete task",
+                key=f"delete_task_{task['id']}",
+            ):
                 response = api_request("DELETE", f"/tasks/{task['id']}")
                 if response is not None and response.status_code in (200, 204):
                     st.success("Task deleted.")

@@ -21,5 +21,10 @@ class User(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     projects = relationship("Project", back_populates="owner")
+    assigned_projects = relationship(
+        "Project",
+        secondary="project_members",
+        back_populates="members",
+    )
     
     

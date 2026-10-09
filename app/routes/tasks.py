@@ -14,6 +14,8 @@ from app.auth.dependencies import get_current_user
 
 from app.repositories.task_repository import SQLAlchemyTaskRepository
 from app.repositories.project_repository import SQLAlchemyProjectRepository
+from app.services.task_service import TaskService
+
 
 from app.exceptions import (
     ProjectNotFoundError,
@@ -23,43 +25,31 @@ from app.exceptions import (
 
 router = APIRouter(prefix="/tasks", tags=["Tasks"])
 
+def _task_service(db: Session) -> TaskService:
+    return TaskService(
+        task_repository=SQLAlchemyTaskRepository(db),
+        project_repository=SQLAlchemyProjectRepository(db),
+    )
+    
+# removed _get_owned_project function and moved it to TaskService class in services/task_service.py for better separation of concerns and testability.
 
-def _get_owned_project(project_id: int, db: Session, current_user: User) -> Project:
-    # project = db.query(Project).filter(Project.id == project_id).first()
-    project = SQLAlchemyProjectRepository(db).get_by_id(project_id)
-    if project is None:
-        # raise HTTPException(status_code=404, detail="Project not found")
-        raise ProjectNotFoundError(project_id)
-    if project.owner_id != current_user.id:
-        # raise HTTPException(status_code=403, detail="Not authorized to access this project")
-        raise UnauthorizedActionError(
-            action="access",
-            resource="project",
-            resource_id=project_id,
-        )
-    return project
 
+
+# ...existing code...
 
 @router.post("/", response_model=TaskOut, status_code=status.HTTP_201_CREATED)
-def create_task(payload: TaskCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    _get_owned_project(payload.project_id, db, current_user)
+def create_task(
+    payload: TaskCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    service = _task_service(db)
+    task = service.create(
+        payload,
+        user_id=current_user.id,
+        role=current_user.role,
+    )
 
-    repo = SQLAlchemyTaskRepository(db)
-    
-    # task = Task(
-    #     title=payload.title,
-    #     description=payload.description,
-    #     status=payload.status,
-    #     priority=payload.priority,
-    #     project_id=payload.project_id,
-    #     created_by=current_user.id,
-    # )
-    # db.add(task)
-    # db.commit()
-    # db.refresh(task)
-    # return task
-    # Just use the repository     
-    task = repo.create(payload, created_by=current_user.id) 
     logger.info(
         "Task created task_id=%s project_id=%s user_id=%s",
         task.id,
@@ -80,27 +70,44 @@ def list_tasks(
     skip: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=100),
 ):
-    repo = SQLAlchemyTaskRepository(db)
-    
-    return repo.get_all(
-        owner_id=current_user.id,
+    service = _task_service(db)
+
+    return service.list(
+        user_id=current_user.id,
+        role=current_user.role,
         status_filter=status_filter,
         priority=priority,
         project_id=project_id,
         search=search,
         skip=skip,
-        limit=limit
+        limit=limit,
     )
 
+
+@router.get("/deleted", response_model=list[TaskOut])
+def list_deleted_tasks(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    service = _task_service(db)
+    return service.list_deleted(
+        user_id=current_user.id,
+        role=current_user.role,
+    )
+
+
 @router.get("/{task_id}", response_model=TaskOut)
-def get_task(task_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    repo = SQLAlchemyTaskRepository(db)
-    task = repo.get_by_id(task_id)
-    if task is None:
-        # raise HTTPException(status_code=404, detail="Task not found")
-        raise TaskNotFoundError(task_id)
-    _get_owned_project(task.project_id, db, current_user)
-    return task
+def get_task(
+    task_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    service = _task_service(db)
+    return service.get(
+        task_id,
+        user_id=current_user.id,
+        role=current_user.role,
+    )
 
 
 @router.put("/{task_id}", response_model=TaskOut)
@@ -110,29 +117,69 @@ def update_task(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    repo = SQLAlchemyTaskRepository(db)
-    task = repo.get_by_id(task_id)
-    if task is None:
-        # raise HTTPException(status_code=404, detail="Task not found")
-        raise TaskNotFoundError(task_id)
-    _get_owned_project(task.project_id, db, current_user)
+    service = _task_service(db)
+    return service.update(
+        task_id,
+        payload,
+        user_id=current_user.id,
+        role=current_user.role,
+    )
 
-    return repo.update(task, payload)
+
+@router.post(
+    "/{task_id}/archive",
+    response_model=TaskOut,
+    status_code=status.HTTP_200_OK,
+)
+def archive_task(
+    task_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    service = _task_service(db)
+    return service.archive(
+        task_id,
+        user_id=current_user.id,
+        role=current_user.role,
+    )
+
+
+@router.post(
+    "/{task_id}/restore",
+    response_model=TaskOut,
+    status_code=status.HTTP_200_OK,
+)
+def restore_task(
+    task_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    service = _task_service(db)
+    task = service.restore(
+        task_id,
+        user_id=current_user.id,
+        role=current_user.role,
+    )
+    logger.info("Task restored task_id=%s user_id=%s", task_id, current_user.id)
+    return task
 
 
 @router.delete("/{task_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_task(task_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    repo = SQLAlchemyTaskRepository(db)
-    task = repo.get_by_id(task_id)
-    if task is None:
-        # raise HTTPException(status_code=404, detail="Task not found")
-        raise TaskNotFoundError(task_id)    # using custome exceptions 
-    _get_owned_project(task.project_id, db, current_user)
+def delete_task(
+    task_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    service = _task_service(db)
+    service.delete(
+        task_id,
+        user_id=current_user.id,
+        role=current_user.role,
+    )
 
-    repo.delete(task)
     logger.info(
         "Task deleted task_id=%s user_id=%s",
-        task.id,
+        task_id,
         current_user.id,
     )
     return None

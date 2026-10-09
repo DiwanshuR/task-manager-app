@@ -1,7 +1,25 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, Table, ForeignKey
 from sqlalchemy.orm import relationship, validates
 from sqlalchemy.sql import func
 from app.database import Base
+
+
+project_members = Table(
+    "project_members",
+    Base.metadata,
+    Column(
+        "project_id",
+        Integer,
+        ForeignKey("projects.id", ondelete="CASCADE"),
+        primary_key=True,
+    ),
+    Column(
+        "user_id",
+        Integer,
+        ForeignKey("users.id", ondelete="CASCADE"),
+        primary_key=True,
+    ),
+)
 
 
 class Project(Base):
@@ -15,6 +33,11 @@ class Project(Base):
 
     owner = relationship("User", back_populates="projects")
     tasks = relationship("Task", back_populates="project", cascade="all, delete-orphan")
+    members = relationship(
+        "User",
+        secondary=project_members,
+        back_populates="assigned_projects",
+    )
     
     @validates("name")
     def validate_name(self, key: str, value: str) -> str:

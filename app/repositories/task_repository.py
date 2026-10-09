@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
-
+from sqlalchemy import func, or_
+from app.models.project import Project
+from app.models.user import User
 from sqlalchemy.orm import Session
 
 from app.models.task import Task, TaskPriority, TaskStatus
@@ -12,6 +14,7 @@ class TaskRepository(ABC):
         self,
         *,
         owner_id: int,
+        is_admin: bool = False,
         status_filter: TaskStatus | None = None,
         priority: TaskPriority | None = None,
         project_id: int | None = None,
@@ -23,6 +26,14 @@ class TaskRepository(ABC):
 
     @abstractmethod
     def get_by_id(self, task_id: int) -> Task | None:
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_deleted_by_id(self, task_id: int) -> Task | None:
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_deleted(self) -> list[Task]:
         raise NotImplementedError
 
     @abstractmethod
@@ -34,7 +45,11 @@ class TaskRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def delete(self, task: Task) -> None:
+    def soft_delete(self, task: Task) -> None:
+        raise NotImplementedError
+
+    @abstractmethod
+    def restore(self, task: Task) -> Task:
         raise NotImplementedError
 
 
@@ -46,6 +61,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self,
         *,
         owner_id: int,
+        is_admin: bool = False,
         status_filter: TaskStatus | None = None,
         priority: TaskPriority | None = None,
         project_id: int | None = None,
@@ -53,11 +69,17 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = (
-            self.db.query(Task)
-            .join(Task.project)
-            .filter(Task.project.has(owner_id=owner_id))
+        query = self.db.query(Task).join(Task.project).filter(
+            Task.deleted_at.is_(None)
         )
+
+        if not is_admin:
+            query = query.filter(
+                or_(
+                    Project.owner_id == owner_id,
+                    Project.members.any(User.id == owner_id),
+                )
+            )
 
         if status_filter is not None:
             query = query.filter(Task.status == status_filter)
@@ -65,13 +87,32 @@ class SQLAlchemyTaskRepository(TaskRepository):
             query = query.filter(Task.priority == priority)
         if project_id is not None:
             query = query.filter(Task.project_id == project_id)
-        if search is not None:
+        if search:
             query = query.filter(Task.title.ilike(f"%{search}%"))
 
         return query.offset(skip).limit(limit).all()
 
     def get_by_id(self, task_id: int) -> Task | None:
-        return self.db.query(Task).filter(Task.id == task_id).first()
+        return (
+            self.db.query(Task)
+            .filter(Task.id == task_id, Task.deleted_at.is_(None))
+            .first()
+        )
+
+    def get_deleted_by_id(self, task_id: int) -> Task | None:
+        return (
+            self.db.query(Task)
+            .filter(Task.id == task_id, Task.deleted_at.is_not(None))
+            .first()
+        )
+
+    def get_deleted(self) -> list[Task]:
+        return (
+            self.db.query(Task)
+            .filter(Task.deleted_at.is_not(None))
+            .order_by(Task.deleted_at.desc(), Task.id.desc())
+            .all()
+        )
 
     def create(self, payload: TaskCreate, *, created_by: int) -> Task:
         task = Task(
@@ -96,6 +137,13 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def delete(self, task: Task) -> None:
-        self.db.delete(task)
+    def soft_delete(self, task: Task) -> None:
+        task.deleted_at = func.now()
         self.db.commit()
+        self.db.refresh(task)
+
+    def restore(self, task: Task) -> Task:
+        task.deleted_at = None
+        self.db.commit()
+        self.db.refresh(task)
+        return task
