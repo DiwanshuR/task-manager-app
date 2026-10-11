@@ -14,6 +14,9 @@ env:
   ENVIRONMENT: test
   SECRET_KEY: ci-only-not-a-real-secret
   DATABASE_URL: "sqlite://"
+  DB_USER: ci_test_user
+  DB_PASSWORD: ci_test_password
+  DB_NAME: ci_test_db
 
 jobs:
   # 1. Lint and formatting checks
