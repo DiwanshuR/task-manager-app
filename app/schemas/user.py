@@ -1,8 +1,9 @@
+from datetime import datetime
 from typing import Annotated
 
 from email_validator import EmailNotValidError, validate_email
 from pydantic import AfterValidator, BaseModel, Field, field_serializer
-from datetime import datetime
+
 from app.models.user import UserRole
 from app.schemas.datetime import as_utc
 
@@ -45,7 +46,7 @@ class UserOut(BaseModel):
     id: int
     name: str
     email: EmailAddress
-    role : UserRole
+    role: UserRole
     created_at: datetime
 
     @field_serializer("created_at")

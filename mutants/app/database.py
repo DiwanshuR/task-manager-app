@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.orm import declarative_base, sessionmaker
+
 from app.config import settings
 
 # pool_pre_ping=True tests each connection with a lightweight query
@@ -13,7 +14,9 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
+
 mutants_x_get_db__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -41,5 +44,6 @@ def x_get_db__mutmut_1():
     finally:
         db.close()
 
-mutants_x_get_db__mutmut['_mutmut_orig'] = x_get_db__mutmut_orig # type: ignore # mutmut generated
-mutants_x_get_db__mutmut['x_get_db__mutmut_1'] = x_get_db__mutmut_1 # type: ignore # mutmut generated
+
+mutants_x_get_db__mutmut["_mutmut_orig"] = x_get_db__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_get_db__mutmut["x_get_db__mutmut_1"] = x_get_db__mutmut_1  # type: ignore # mutmut generated

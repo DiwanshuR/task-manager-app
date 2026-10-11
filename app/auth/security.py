@@ -1,9 +1,11 @@
-import bcrypt
 import hashlib
 from datetime import datetime, timedelta, timezone
-from jose import jwt, JWTError
-from app.config import settings
 from typing import Callable
+
+import bcrypt
+from jose import JWTError, jwt
+
+from app.config import settings
 
 Clock = Callable[[], datetime]
 _BCRYPT_SHA256_PREFIX = "bcrypt-sha256-v1$"
@@ -15,8 +17,10 @@ def _prehash_password(password: str) -> bytes:
     ).hexdigest()
     return digest.encode("ascii")
 
+
 def _current_time(now: Clock | None) -> datetime:
     return now() if now is not None else datetime.now(timezone.utc)
+
 
 def hash_password(plain_password: str) -> str:
     password_bytes = plain_password.encode("utf-8")
@@ -50,21 +54,14 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 def create_access_token(data: dict, now: Clock | None = None) -> str:
     payload = data.copy()
     payload["type"] = "access"
-    payload["exp"] = _current_time(now) + timedelta(
-        minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
-    )
-    return jwt.encode(
-        payload,
-        settings.SECRET_KEY,
-        algorithm=settings.ALGORITHM
-    )
+    payload["exp"] = _current_time(now) + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    return jwt.encode(payload, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
+
 
 def create_refresh_token(data: dict, now: Clock | None = None) -> str:
     payload = data.copy()
     payload["type"] = "refresh"
-    payload["exp"] = _current_time(now) + timedelta(
-        days=settings.REFRESH_TOKEN_EXPIRE_DAYS
-    )
+    payload["exp"] = _current_time(now) + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
 
     return jwt.encode(
         payload,

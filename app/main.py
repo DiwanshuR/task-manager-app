@@ -1,17 +1,17 @@
-import app.logging_config
+import logging
+
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-import logging
+from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.routing import Match
 
+import app.logging_config
 from app.database import Base, engine
-from app.routes import auth, projects, tasks
-from app.models import user, project, task  # noqa: F401  -- registers tables with Base
-
 from app.exceptions import AppError
+from app.models import project, task, user  # noqa: F401  -- registers tables with Base
+from app.routes import auth, projects, tasks
 
 logger = logging.getLogger(__name__)
 
@@ -44,6 +44,7 @@ app.include_router(tasks.router)
 def root():
     return {"message": "Task Management System v2 (MySQL) is running", "docs": "/docs"}
 
+
 # 2. Add a deliberate /__boom endpoint that raises RuntimeError, so your catch-all is testable
 @app.get("/__boom", include_in_schema=False)
 def deliberate_server_error():
@@ -54,9 +55,7 @@ def deliberate_server_error():
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     errors = [
         {
-            "field": " -> ".join(
-                str(location) for location in err["loc"] if location != "body"
-            ),
+            "field": " -> ".join(str(location) for location in err["loc"] if location != "body"),
             "message": err["msg"],
             "type": err["type"],
         }

@@ -1,5 +1,5 @@
-from app.services.task_rules import normalize_title
 from app.models.task import TaskStatus
+from app.services.task_rules import normalize_title
 
 
 def normalize_task_title(title: str) -> str:

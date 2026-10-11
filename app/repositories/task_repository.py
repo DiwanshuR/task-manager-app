@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
+
 from sqlalchemy import func, or_
-from app.models.project import Project
-from app.models.user import User
 from sqlalchemy.orm import Session
 
+from app.models.project import Project
 from app.models.task import Task, TaskPriority, TaskStatus
+from app.models.user import User
 from app.schemas.task import TaskCreate, TaskUpdate
 
 
@@ -69,9 +70,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -93,18 +92,10 @@ class SQLAlchemyTaskRepository(TaskRepository):
         return query.offset(skip).limit(limit).all()
 
     def get_by_id(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(Task.id == task_id, Task.deleted_at.is_(None))
-            .first()
-        )
+        return self.db.query(Task).filter(Task.id == task_id, Task.deleted_at.is_(None)).first()
 
     def get_deleted_by_id(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(Task.id == task_id, Task.deleted_at.is_not(None))
-            .first()
-        )
+        return self.db.query(Task).filter(Task.id == task_id, Task.deleted_at.is_not(None)).first()
 
     def get_deleted(self) -> list[Task]:
         return (

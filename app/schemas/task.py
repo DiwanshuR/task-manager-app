@@ -1,7 +1,9 @@
-from pydantic import BaseModel, Field, field_serializer, field_validator
 from datetime import datetime
 from typing import Literal, Optional
-from app.models.task import Task, TaskStatus, TaskPriority
+
+from pydantic import BaseModel, Field, field_serializer, field_validator
+
+from app.models.task import Task, TaskPriority, TaskStatus
 from app.schemas.datetime import as_utc
 
 
@@ -11,7 +13,7 @@ class TaskCreate(BaseModel):
     status: Literal[TaskStatus.pending] = TaskStatus.pending
     priority: TaskPriority = TaskPriority.medium
     project_id: int = Field(..., le=2_147_483_647)
-    
+
     @field_validator("title")
     @classmethod
     def title_must_contain_non_whitespace(cls, value: str) -> str:
@@ -20,12 +22,13 @@ class TaskCreate(BaseModel):
             raise ValueError("Task title cannot be empty")
         return value
 
+
 class TaskUpdate(BaseModel):
     title: str = Field(..., min_length=1)
     description: Optional[str] = None
     status: TaskStatus = TaskStatus.pending
     priority: TaskPriority = TaskPriority.medium
-    
+
     @field_validator("title")
     @classmethod
     def title_must_contain_non_whitespace(cls, value: str) -> str:
@@ -38,9 +41,7 @@ class TaskUpdate(BaseModel):
     @classmethod
     def status_must_be_valid(cls, value: object) -> object:
         if not Task.is_valid_status(value):
-            raise ValueError(
-                "Status must be pending, in_progress, or done"
-            )
+            raise ValueError("Status must be pending, in_progress, or done")
         return value
 
 

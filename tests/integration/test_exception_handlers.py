@@ -1,11 +1,11 @@
 import logging
-from pathlib import Path
-
 from logging import FileHandler
+from pathlib import Path
 
 import pytest
 
 from app.models.user import UserRole
+
 
 # 2. Write a test asserting the response contains no traceback, no RuntimeError, no file paths — and a second test asserting the traceback was written to the log (use pytest's caplog fixture).
 def test_unhandled_error_response_does_not_leak_traceback_or_paths(client):
@@ -56,10 +56,8 @@ def test_unhandled_error_traceback_is_written_to_log(
     ]
     assert len(error_records) == 1
     assert "Traceback (most recent call last)" in caplog.text
-    assert (
-        "RuntimeError: Intentional exception-handler test failure"
-        in caplog.text
-    )
+    assert "RuntimeError: Intentional exception-handler test failure" in caplog.text
+
 
 # task 3. Write one parametrized test proving 401 / 403 / 404 / 409 / 422 / 500 all return the identical envelope shape.
 @pytest.mark.parametrize(

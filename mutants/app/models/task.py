@@ -1,12 +1,13 @@
 import enum
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Enum as SQLEnum
+
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
+from sqlalchemy import Enum as SQLEnum
 from sqlalchemy.orm import relationship, validates
 from sqlalchemy.sql import func
+
 from app.database import Base
-
-
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
-
 
 
 class TaskStatus(str, enum.Enum):
@@ -46,14 +47,21 @@ def x_can_transition_task_status__mutmut_1(
 ) -> bool:
     return target not in TASK_STATUS_TRANSITIONS[current]
 
-mutants_x_can_transition_task_status__mutmut['_mutmut_orig'] = x_can_transition_task_status__mutmut_orig # type: ignore # mutmut generated
-mutants_x_can_transition_task_status__mutmut['x_can_transition_task_status__mutmut_1'] = x_can_transition_task_status__mutmut_1 # type: ignore # mutmut generated
+
+mutants_x_can_transition_task_status__mutmut["_mutmut_orig"] = (
+    x_can_transition_task_status__mutmut_orig  # type: ignore # mutmut generated
+)
+mutants_x_can_transition_task_status__mutmut["x_can_transition_task_status__mutmut_1"] = (
+    x_can_transition_task_status__mutmut_1  # type: ignore # mutmut generated
+)
 
 
 class TaskPriority(str, enum.Enum):
     low = "low"
     medium = "medium"
     high = "high"
+
+
 mutants_xǁTaskǁis_valid_status__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁTaskǁ__eq____mutmut: MutantDict = {}  # type: ignore
 
@@ -73,7 +81,7 @@ class Task(Base):
     deleted_at = Column(DateTime(timezone=True), nullable=True)
 
     project = relationship("Project", back_populates="tasks")
-    
+
     @validates("title")
     def validate_title(self, key: str, value: str) -> str:
         if not isinstance(value, str) or not value.strip():
@@ -158,7 +166,6 @@ class Task(Base):
             other.project_id,
             other.created_by,
         )
-        
 
     def xǁTaskǁ__eq____mutmut_orig(self, other: object) -> bool:
         if not isinstance(other, Task):
@@ -181,7 +188,6 @@ class Task(Base):
             other.project_id,
             other.created_by,
         )
-        
 
     def xǁTaskǁ__eq____mutmut_1(self, other: object) -> bool:
         if isinstance(other, Task):
@@ -204,7 +210,6 @@ class Task(Base):
             other.project_id,
             other.created_by,
         )
-        
 
     def xǁTaskǁ__eq____mutmut_2(self, other: object) -> bool:
         if not isinstance(other, Task):
@@ -227,13 +232,19 @@ class Task(Base):
             other.project_id,
             other.created_by,
         )
-        
 
-mutants_xǁTaskǁis_valid_status__mutmut['_mutmut_orig'] = Task.xǁTaskǁis_valid_status__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskǁis_valid_status__mutmut['xǁTaskǁis_valid_status__mutmut_1'] = Task.xǁTaskǁis_valid_status__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskǁis_valid_status__mutmut['xǁTaskǁis_valid_status__mutmut_2'] = Task.xǁTaskǁis_valid_status__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTaskǁis_valid_status__mutmut['xǁTaskǁis_valid_status__mutmut_3'] = Task.xǁTaskǁis_valid_status__mutmut_3 # type: ignore # mutmut generated
 
-mutants_xǁTaskǁ__eq____mutmut['_mutmut_orig'] = Task.xǁTaskǁ__eq____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskǁ__eq____mutmut['xǁTaskǁ__eq____mutmut_1'] = Task.xǁTaskǁ__eq____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskǁ__eq____mutmut['xǁTaskǁ__eq____mutmut_2'] = Task.xǁTaskǁ__eq____mutmut_2 # type: ignore # mutmut generated
+mutants_xǁTaskǁis_valid_status__mutmut["_mutmut_orig"] = Task.xǁTaskǁis_valid_status__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTaskǁis_valid_status__mutmut["xǁTaskǁis_valid_status__mutmut_1"] = (
+    Task.xǁTaskǁis_valid_status__mutmut_1
+)  # type: ignore # mutmut generated
+mutants_xǁTaskǁis_valid_status__mutmut["xǁTaskǁis_valid_status__mutmut_2"] = (
+    Task.xǁTaskǁis_valid_status__mutmut_2
+)  # type: ignore # mutmut generated
+mutants_xǁTaskǁis_valid_status__mutmut["xǁTaskǁis_valid_status__mutmut_3"] = (
+    Task.xǁTaskǁis_valid_status__mutmut_3
+)  # type: ignore # mutmut generated
+
+mutants_xǁTaskǁ__eq____mutmut["_mutmut_orig"] = Task.xǁTaskǁ__eq____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTaskǁ__eq____mutmut["xǁTaskǁ__eq____mutmut_1"] = Task.xǁTaskǁ__eq____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTaskǁ__eq____mutmut["xǁTaskǁ__eq____mutmut_2"] = Task.xǁTaskǁ__eq____mutmut_2  # type: ignore # mutmut generated

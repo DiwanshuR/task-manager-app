@@ -5,9 +5,9 @@ import pytest
 from app.services.task_rules import (
     can_edit_task,
     days_until_due,
+    is_task_overdue,
     normalize_title,
     validate_priority,
-    is_task_overdue
 )
 
 
@@ -96,7 +96,7 @@ def test_days_until_due_handles_past_today_and_future_dates(
     due_date = today + timedelta(days=offset)
 
     assert days_until_due(due_date, today) == expected_days
-    
+
 
 @pytest.mark.parametrize(
     ("due_date", "today", "expected"),

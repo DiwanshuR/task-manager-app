@@ -1,17 +1,16 @@
+import uuid
+
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
+from app.auth.security import create_access_token
 from app.database import Base, get_db
 from app.main import app
-from app.models.project import Project  # Register model tables with Base.
-from app.models.task import Task
 from app.models.user import User, UserRole
-import uuid
 
-from app.auth.security import create_access_token
 
 # Thias fixture provides a database session that is rolled back after each test, ensuring isolation.
 @pytest.fixture
@@ -47,6 +46,7 @@ def db_session():
         connection.close()
         Base.metadata.drop_all(bind=engine)
         engine.dispose()
+
 
 # This fixture provides a TestClient that uses the db_session fixture to override the get_db dependency.
 @pytest.fixture
@@ -113,10 +113,10 @@ def role(request):
     return request.param
 
 
-
 @pytest.fixture
 def make_auth_user(db_session):
     """Create a database-backed test user and mint an access token directly."""
+
     def _make_auth_user(role: UserRole):
         user = User(
             name=f"Test {role.value}",
@@ -140,6 +140,7 @@ def make_auth_user(db_session):
 @pytest.fixture
 def auth_header(make_auth_user):
     """Return a helper that mints a token for a user with the requested role."""
+
     def _make_auth_header(role: UserRole):
         return make_auth_user(role)["headers"]
 

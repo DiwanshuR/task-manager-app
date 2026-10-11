@@ -2,7 +2,6 @@ import logging
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
-
 log_file = Path(__file__).resolve().parent.parent / "app.log"
 
 logging.basicConfig(

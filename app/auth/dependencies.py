@@ -1,14 +1,14 @@
-from fastapi import Depends, status
+from typing import Callable
+
+from fastapi import Depends
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
-from app.database import get_db
 from app.auth.security import decode_access_token
-from app.models.user import User
-from typing import Callable
-from app.models.user import UserRole, User
-from app.repositories.user_repository import SQLAlchemyUserRepository
+from app.database import get_db
 from app.exceptions import AuthenticationError, PermissionDeniedError
+from app.models.user import User, UserRole
+from app.repositories.user_repository import SQLAlchemyUserRepository
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
@@ -30,8 +30,7 @@ def get_current_user(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:

@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
 
+from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from app.models.project import Project
-from app.schemas.project import ProjectCreate, ProjectUpdate
 from app.models.user import User, UserRole
-from sqlalchemy import or_
+from app.schemas.project import ProjectCreate, ProjectUpdate
+
 
 class ProjectRepository(ABC):
     @abstractmethod
@@ -34,11 +35,7 @@ class SQLAlchemyProjectRepository(ProjectRepository):
         self.db = db
 
     def get_all(self, *, owner_id: int) -> list[Project]:
-        return (
-            self.db.query(Project)
-            .filter(Project.owner_id == owner_id)
-            .all()
-        )
+        return self.db.query(Project).filter(Project.owner_id == owner_id).all()
 
     def get_by_id(self, project_id: int) -> Project | None:
         return self.db.query(Project).filter(Project.id == project_id).first()
@@ -49,23 +46,20 @@ class SQLAlchemyProjectRepository(ProjectRepository):
         if user.role == UserRole.admin:
             return query.all()
 
-        return (
-            query.filter(
-                or_(
-                    Project.owner_id == user.id,
-                    Project.members.any(User.id == user.id),
-                )
+        return query.filter(
+            or_(
+                Project.owner_id == user.id,
+                Project.members.any(User.id == user.id),
             )
-            .all()
-        )
-    
+        ).all()
+
     def create(self, payload: ProjectCreate, *, owner_id: int, members=None) -> Project:
         project = Project(
             name=payload.name,
             description=payload.description,
             owner_id=owner_id,
         )
-        
+
         project.members = members or []
         self.db.add(project)
         self.db.commit()

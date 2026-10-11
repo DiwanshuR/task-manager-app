@@ -1,7 +1,8 @@
 from datetime import datetime, timezone
 
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
 mutants_x_as_utc__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -35,7 +36,8 @@ def x_as_utc__mutmut_3(value: datetime) -> datetime:
         return value.replace(tzinfo=timezone.utc)
     return value.astimezone(None)
 
-mutants_x_as_utc__mutmut['_mutmut_orig'] = x_as_utc__mutmut_orig # type: ignore # mutmut generated
-mutants_x_as_utc__mutmut['x_as_utc__mutmut_1'] = x_as_utc__mutmut_1 # type: ignore # mutmut generated
-mutants_x_as_utc__mutmut['x_as_utc__mutmut_2'] = x_as_utc__mutmut_2 # type: ignore # mutmut generated
-mutants_x_as_utc__mutmut['x_as_utc__mutmut_3'] = x_as_utc__mutmut_3 # type: ignore # mutmut generated
+
+mutants_x_as_utc__mutmut["_mutmut_orig"] = x_as_utc__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_as_utc__mutmut["x_as_utc__mutmut_1"] = x_as_utc__mutmut_1  # type: ignore # mutmut generated
+mutants_x_as_utc__mutmut["x_as_utc__mutmut_2"] = x_as_utc__mutmut_2  # type: ignore # mutmut generated
+mutants_x_as_utc__mutmut["x_as_utc__mutmut_3"] = x_as_utc__mutmut_3  # type: ignore # mutmut generated

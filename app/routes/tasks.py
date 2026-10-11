@@ -1,30 +1,20 @@
 import logging
-
-logger = logging.getLogger(__name__)
-
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, Path, Query, status
 from sqlalchemy.orm import Session
 
-from app.database import get_db
-from app.models.task import Task, TaskStatus, TaskPriority
-from app.models.project import Project
-from app.models.user import User
-from app.schemas.task import TaskCreate, TaskUpdate, TaskOut
 from app.auth.dependencies import get_current_user
-
-from app.repositories.task_repository import SQLAlchemyTaskRepository
+from app.database import get_db
+from app.models.task import TaskPriority, TaskStatus
+from app.models.user import User
 from app.repositories.project_repository import SQLAlchemyProjectRepository
-from app.services.task_service import TaskService
+from app.repositories.task_repository import SQLAlchemyTaskRepository
 from app.schemas.error import API_ERROR_RESPONSES
+from app.schemas.task import TaskCreate, TaskOut, TaskUpdate
+from app.services.task_service import TaskService
 
-
-from app.exceptions import (
-    ProjectNotFoundError,
-    TaskNotFoundError,
-    UnauthorizedActionError,
-)
+logger = logging.getLogger(__name__)
 
 router = APIRouter(
     prefix="/tasks",
@@ -32,17 +22,19 @@ router = APIRouter(
     responses=API_ERROR_RESPONSES,
 )
 
+
 def _task_service(db: Session) -> TaskService:
     return TaskService(
         task_repository=SQLAlchemyTaskRepository(db),
         project_repository=SQLAlchemyProjectRepository(db),
     )
-    
+
+
 # removed _get_owned_project function and moved it to TaskService class in services/task_service.py for better separation of concerns and testability.
 
 
-
 # ...existing code...
+
 
 @router.post("/", response_model=TaskOut, status_code=status.HTTP_201_CREATED)
 def create_task(

@@ -56,8 +56,8 @@ def test_other_user_cannot_view_project(client, create_user):
     )
 
     assert response.status_code == 403
-    
-    
+
+
 # This test written after coverage check as projects routes was at least covered top 3 files, but not fully covered. This test ensures that a manager can add a member during project creation and that the member can view the project afterward.
 def test_manager_can_add_member_during_project_creation(
     client,
@@ -83,8 +83,8 @@ def test_manager_can_add_member_during_project_creation(
     )
     assert member_view.status_code == 200, member_view.text
     assert member_view.json()["name"] == "Shared project"
-    
-    
+
+
 def test_project_owner_can_assign_member(client, create_user):
     manager = create_user("assignment-owner@example.com", role=UserRole.manager)
     member = create_user("new-member@example.com")

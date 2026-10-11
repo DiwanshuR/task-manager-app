@@ -1,0 +1,6 @@
+pytest-xdist
+pytest-randomly
+pytest-timeout
+pytest-cov
+ruff
+pre-commit

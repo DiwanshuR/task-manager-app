@@ -2,7 +2,6 @@ import pytest
 
 from app.models.user import UserRole
 
-
 TASK_RBAC_MATRIX = [
     pytest.param(UserRole.admin, "list", 200, id="admin-list"),
     pytest.param(UserRole.manager, "list", 200, id="manager-list"),

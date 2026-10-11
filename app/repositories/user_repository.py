@@ -98,4 +98,4 @@ class SQLAlchemyUserRepository(UserRepository):
 
     def delete(self, user: User) -> None:
         self.db.delete(user)
-        self.db.commit()            
+        self.db.commit()

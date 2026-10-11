@@ -12,10 +12,10 @@ def test_update_changes_user_fields_and_preserves_omitted_fields(db_session):
     )
 
     updated = repository.update(
-    user,
-    name="Updated Name",
-    email="updated@example.com",
-    role=UserRole.admin,
+        user,
+        name="Updated Name",
+        email="updated@example.com",
+        role=UserRole.admin,
     )
 
     assert updated.name == "Updated Name"

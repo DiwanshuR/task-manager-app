@@ -6,7 +6,6 @@ from app.models.task import (
     can_transition_task_status,
 )
 
-
 LEGAL_TRANSITIONS = [
     (current, target)
     for current, targets in TASK_STATUS_TRANSITIONS.items()
@@ -16,8 +15,7 @@ ILLEGAL_TRANSITIONS = [
     (current, target)
     for current in TaskStatus
     for target in TaskStatus
-    if current != target
-    and target not in TASK_STATUS_TRANSITIONS[current]
+    if current != target and target not in TASK_STATUS_TRANSITIONS[current]
 ]
 
 

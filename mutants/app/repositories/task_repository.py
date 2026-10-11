@@ -1,14 +1,14 @@
 from abc import ABC, abstractmethod
+
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
 from sqlalchemy import func, or_
-from app.models.project import Project
-from app.models.user import User
 from sqlalchemy.orm import Session
 
+from app.models.project import Project
 from app.models.task import Task, TaskPriority, TaskStatus
+from app.models.user import User
 from app.schemas.task import TaskCreate, TaskUpdate
-
-
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
 
 
 class TaskRepository(ABC):
@@ -54,6 +54,8 @@ class TaskRepository(ABC):
     @abstractmethod
     def restore(self, task: Task) -> Task:
         raise NotImplementedError
+
+
 mutants_xǁSQLAlchemyTaskRepositoryǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut: MutantDict = {}  # type: ignore
@@ -69,8 +71,10 @@ class SQLAlchemyTaskRepository(TaskRepository):
     @_mutmut_mutated(mutants_xǁSQLAlchemyTaskRepositoryǁ__init____mutmut)
     def __init__(self, db: Session):
         self.db = db
+
     def xǁSQLAlchemyTaskRepositoryǁ__init____mutmut_orig(self, db: Session):
         self.db = db
+
     def xǁSQLAlchemyTaskRepositoryǁ__init____mutmut_1(self, db: Session):
         self.db = None
 
@@ -87,9 +91,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -122,9 +124,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -157,9 +157,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -192,9 +190,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 1,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -227,9 +223,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 21,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -295,9 +289,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            None
-        )
+        query = self.db.query(Task).join(Task.project).filter(None)
 
         if not is_admin:
             query = query.filter(
@@ -330,9 +322,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(None).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(None).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -365,9 +355,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(None).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(None).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -400,9 +388,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if is_admin:
             query = query.filter(
@@ -435,9 +421,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = None
@@ -465,14 +449,10 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
-            query = query.filter(
-                None
-            )
+            query = query.filter(None)
 
         if status_filter is not None:
             query = query.filter(Task.status == status_filter)
@@ -497,9 +477,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -532,9 +510,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -567,9 +543,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -601,15 +575,13 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
                 or_(
                     Project.owner_id == owner_id,
-                    )
+                )
             )
 
         if status_filter is not None:
@@ -635,9 +607,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -670,9 +640,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -705,9 +673,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -740,9 +706,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -775,9 +739,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -810,9 +772,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -845,9 +805,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -880,9 +838,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -915,9 +871,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -950,9 +904,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -985,9 +937,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -1020,9 +970,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -1055,9 +1003,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -1090,9 +1036,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -1125,9 +1069,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -1160,9 +1102,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -1195,9 +1135,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -1230,9 +1168,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -1265,9 +1201,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -1300,9 +1234,7 @@ class SQLAlchemyTaskRepository(TaskRepository):
         skip: int = 0,
         limit: int = 20,
     ) -> list[Task]:
-        query = self.db.query(Task).join(Task.project).filter(
-            Task.deleted_at.is_(None)
-        )
+        query = self.db.query(Task).join(Task.project).filter(Task.deleted_at.is_(None))
 
         if not is_admin:
             query = query.filter(
@@ -1325,117 +1257,67 @@ class SQLAlchemyTaskRepository(TaskRepository):
 
     @_mutmut_mutated(mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut)
     def get_by_id(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(Task.id == task_id, Task.deleted_at.is_(None))
-            .first()
-        )
+        return self.db.query(Task).filter(Task.id == task_id, Task.deleted_at.is_(None)).first()
 
     def xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_orig(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(Task.id == task_id, Task.deleted_at.is_(None))
-            .first()
-        )
+        return self.db.query(Task).filter(Task.id == task_id, Task.deleted_at.is_(None)).first()
 
     def xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_1(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(None, Task.deleted_at.is_(None))
-            .first()
-        )
+        return self.db.query(Task).filter(None, Task.deleted_at.is_(None)).first()
 
     def xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_2(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(Task.id == task_id, None)
-            .first()
-        )
+        return self.db.query(Task).filter(Task.id == task_id, None).first()
 
     def xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_3(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(Task.deleted_at.is_(None))
-            .first()
-        )
+        return self.db.query(Task).filter(Task.deleted_at.is_(None)).first()
 
     def xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_4(self, task_id: int) -> Task | None:
         return (
             self.db.query(Task)
-            .filter(Task.id == task_id, )
+            .filter(
+                Task.id == task_id,
+            )
             .first()
         )
 
     def xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_5(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(None)
-            .filter(Task.id == task_id, Task.deleted_at.is_(None))
-            .first()
-        )
+        return self.db.query(None).filter(Task.id == task_id, Task.deleted_at.is_(None)).first()
 
     def xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_6(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(Task.id != task_id, Task.deleted_at.is_(None))
-            .first()
-        )
+        return self.db.query(Task).filter(Task.id != task_id, Task.deleted_at.is_(None)).first()
 
     @_mutmut_mutated(mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut)
     def get_deleted_by_id(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(Task.id == task_id, Task.deleted_at.is_not(None))
-            .first()
-        )
+        return self.db.query(Task).filter(Task.id == task_id, Task.deleted_at.is_not(None)).first()
 
-    def xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_orig(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(Task.id == task_id, Task.deleted_at.is_not(None))
-            .first()
-        )
+    def xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_orig(
+        self, task_id: int
+    ) -> Task | None:
+        return self.db.query(Task).filter(Task.id == task_id, Task.deleted_at.is_not(None)).first()
 
     def xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_1(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(None, Task.deleted_at.is_not(None))
-            .first()
-        )
+        return self.db.query(Task).filter(None, Task.deleted_at.is_not(None)).first()
 
     def xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_2(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(Task.id == task_id, None)
-            .first()
-        )
+        return self.db.query(Task).filter(Task.id == task_id, None).first()
 
     def xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_3(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(Task.deleted_at.is_not(None))
-            .first()
-        )
+        return self.db.query(Task).filter(Task.deleted_at.is_not(None)).first()
 
     def xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_4(self, task_id: int) -> Task | None:
         return (
             self.db.query(Task)
-            .filter(Task.id == task_id, )
+            .filter(
+                Task.id == task_id,
+            )
             .first()
         )
 
     def xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_5(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(None)
-            .filter(Task.id == task_id, Task.deleted_at.is_not(None))
-            .first()
-        )
+        return self.db.query(None).filter(Task.id == task_id, Task.deleted_at.is_not(None)).first()
 
     def xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_6(self, task_id: int) -> Task | None:
-        return (
-            self.db.query(Task)
-            .filter(Task.id != task_id, Task.deleted_at.is_not(None))
-            .first()
-        )
+        return self.db.query(Task).filter(Task.id != task_id, Task.deleted_at.is_not(None)).first()
 
     @_mutmut_mutated(mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut)
     def get_deleted(self) -> list[Task]:
@@ -1472,26 +1354,22 @@ class SQLAlchemyTaskRepository(TaskRepository):
 
     def xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_3(self) -> list[Task]:
         return (
-            self.db.query(Task)
-            .filter(Task.deleted_at.is_not(None))
-            .order_by(Task.id.desc())
-            .all()
+            self.db.query(Task).filter(Task.deleted_at.is_not(None)).order_by(Task.id.desc()).all()
         )
 
     def xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_4(self) -> list[Task]:
         return (
             self.db.query(Task)
             .filter(Task.deleted_at.is_not(None))
-            .order_by(Task.deleted_at.desc(), )
+            .order_by(
+                Task.deleted_at.desc(),
+            )
             .all()
         )
 
     def xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_5(self) -> list[Task]:
         return (
-            self.db.query(Task)
-            .filter(None)
-            .order_by(Task.deleted_at.desc(), Task.id.desc())
-            .all()
+            self.db.query(Task).filter(None).order_by(Task.deleted_at.desc(), Task.id.desc()).all()
         )
 
     def xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_6(self) -> list[Task]:
@@ -1517,7 +1395,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_orig(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_orig(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             description=payload.description,
@@ -1531,14 +1411,18 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_1(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_1(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = None
         self.db.add(task)
         self.db.commit()
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_2(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_2(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=None,
             description=payload.description,
@@ -1552,7 +1436,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_3(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_3(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             description=None,
@@ -1566,7 +1452,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_4(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_4(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             description=payload.description,
@@ -1580,7 +1468,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_5(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_5(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             description=payload.description,
@@ -1594,7 +1484,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_6(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_6(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             description=payload.description,
@@ -1608,7 +1500,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_7(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_7(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             description=payload.description,
@@ -1622,7 +1516,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_8(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_8(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             description=payload.description,
             status=payload.status,
@@ -1635,7 +1531,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_9(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_9(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             status=payload.status,
@@ -1648,7 +1546,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_10(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_10(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             description=payload.description,
@@ -1661,7 +1561,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_11(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_11(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             description=payload.description,
@@ -1674,7 +1576,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_12(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_12(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             description=payload.description,
@@ -1687,20 +1591,24 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_13(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_13(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             description=payload.description,
             status=payload.status,
             priority=payload.priority,
             project_id=payload.project_id,
-            )
+        )
         self.db.add(task)
         self.db.commit()
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_14(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_14(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             description=payload.description,
@@ -1714,7 +1622,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_15(self, payload: TaskCreate, *, created_by: int) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_15(
+        self, payload: TaskCreate, *, created_by: int
+    ) -> Task:
         task = Task(
             title=payload.title,
             description=payload.description,
@@ -1738,7 +1648,9 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(task)
         return task
 
-    def xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_orig(self, task: Task, payload: TaskUpdate) -> Task:
+    def xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_orig(
+        self, task: Task, payload: TaskUpdate
+    ) -> Task:
         task.title = payload.title
         task.description = payload.description
         task.status = payload.status
@@ -1838,97 +1750,270 @@ class SQLAlchemyTaskRepository(TaskRepository):
         self.db.refresh(None)
         return task
 
-mutants_xǁSQLAlchemyTaskRepositoryǁ__init____mutmut['_mutmut_orig'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁ__init____mutmut['xǁSQLAlchemyTaskRepositoryǁ__init____mutmut_1'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁ__init____mutmut_1 # type: ignore # mutmut generated
 
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['_mutmut_orig'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_1'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_2'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_3'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_4'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_5'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_6'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_7'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_8'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_9'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_10'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_11'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_12'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_13'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_14'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_15'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_16'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_17'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_18'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_19'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_20'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_21'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_22'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_23'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_24'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_25'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_26'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_27'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_28'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_29'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_30'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_31'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_32'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_33'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut['xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_34'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_34 # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁ__init____mutmut["_mutmut_orig"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁ__init____mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁ__init____mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁ__init____mutmut_1"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁ__init____mutmut_1  # type: ignore # mutmut generated
 
-mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut['_mutmut_orig'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut['xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_1'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut['xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_2'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut['xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_3'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut['xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_4'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut['xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_5'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut['xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_6'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_6 # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut["_mutmut_orig"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_1"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_2"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_3"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_4"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_5"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_6"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_7"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_8"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_9"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_10"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_11"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_12"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_13"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_14"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_15"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_16"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_17"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_18"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_19"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_20"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_21"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_22"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_23"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_24"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_25"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_26"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_27"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_28"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_29"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_30"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_31"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_32"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_33"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_all__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_34"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_all__mutmut_34  # type: ignore # mutmut generated
 
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut['_mutmut_orig'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut['xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_1'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut['xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_2'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut['xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_3'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut['xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_4'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut['xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_5'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut['xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_6'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_6 # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut["_mutmut_orig"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_1"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_2"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_3"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_4"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_5"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_6"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_by_id__mutmut_6  # type: ignore # mutmut generated
 
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut['_mutmut_orig'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut['xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_1'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut['xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_2'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut['xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_3'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut['xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_4'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut['xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_5'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut['xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_6'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_6 # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut["_mutmut_orig"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_1"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_2"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_3"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_4"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_5"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_6"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted_by_id__mutmut_6  # type: ignore # mutmut generated
 
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['_mutmut_orig'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_1'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_2'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_3'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_4'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_5'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_6'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_7'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_8'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_9'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_10'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_11'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_12'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_13'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_14'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut['xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_15'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_15 # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut["_mutmut_orig"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_1"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_2"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_3"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_4"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_5"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_6"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁget_deleted__mutmut_6  # type: ignore # mutmut generated
 
-mutants_xǁSQLAlchemyTaskRepositoryǁupdate__mutmut['_mutmut_orig'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁupdate__mutmut['xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_1'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁupdate__mutmut['xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_2'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁupdate__mutmut['xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_3'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁupdate__mutmut['xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_4'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁupdate__mutmut['xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_5'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_5 # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut["_mutmut_orig"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut["xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_1"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_1
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut["xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_2"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_2
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut["xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_3"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_3
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut["xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_4"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_4
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut["xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_5"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_5
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut["xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_6"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_6
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut["xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_7"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_7
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut["xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_8"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_8
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut["xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_9"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_9
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_10"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_11"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_12"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_13"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_14"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁcreate__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_15"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁcreate__mutmut_15  # type: ignore # mutmut generated
 
-mutants_xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut['_mutmut_orig'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut['xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut_1'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut['xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut_2'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut_2 # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁupdate__mutmut["_mutmut_orig"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁupdate__mutmut["xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_1"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_1
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁupdate__mutmut["xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_2"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_2
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁupdate__mutmut["xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_3"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_3
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁupdate__mutmut["xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_4"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_4
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁupdate__mutmut["xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_5"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁupdate__mutmut_5
+)  # type: ignore # mutmut generated
 
-mutants_xǁSQLAlchemyTaskRepositoryǁrestore__mutmut['_mutmut_orig'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁrestore__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁrestore__mutmut['xǁSQLAlchemyTaskRepositoryǁrestore__mutmut_1'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁrestore__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁSQLAlchemyTaskRepositoryǁrestore__mutmut['xǁSQLAlchemyTaskRepositoryǁrestore__mutmut_2'] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁrestore__mutmut_2 # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut["_mutmut_orig"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut_1"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut_2"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁsoft_delete__mutmut_2  # type: ignore # mutmut generated
+
+mutants_xǁSQLAlchemyTaskRepositoryǁrestore__mutmut["_mutmut_orig"] = (
+    SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁrestore__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁrestore__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁrestore__mutmut_1"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁrestore__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁSQLAlchemyTaskRepositoryǁrestore__mutmut[
+    "xǁSQLAlchemyTaskRepositoryǁrestore__mutmut_2"
+] = SQLAlchemyTaskRepository.xǁSQLAlchemyTaskRepositoryǁrestore__mutmut_2  # type: ignore # mutmut generated

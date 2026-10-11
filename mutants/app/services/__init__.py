@@ -1,8 +1,9 @@
-from app.services.task_rules import normalize_title
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
+
 from app.models.task import TaskStatus
+from app.services.task_rules import normalize_title
 
-
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
 mutants_x_normalize_task_title__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -21,8 +22,11 @@ def x_normalize_task_title__mutmut_1(title: str) -> str:
     """Use the existing pure title-validation rule."""
     return normalize_title(None)
 
-mutants_x_normalize_task_title__mutmut['_mutmut_orig'] = x_normalize_task_title__mutmut_orig # type: ignore # mutmut generated
-mutants_x_normalize_task_title__mutmut['x_normalize_task_title__mutmut_1'] = x_normalize_task_title__mutmut_1 # type: ignore # mutmut generated
+
+mutants_x_normalize_task_title__mutmut["_mutmut_orig"] = x_normalize_task_title__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_normalize_task_title__mutmut["x_normalize_task_title__mutmut_1"] = (
+    x_normalize_task_title__mutmut_1  # type: ignore # mutmut generated
+)
 mutants_x_is_valid_task_status__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -94,7 +98,7 @@ def x_is_valid_task_status__mutmut_6(status: str) -> bool:
 def x_is_valid_task_status__mutmut_7(status: str) -> bool:
     """Return whether a status is supported by the task model."""
     # Compare enum values too, in case status is a TaskStatus member.
-    status_value = getattr(status, "value", )
+    status_value = status.value
 
     return status_value in {task_status.value for task_status in TaskStatus}
 
@@ -122,14 +126,35 @@ def x_is_valid_task_status__mutmut_10(status: str) -> bool:
 
     return status_value not in {task_status.value for task_status in TaskStatus}
 
-mutants_x_is_valid_task_status__mutmut['_mutmut_orig'] = x_is_valid_task_status__mutmut_orig # type: ignore # mutmut generated
-mutants_x_is_valid_task_status__mutmut['x_is_valid_task_status__mutmut_1'] = x_is_valid_task_status__mutmut_1 # type: ignore # mutmut generated
-mutants_x_is_valid_task_status__mutmut['x_is_valid_task_status__mutmut_2'] = x_is_valid_task_status__mutmut_2 # type: ignore # mutmut generated
-mutants_x_is_valid_task_status__mutmut['x_is_valid_task_status__mutmut_3'] = x_is_valid_task_status__mutmut_3 # type: ignore # mutmut generated
-mutants_x_is_valid_task_status__mutmut['x_is_valid_task_status__mutmut_4'] = x_is_valid_task_status__mutmut_4 # type: ignore # mutmut generated
-mutants_x_is_valid_task_status__mutmut['x_is_valid_task_status__mutmut_5'] = x_is_valid_task_status__mutmut_5 # type: ignore # mutmut generated
-mutants_x_is_valid_task_status__mutmut['x_is_valid_task_status__mutmut_6'] = x_is_valid_task_status__mutmut_6 # type: ignore # mutmut generated
-mutants_x_is_valid_task_status__mutmut['x_is_valid_task_status__mutmut_7'] = x_is_valid_task_status__mutmut_7 # type: ignore # mutmut generated
-mutants_x_is_valid_task_status__mutmut['x_is_valid_task_status__mutmut_8'] = x_is_valid_task_status__mutmut_8 # type: ignore # mutmut generated
-mutants_x_is_valid_task_status__mutmut['x_is_valid_task_status__mutmut_9'] = x_is_valid_task_status__mutmut_9 # type: ignore # mutmut generated
-mutants_x_is_valid_task_status__mutmut['x_is_valid_task_status__mutmut_10'] = x_is_valid_task_status__mutmut_10 # type: ignore # mutmut generated
+
+mutants_x_is_valid_task_status__mutmut["_mutmut_orig"] = x_is_valid_task_status__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_is_valid_task_status__mutmut["x_is_valid_task_status__mutmut_1"] = (
+    x_is_valid_task_status__mutmut_1  # type: ignore # mutmut generated
+)
+mutants_x_is_valid_task_status__mutmut["x_is_valid_task_status__mutmut_2"] = (
+    x_is_valid_task_status__mutmut_2  # type: ignore # mutmut generated
+)
+mutants_x_is_valid_task_status__mutmut["x_is_valid_task_status__mutmut_3"] = (
+    x_is_valid_task_status__mutmut_3  # type: ignore # mutmut generated
+)
+mutants_x_is_valid_task_status__mutmut["x_is_valid_task_status__mutmut_4"] = (
+    x_is_valid_task_status__mutmut_4  # type: ignore # mutmut generated
+)
+mutants_x_is_valid_task_status__mutmut["x_is_valid_task_status__mutmut_5"] = (
+    x_is_valid_task_status__mutmut_5  # type: ignore # mutmut generated
+)
+mutants_x_is_valid_task_status__mutmut["x_is_valid_task_status__mutmut_6"] = (
+    x_is_valid_task_status__mutmut_6  # type: ignore # mutmut generated
+)
+mutants_x_is_valid_task_status__mutmut["x_is_valid_task_status__mutmut_7"] = (
+    x_is_valid_task_status__mutmut_7  # type: ignore # mutmut generated
+)
+mutants_x_is_valid_task_status__mutmut["x_is_valid_task_status__mutmut_8"] = (
+    x_is_valid_task_status__mutmut_8  # type: ignore # mutmut generated
+)
+mutants_x_is_valid_task_status__mutmut["x_is_valid_task_status__mutmut_9"] = (
+    x_is_valid_task_status__mutmut_9  # type: ignore # mutmut generated
+)
+mutants_x_is_valid_task_status__mutmut["x_is_valid_task_status__mutmut_10"] = (
+    x_is_valid_task_status__mutmut_10  # type: ignore # mutmut generated
+)

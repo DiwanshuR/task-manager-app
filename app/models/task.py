@@ -1,9 +1,11 @@
 import enum
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Enum as SQLEnum
+
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
+from sqlalchemy import Enum as SQLEnum
 from sqlalchemy.orm import relationship, validates
 from sqlalchemy.sql import func
-from app.database import Base
 
+from app.database import Base
 
 
 class TaskStatus(str, enum.Enum):
@@ -49,7 +51,7 @@ class Task(Base):
     deleted_at = Column(DateTime(timezone=True), nullable=True)
 
     project = relationship("Project", back_populates="tasks")
-    
+
     @validates("title")
     def validate_title(self, key: str, value: str) -> str:
         if not isinstance(value, str) or not value.strip():
@@ -96,4 +98,3 @@ class Task(Base):
             other.project_id,
             other.created_by,
         )
-        

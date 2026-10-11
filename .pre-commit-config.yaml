@@ -1,0 +1,16 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.0
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: fast-unit-tests
+        name: Fast unit tests
+        entry: python -m pytest tests/unit -x -q -p no:randomly --timeout=20
+        language: system
+        pass_filenames: false
+        always_run: true

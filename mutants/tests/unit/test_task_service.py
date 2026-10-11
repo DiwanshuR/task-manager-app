@@ -20,11 +20,7 @@ class FakeProjectRepository(ProjectRepository):
         self.projects = {project.id: project for project in projects}
 
     def get_all(self, *, owner_id: int):
-        return [
-            project
-            for project in self.projects.values()
-            if project.owner_id == owner_id
-        ]
+        return [project for project in self.projects.values() if project.owner_id == owner_id]
 
     def get_by_id(self, project_id: int):
         return self.projects.get(project_id)
@@ -67,9 +63,7 @@ class FakeTaskRepository(TaskRepository):
             "skip": skip,
             "limit": limit,
         }
-        visible_tasks = [
-            task for task in self.tasks.values() if task.deleted_at is None
-        ]
+        visible_tasks = [task for task in self.tasks.values() if task.deleted_at is None]
         return visible_tasks[skip : skip + limit]
 
     def get_by_id(self, task_id: int):

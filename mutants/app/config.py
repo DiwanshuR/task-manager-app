@@ -1,9 +1,6 @@
 from pydantic_settings import BaseSettings
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
-
-
 class Settings(BaseSettings):
     DB_USER: str
     DB_PASSWORD: str

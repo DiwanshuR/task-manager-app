@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
+
 from app.exceptions import (
     ArchivedTaskError,
     ProjectNotFoundError,
-    TaskStateConflictError,
     TaskNotFoundError,
+    TaskStateConflictError,
     UnauthorizedActionError,
 )
 from app.models.task import (
@@ -17,8 +20,6 @@ from app.repositories.project_repository import ProjectRepository
 from app.repositories.task_repository import TaskRepository
 from app.schemas.task import TaskCreate, TaskUpdate
 
-
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
 mutants_xǁTaskServiceǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁTaskServiceǁ_require_project_access__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁTaskServiceǁcreate__mutmut: MutantDict = {}  # type: ignore
@@ -356,7 +357,7 @@ class TaskService:
         if project is None:
             raise ProjectNotFoundError(project_id)
 
-        role_value = getattr(role, "value", )
+        role_value = role.value
         is_admin = role_value == "admin"
         is_owner = project.owner_id == user_id
         is_member = any(member.id == user_id for member in project.members)
@@ -637,7 +638,7 @@ class TaskService:
         is_owner = project.owner_id == user_id
         is_member = any(member.id == user_id for member in project.members)
 
-        if (is_admin or is_owner or is_member):
+        if is_admin or is_owner or is_member:
             raise UnauthorizedActionError(
                 action="access",
                 resource="project",
@@ -823,7 +824,7 @@ class TaskService:
             raise UnauthorizedActionError(
                 action="access",
                 resource="project",
-                )
+            )
 
     def xǁTaskServiceǁ_require_project_access__mutmut_32(
         self,
@@ -947,7 +948,10 @@ class TaskService:
         return self.task_repository.create(payload, created_by=user_id)
 
     def xǁTaskServiceǁcreate__mutmut_6(self, payload: TaskCreate, *, user_id: int, role: str):
-        self._require_project_access(payload.project_id, user_id, )
+        self._require_project_access(
+            payload.project_id,
+            user_id,
+        )
         return self.task_repository.create(payload, created_by=user_id)
 
     def xǁTaskServiceǁcreate__mutmut_7(self, payload: TaskCreate, *, user_id: int, role: str):
@@ -964,7 +968,9 @@ class TaskService:
 
     def xǁTaskServiceǁcreate__mutmut_10(self, payload: TaskCreate, *, user_id: int, role: str):
         self._require_project_access(payload.project_id, user_id, role)
-        return self.task_repository.create(payload, )
+        return self.task_repository.create(
+            payload,
+        )
 
     @_mutmut_mutated(mutants_xǁTaskServiceǁlist__mutmut)
     def list(
@@ -1229,7 +1235,7 @@ class TaskService:
         skip: int = 0,
         limit: int = 20,
     ):
-        role_value = getattr(role, "value", )
+        role_value = role.value
 
         return self.task_repository.get_all(
             owner_id=user_id,
@@ -1682,7 +1688,7 @@ class TaskService:
             project_id=project_id,
             search=search,
             skip=skip,
-            )
+        )
 
     def xǁTaskServiceǁlist__mutmut_28(
         self,
@@ -1865,7 +1871,10 @@ class TaskService:
         if task is None:
             raise TaskNotFoundError(task_id)
 
-        self._require_project_access(task.project_id, user_id, )
+        self._require_project_access(
+            task.project_id,
+            user_id,
+        )
         return task
 
     @_mutmut_mutated(mutants_xǁTaskServiceǁupdate__mutmut)
@@ -2257,7 +2266,7 @@ class TaskService:
         self._require_task_update_access(
             task,
             user_id=user_id,
-            )
+        )
 
         if task.status == TaskStatus.archived:
             raise ArchivedTaskError(task_id)
@@ -2604,7 +2613,7 @@ class TaskService:
         if payload.status != task.status:
             if payload.status == TaskStatus.archived or not can_transition_task_status(
                 task.status,
-                ):
+            ):
                 raise TaskStateConflictError(
                     task.status.value,
                     payload.status.value,
@@ -2742,7 +2751,7 @@ class TaskService:
             ):
                 raise TaskStateConflictError(
                     task.status.value,
-                    )
+                )
 
         return self.task_repository.update(task, payload)
 
@@ -2880,7 +2889,9 @@ class TaskService:
                     payload.status.value,
                 )
 
-        return self.task_repository.update(task, )
+        return self.task_repository.update(
+            task,
+        )
 
     @_mutmut_mutated(mutants_xǁTaskServiceǁ_require_task_update_access__mutmut)
     def _require_task_update_access(
@@ -3044,7 +3055,10 @@ class TaskService:
         user_id: int,
         role: str,
     ) -> None:
-        self._require_project_access(task.project_id, user_id, )
+        self._require_project_access(
+            task.project_id,
+            user_id,
+        )
 
         role_value = getattr(role, "value", role)
         if role_value == "admin" or role_value == "manager":
@@ -3200,7 +3214,7 @@ class TaskService:
     ) -> None:
         self._require_project_access(task.project_id, user_id, role)
 
-        role_value = getattr(role, "value", )
+        role_value = role.value
         if role_value == "admin" or role_value == "manager":
             return
 
@@ -3648,7 +3662,7 @@ class TaskService:
         raise UnauthorizedActionError(
             action="update",
             resource="task",
-            )
+        )
 
     def xǁTaskServiceǁ_require_task_update_access__mutmut_34(
         self,
@@ -4141,7 +4155,7 @@ class TaskService:
         if task is None:
             raise TaskNotFoundError(task_id)
 
-        role_value = getattr(role, "value", )
+        role_value = role.value
         if role_value not in {"admin", "manager"}:
             raise UnauthorizedActionError(
                 action="archive",
@@ -4573,7 +4587,7 @@ class TaskService:
             raise UnauthorizedActionError(
                 action="archive",
                 resource="task",
-                )
+            )
 
         self._require_project_access(task.project_id, user_id, role)
 
@@ -4905,7 +4919,10 @@ class TaskService:
                 resource_id=task_id,
             )
 
-        self._require_project_access(task.project_id, user_id, )
+        self._require_project_access(
+            task.project_id,
+            user_id,
+        )
 
         if task.status == TaskStatus.archived:
             raise ArchivedTaskError(task_id)
@@ -5141,7 +5158,9 @@ class TaskService:
         if task.status == TaskStatus.archived:
             raise ArchivedTaskError(task_id)
 
-        if not can_transition_task_status(task.status, ):
+        if not can_transition_task_status(
+            task.status,
+        ):
             raise TaskStateConflictError(
                 task.status.value,
                 TaskStatus.archived.value,
@@ -5275,7 +5294,7 @@ class TaskService:
         if not can_transition_task_status(task.status, TaskStatus.archived):
             raise TaskStateConflictError(
                 task.status.value,
-                )
+            )
 
         payload = TaskUpdate(
             title=task.title,
@@ -5570,7 +5589,7 @@ class TaskService:
             title=task.title,
             description=task.description,
             status=TaskStatus.archived,
-            )
+        )
         return self.task_repository.update(task, payload)
 
     def xǁTaskServiceǁarchive__mutmut_55(self, task_id: int, *, user_id: int, role: str):
@@ -5703,7 +5722,9 @@ class TaskService:
             status=TaskStatus.archived,
             priority=task.priority,
         )
-        return self.task_repository.update(task, )
+        return self.task_repository.update(
+            task,
+        )
 
     @_mutmut_mutated(mutants_xǁTaskServiceǁdelete__mutmut)
     def delete(self, task_id: int, *, user_id: int, role: str) -> None:
@@ -5943,7 +5964,10 @@ class TaskService:
         if task is None:
             raise TaskNotFoundError(task_id)
 
-        self._require_project_access(task.project_id, user_id, )
+        self._require_project_access(
+            task.project_id,
+            user_id,
+        )
 
         if task.status == TaskStatus.archived:
             raise ArchivedTaskError(task_id)
@@ -6137,7 +6161,7 @@ class TaskService:
         if task.status == TaskStatus.archived:
             raise ArchivedTaskError(task_id)
 
-        role_value = getattr(role, "value", )
+        role_value = role.value
         if role_value != "admin":
             raise UnauthorizedActionError(
                 action="delete",
@@ -6371,7 +6395,7 @@ class TaskService:
             raise UnauthorizedActionError(
                 action="delete",
                 resource="task",
-                )
+            )
 
         self.task_repository.soft_delete(task)
 
@@ -6562,7 +6586,7 @@ class TaskService:
         return self.task_repository.get_deleted()
 
     def xǁTaskServiceǁlist_deleted__mutmut_7(self, *, user_id: int, role: str) -> list[Task]:
-        role_value = getattr(role, "value", )
+        role_value = role.value
         if role_value != "admin":
             raise UnauthorizedActionError(
                 action="view deleted",
@@ -6655,7 +6679,7 @@ class TaskService:
         if role_value != "admin":
             raise UnauthorizedActionError(
                 action="view deleted",
-                )
+            )
 
         return self.task_repository.get_deleted()
 
@@ -6829,7 +6853,7 @@ class TaskService:
         return self.task_repository.restore(task)
 
     def xǁTaskServiceǁrestore__mutmut_7(self, task_id: int, *, user_id: int, role: str) -> Task:
-        role_value = getattr(role, "value", )
+        role_value = role.value
         if role_value != "admin":
             raise UnauthorizedActionError(
                 action="restore",
@@ -7008,7 +7032,7 @@ class TaskService:
             raise UnauthorizedActionError(
                 action="restore",
                 resource="task",
-                )
+            )
 
         task = self.task_repository.get_deleted_by_id(task_id)
         if task is None:
@@ -7238,7 +7262,10 @@ class TaskService:
         if task is None:
             raise TaskNotFoundError(task_id)
 
-        self._require_project_access(task.project_id, user_id, )
+        self._require_project_access(
+            task.project_id,
+            user_id,
+        )
         return self.task_repository.restore(task)
 
     def xǁTaskServiceǁrestore__mutmut_33(self, task_id: int, *, user_id: int, role: str) -> Task:
@@ -7257,322 +7284,931 @@ class TaskService:
         self._require_project_access(task.project_id, user_id, role)
         return self.task_repository.restore(None)
 
-mutants_xǁTaskServiceǁ__init____mutmut['_mutmut_orig'] = TaskService.xǁTaskServiceǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ__init____mutmut['xǁTaskServiceǁ__init____mutmut_1'] = TaskService.xǁTaskServiceǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ__init____mutmut['xǁTaskServiceǁ__init____mutmut_2'] = TaskService.xǁTaskServiceǁ__init____mutmut_2 # type: ignore # mutmut generated
 
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['_mutmut_orig'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_1'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_2'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_3'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_4'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_5'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_6'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_7'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_8'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_9'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_10'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_11'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_12'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_13'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_14'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_15'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_16'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_17'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_18'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_19'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_20'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_21'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_22'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_23'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_24'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_25'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_26'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_27'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_28'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_29'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_30'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_31'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_32'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_33'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_34'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_project_access__mutmut['xǁTaskServiceǁ_require_project_access__mutmut_35'] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_35 # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ__init____mutmut["_mutmut_orig"] = (
+    TaskService.xǁTaskServiceǁ__init____mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ__init____mutmut["xǁTaskServiceǁ__init____mutmut_1"] = (
+    TaskService.xǁTaskServiceǁ__init____mutmut_1
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ__init____mutmut["xǁTaskServiceǁ__init____mutmut_2"] = (
+    TaskService.xǁTaskServiceǁ__init____mutmut_2
+)  # type: ignore # mutmut generated
 
-mutants_xǁTaskServiceǁcreate__mutmut['_mutmut_orig'] = TaskService.xǁTaskServiceǁcreate__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁcreate__mutmut['xǁTaskServiceǁcreate__mutmut_1'] = TaskService.xǁTaskServiceǁcreate__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁcreate__mutmut['xǁTaskServiceǁcreate__mutmut_2'] = TaskService.xǁTaskServiceǁcreate__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁcreate__mutmut['xǁTaskServiceǁcreate__mutmut_3'] = TaskService.xǁTaskServiceǁcreate__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁcreate__mutmut['xǁTaskServiceǁcreate__mutmut_4'] = TaskService.xǁTaskServiceǁcreate__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁcreate__mutmut['xǁTaskServiceǁcreate__mutmut_5'] = TaskService.xǁTaskServiceǁcreate__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁcreate__mutmut['xǁTaskServiceǁcreate__mutmut_6'] = TaskService.xǁTaskServiceǁcreate__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁcreate__mutmut['xǁTaskServiceǁcreate__mutmut_7'] = TaskService.xǁTaskServiceǁcreate__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁcreate__mutmut['xǁTaskServiceǁcreate__mutmut_8'] = TaskService.xǁTaskServiceǁcreate__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁcreate__mutmut['xǁTaskServiceǁcreate__mutmut_9'] = TaskService.xǁTaskServiceǁcreate__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁcreate__mutmut['xǁTaskServiceǁcreate__mutmut_10'] = TaskService.xǁTaskServiceǁcreate__mutmut_10 # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut["_mutmut_orig"] = (
+    TaskService.xǁTaskServiceǁ_require_project_access__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_1"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_2"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_3"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_4"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_5"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_6"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_7"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_8"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_9"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_10"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_11"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_12"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_13"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_14"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_15"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_16"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_17"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_18"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_19"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_20"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_21"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_22"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_23"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_24"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_25"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_26"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_27"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_28"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_29"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_30"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_31"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_32"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_33"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_34"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_project_access__mutmut[
+    "xǁTaskServiceǁ_require_project_access__mutmut_35"
+] = TaskService.xǁTaskServiceǁ_require_project_access__mutmut_35  # type: ignore # mutmut generated
 
-mutants_xǁTaskServiceǁlist__mutmut['_mutmut_orig'] = TaskService.xǁTaskServiceǁlist__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_1'] = TaskService.xǁTaskServiceǁlist__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_2'] = TaskService.xǁTaskServiceǁlist__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_3'] = TaskService.xǁTaskServiceǁlist__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_4'] = TaskService.xǁTaskServiceǁlist__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_5'] = TaskService.xǁTaskServiceǁlist__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_6'] = TaskService.xǁTaskServiceǁlist__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_7'] = TaskService.xǁTaskServiceǁlist__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_8'] = TaskService.xǁTaskServiceǁlist__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_9'] = TaskService.xǁTaskServiceǁlist__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_10'] = TaskService.xǁTaskServiceǁlist__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_11'] = TaskService.xǁTaskServiceǁlist__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_12'] = TaskService.xǁTaskServiceǁlist__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_13'] = TaskService.xǁTaskServiceǁlist__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_14'] = TaskService.xǁTaskServiceǁlist__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_15'] = TaskService.xǁTaskServiceǁlist__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_16'] = TaskService.xǁTaskServiceǁlist__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_17'] = TaskService.xǁTaskServiceǁlist__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_18'] = TaskService.xǁTaskServiceǁlist__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_19'] = TaskService.xǁTaskServiceǁlist__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_20'] = TaskService.xǁTaskServiceǁlist__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_21'] = TaskService.xǁTaskServiceǁlist__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_22'] = TaskService.xǁTaskServiceǁlist__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_23'] = TaskService.xǁTaskServiceǁlist__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_24'] = TaskService.xǁTaskServiceǁlist__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_25'] = TaskService.xǁTaskServiceǁlist__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_26'] = TaskService.xǁTaskServiceǁlist__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_27'] = TaskService.xǁTaskServiceǁlist__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_28'] = TaskService.xǁTaskServiceǁlist__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_29'] = TaskService.xǁTaskServiceǁlist__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist__mutmut['xǁTaskServiceǁlist__mutmut_30'] = TaskService.xǁTaskServiceǁlist__mutmut_30 # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁcreate__mutmut["_mutmut_orig"] = TaskService.xǁTaskServiceǁcreate__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁcreate__mutmut["xǁTaskServiceǁcreate__mutmut_1"] = (
+    TaskService.xǁTaskServiceǁcreate__mutmut_1
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁcreate__mutmut["xǁTaskServiceǁcreate__mutmut_2"] = (
+    TaskService.xǁTaskServiceǁcreate__mutmut_2
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁcreate__mutmut["xǁTaskServiceǁcreate__mutmut_3"] = (
+    TaskService.xǁTaskServiceǁcreate__mutmut_3
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁcreate__mutmut["xǁTaskServiceǁcreate__mutmut_4"] = (
+    TaskService.xǁTaskServiceǁcreate__mutmut_4
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁcreate__mutmut["xǁTaskServiceǁcreate__mutmut_5"] = (
+    TaskService.xǁTaskServiceǁcreate__mutmut_5
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁcreate__mutmut["xǁTaskServiceǁcreate__mutmut_6"] = (
+    TaskService.xǁTaskServiceǁcreate__mutmut_6
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁcreate__mutmut["xǁTaskServiceǁcreate__mutmut_7"] = (
+    TaskService.xǁTaskServiceǁcreate__mutmut_7
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁcreate__mutmut["xǁTaskServiceǁcreate__mutmut_8"] = (
+    TaskService.xǁTaskServiceǁcreate__mutmut_8
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁcreate__mutmut["xǁTaskServiceǁcreate__mutmut_9"] = (
+    TaskService.xǁTaskServiceǁcreate__mutmut_9
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁcreate__mutmut["xǁTaskServiceǁcreate__mutmut_10"] = (
+    TaskService.xǁTaskServiceǁcreate__mutmut_10
+)  # type: ignore # mutmut generated
 
-mutants_xǁTaskServiceǁget__mutmut['_mutmut_orig'] = TaskService.xǁTaskServiceǁget__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁget__mutmut['xǁTaskServiceǁget__mutmut_1'] = TaskService.xǁTaskServiceǁget__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁget__mutmut['xǁTaskServiceǁget__mutmut_2'] = TaskService.xǁTaskServiceǁget__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁget__mutmut['xǁTaskServiceǁget__mutmut_3'] = TaskService.xǁTaskServiceǁget__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁget__mutmut['xǁTaskServiceǁget__mutmut_4'] = TaskService.xǁTaskServiceǁget__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁget__mutmut['xǁTaskServiceǁget__mutmut_5'] = TaskService.xǁTaskServiceǁget__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁget__mutmut['xǁTaskServiceǁget__mutmut_6'] = TaskService.xǁTaskServiceǁget__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁget__mutmut['xǁTaskServiceǁget__mutmut_7'] = TaskService.xǁTaskServiceǁget__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁget__mutmut['xǁTaskServiceǁget__mutmut_8'] = TaskService.xǁTaskServiceǁget__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁget__mutmut['xǁTaskServiceǁget__mutmut_9'] = TaskService.xǁTaskServiceǁget__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁget__mutmut['xǁTaskServiceǁget__mutmut_10'] = TaskService.xǁTaskServiceǁget__mutmut_10 # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["_mutmut_orig"] = TaskService.xǁTaskServiceǁlist__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_1"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_1
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_2"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_2
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_3"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_3
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_4"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_4
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_5"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_5
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_6"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_6
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_7"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_7
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_8"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_8
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_9"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_9
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_10"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_10
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_11"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_11
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_12"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_12
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_13"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_13
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_14"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_14
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_15"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_15
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_16"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_16
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_17"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_17
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_18"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_18
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_19"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_19
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_20"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_20
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_21"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_21
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_22"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_22
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_23"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_23
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_24"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_24
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_25"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_25
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_26"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_26
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_27"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_27
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_28"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_28
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_29"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_29
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist__mutmut["xǁTaskServiceǁlist__mutmut_30"] = (
+    TaskService.xǁTaskServiceǁlist__mutmut_30
+)  # type: ignore # mutmut generated
 
-mutants_xǁTaskServiceǁupdate__mutmut['_mutmut_orig'] = TaskService.xǁTaskServiceǁupdate__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_1'] = TaskService.xǁTaskServiceǁupdate__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_2'] = TaskService.xǁTaskServiceǁupdate__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_3'] = TaskService.xǁTaskServiceǁupdate__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_4'] = TaskService.xǁTaskServiceǁupdate__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_5'] = TaskService.xǁTaskServiceǁupdate__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_6'] = TaskService.xǁTaskServiceǁupdate__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_7'] = TaskService.xǁTaskServiceǁupdate__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_8'] = TaskService.xǁTaskServiceǁupdate__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_9'] = TaskService.xǁTaskServiceǁupdate__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_10'] = TaskService.xǁTaskServiceǁupdate__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_11'] = TaskService.xǁTaskServiceǁupdate__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_12'] = TaskService.xǁTaskServiceǁupdate__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_13'] = TaskService.xǁTaskServiceǁupdate__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_14'] = TaskService.xǁTaskServiceǁupdate__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_15'] = TaskService.xǁTaskServiceǁupdate__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_16'] = TaskService.xǁTaskServiceǁupdate__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_17'] = TaskService.xǁTaskServiceǁupdate__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_18'] = TaskService.xǁTaskServiceǁupdate__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_19'] = TaskService.xǁTaskServiceǁupdate__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_20'] = TaskService.xǁTaskServiceǁupdate__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_21'] = TaskService.xǁTaskServiceǁupdate__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_22'] = TaskService.xǁTaskServiceǁupdate__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_23'] = TaskService.xǁTaskServiceǁupdate__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_24'] = TaskService.xǁTaskServiceǁupdate__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_25'] = TaskService.xǁTaskServiceǁupdate__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_26'] = TaskService.xǁTaskServiceǁupdate__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_27'] = TaskService.xǁTaskServiceǁupdate__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁupdate__mutmut['xǁTaskServiceǁupdate__mutmut_28'] = TaskService.xǁTaskServiceǁupdate__mutmut_28 # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁget__mutmut["_mutmut_orig"] = TaskService.xǁTaskServiceǁget__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁget__mutmut["xǁTaskServiceǁget__mutmut_1"] = (
+    TaskService.xǁTaskServiceǁget__mutmut_1
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁget__mutmut["xǁTaskServiceǁget__mutmut_2"] = (
+    TaskService.xǁTaskServiceǁget__mutmut_2
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁget__mutmut["xǁTaskServiceǁget__mutmut_3"] = (
+    TaskService.xǁTaskServiceǁget__mutmut_3
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁget__mutmut["xǁTaskServiceǁget__mutmut_4"] = (
+    TaskService.xǁTaskServiceǁget__mutmut_4
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁget__mutmut["xǁTaskServiceǁget__mutmut_5"] = (
+    TaskService.xǁTaskServiceǁget__mutmut_5
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁget__mutmut["xǁTaskServiceǁget__mutmut_6"] = (
+    TaskService.xǁTaskServiceǁget__mutmut_6
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁget__mutmut["xǁTaskServiceǁget__mutmut_7"] = (
+    TaskService.xǁTaskServiceǁget__mutmut_7
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁget__mutmut["xǁTaskServiceǁget__mutmut_8"] = (
+    TaskService.xǁTaskServiceǁget__mutmut_8
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁget__mutmut["xǁTaskServiceǁget__mutmut_9"] = (
+    TaskService.xǁTaskServiceǁget__mutmut_9
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁget__mutmut["xǁTaskServiceǁget__mutmut_10"] = (
+    TaskService.xǁTaskServiceǁget__mutmut_10
+)  # type: ignore # mutmut generated
 
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['_mutmut_orig'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_1'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_2'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_3'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_4'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_5'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_6'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_7'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_8'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_9'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_10'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_11'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_12'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_13'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_14'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_15'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_16'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_17'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_18'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_19'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_20'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_21'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_22'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_23'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_24'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_25'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_26'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_27'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_28'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_29'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_30'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_31'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_32'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_33'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_34'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_35'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_36'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁ_require_task_update_access__mutmut['xǁTaskServiceǁ_require_task_update_access__mutmut_37'] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_37 # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["_mutmut_orig"] = TaskService.xǁTaskServiceǁupdate__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_1"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_1
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_2"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_2
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_3"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_3
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_4"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_4
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_5"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_5
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_6"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_6
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_7"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_7
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_8"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_8
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_9"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_9
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_10"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_10
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_11"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_11
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_12"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_12
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_13"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_13
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_14"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_14
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_15"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_15
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_16"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_16
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_17"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_17
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_18"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_18
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_19"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_19
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_20"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_20
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_21"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_21
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_22"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_22
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_23"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_23
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_24"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_24
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_25"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_25
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_26"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_26
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_27"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_27
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁupdate__mutmut["xǁTaskServiceǁupdate__mutmut_28"] = (
+    TaskService.xǁTaskServiceǁupdate__mutmut_28
+)  # type: ignore # mutmut generated
 
-mutants_xǁTaskServiceǁarchive__mutmut['_mutmut_orig'] = TaskService.xǁTaskServiceǁarchive__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_1'] = TaskService.xǁTaskServiceǁarchive__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_2'] = TaskService.xǁTaskServiceǁarchive__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_3'] = TaskService.xǁTaskServiceǁarchive__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_4'] = TaskService.xǁTaskServiceǁarchive__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_5'] = TaskService.xǁTaskServiceǁarchive__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_6'] = TaskService.xǁTaskServiceǁarchive__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_7'] = TaskService.xǁTaskServiceǁarchive__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_8'] = TaskService.xǁTaskServiceǁarchive__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_9'] = TaskService.xǁTaskServiceǁarchive__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_10'] = TaskService.xǁTaskServiceǁarchive__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_11'] = TaskService.xǁTaskServiceǁarchive__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_12'] = TaskService.xǁTaskServiceǁarchive__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_13'] = TaskService.xǁTaskServiceǁarchive__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_14'] = TaskService.xǁTaskServiceǁarchive__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_15'] = TaskService.xǁTaskServiceǁarchive__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_16'] = TaskService.xǁTaskServiceǁarchive__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_17'] = TaskService.xǁTaskServiceǁarchive__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_18'] = TaskService.xǁTaskServiceǁarchive__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_19'] = TaskService.xǁTaskServiceǁarchive__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_20'] = TaskService.xǁTaskServiceǁarchive__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_21'] = TaskService.xǁTaskServiceǁarchive__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_22'] = TaskService.xǁTaskServiceǁarchive__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_23'] = TaskService.xǁTaskServiceǁarchive__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_24'] = TaskService.xǁTaskServiceǁarchive__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_25'] = TaskService.xǁTaskServiceǁarchive__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_26'] = TaskService.xǁTaskServiceǁarchive__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_27'] = TaskService.xǁTaskServiceǁarchive__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_28'] = TaskService.xǁTaskServiceǁarchive__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_29'] = TaskService.xǁTaskServiceǁarchive__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_30'] = TaskService.xǁTaskServiceǁarchive__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_31'] = TaskService.xǁTaskServiceǁarchive__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_32'] = TaskService.xǁTaskServiceǁarchive__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_33'] = TaskService.xǁTaskServiceǁarchive__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_34'] = TaskService.xǁTaskServiceǁarchive__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_35'] = TaskService.xǁTaskServiceǁarchive__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_36'] = TaskService.xǁTaskServiceǁarchive__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_37'] = TaskService.xǁTaskServiceǁarchive__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_38'] = TaskService.xǁTaskServiceǁarchive__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_39'] = TaskService.xǁTaskServiceǁarchive__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_40'] = TaskService.xǁTaskServiceǁarchive__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_41'] = TaskService.xǁTaskServiceǁarchive__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_42'] = TaskService.xǁTaskServiceǁarchive__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_43'] = TaskService.xǁTaskServiceǁarchive__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_44'] = TaskService.xǁTaskServiceǁarchive__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_45'] = TaskService.xǁTaskServiceǁarchive__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_46'] = TaskService.xǁTaskServiceǁarchive__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_47'] = TaskService.xǁTaskServiceǁarchive__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_48'] = TaskService.xǁTaskServiceǁarchive__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_49'] = TaskService.xǁTaskServiceǁarchive__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_50'] = TaskService.xǁTaskServiceǁarchive__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_51'] = TaskService.xǁTaskServiceǁarchive__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_52'] = TaskService.xǁTaskServiceǁarchive__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_53'] = TaskService.xǁTaskServiceǁarchive__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_54'] = TaskService.xǁTaskServiceǁarchive__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_55'] = TaskService.xǁTaskServiceǁarchive__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_56'] = TaskService.xǁTaskServiceǁarchive__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_57'] = TaskService.xǁTaskServiceǁarchive__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁarchive__mutmut['xǁTaskServiceǁarchive__mutmut_58'] = TaskService.xǁTaskServiceǁarchive__mutmut_58 # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut["_mutmut_orig"] = (
+    TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_1"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_2"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_3"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_4"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_5"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_6"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_7"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_8"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_9"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_10"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_11"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_12"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_13"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_14"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_15"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_16"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_17"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_18"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_19"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_20"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_21"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_22"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_23"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_24"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_25"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_26"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_27"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_28"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_29"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_30"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_31"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_32"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_33"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_34"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_35"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_36"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁ_require_task_update_access__mutmut[
+    "xǁTaskServiceǁ_require_task_update_access__mutmut_37"
+] = TaskService.xǁTaskServiceǁ_require_task_update_access__mutmut_37  # type: ignore # mutmut generated
 
-mutants_xǁTaskServiceǁdelete__mutmut['_mutmut_orig'] = TaskService.xǁTaskServiceǁdelete__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_1'] = TaskService.xǁTaskServiceǁdelete__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_2'] = TaskService.xǁTaskServiceǁdelete__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_3'] = TaskService.xǁTaskServiceǁdelete__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_4'] = TaskService.xǁTaskServiceǁdelete__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_5'] = TaskService.xǁTaskServiceǁdelete__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_6'] = TaskService.xǁTaskServiceǁdelete__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_7'] = TaskService.xǁTaskServiceǁdelete__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_8'] = TaskService.xǁTaskServiceǁdelete__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_9'] = TaskService.xǁTaskServiceǁdelete__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_10'] = TaskService.xǁTaskServiceǁdelete__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_11'] = TaskService.xǁTaskServiceǁdelete__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_12'] = TaskService.xǁTaskServiceǁdelete__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_13'] = TaskService.xǁTaskServiceǁdelete__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_14'] = TaskService.xǁTaskServiceǁdelete__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_15'] = TaskService.xǁTaskServiceǁdelete__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_16'] = TaskService.xǁTaskServiceǁdelete__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_17'] = TaskService.xǁTaskServiceǁdelete__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_18'] = TaskService.xǁTaskServiceǁdelete__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_19'] = TaskService.xǁTaskServiceǁdelete__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_20'] = TaskService.xǁTaskServiceǁdelete__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_21'] = TaskService.xǁTaskServiceǁdelete__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_22'] = TaskService.xǁTaskServiceǁdelete__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_23'] = TaskService.xǁTaskServiceǁdelete__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_24'] = TaskService.xǁTaskServiceǁdelete__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_25'] = TaskService.xǁTaskServiceǁdelete__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_26'] = TaskService.xǁTaskServiceǁdelete__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_27'] = TaskService.xǁTaskServiceǁdelete__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_28'] = TaskService.xǁTaskServiceǁdelete__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_29'] = TaskService.xǁTaskServiceǁdelete__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_30'] = TaskService.xǁTaskServiceǁdelete__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_31'] = TaskService.xǁTaskServiceǁdelete__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_32'] = TaskService.xǁTaskServiceǁdelete__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_33'] = TaskService.xǁTaskServiceǁdelete__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_34'] = TaskService.xǁTaskServiceǁdelete__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁdelete__mutmut['xǁTaskServiceǁdelete__mutmut_35'] = TaskService.xǁTaskServiceǁdelete__mutmut_35 # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["_mutmut_orig"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_1"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_1
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_2"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_2
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_3"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_3
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_4"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_4
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_5"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_5
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_6"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_6
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_7"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_7
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_8"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_8
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_9"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_9
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_10"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_10
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_11"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_11
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_12"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_12
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_13"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_13
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_14"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_14
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_15"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_15
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_16"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_16
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_17"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_17
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_18"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_18
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_19"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_19
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_20"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_20
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_21"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_21
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_22"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_22
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_23"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_23
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_24"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_24
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_25"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_25
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_26"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_26
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_27"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_27
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_28"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_28
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_29"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_29
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_30"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_30
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_31"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_31
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_32"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_32
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_33"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_33
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_34"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_34
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_35"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_35
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_36"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_36
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_37"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_37
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_38"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_38
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_39"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_39
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_40"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_40
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_41"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_41
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_42"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_42
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_43"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_43
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_44"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_44
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_45"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_45
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_46"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_46
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_47"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_47
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_48"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_48
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_49"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_49
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_50"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_50
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_51"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_51
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_52"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_52
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_53"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_53
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_54"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_54
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_55"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_55
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_56"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_56
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_57"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_57
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁarchive__mutmut["xǁTaskServiceǁarchive__mutmut_58"] = (
+    TaskService.xǁTaskServiceǁarchive__mutmut_58
+)  # type: ignore # mutmut generated
 
-mutants_xǁTaskServiceǁlist_deleted__mutmut['_mutmut_orig'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_1'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_2'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_3'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_4'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_5'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_6'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_7'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_8'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_9'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_10'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_11'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_12'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_13'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_14'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_15'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_16'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_17'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_18'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_19'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁlist_deleted__mutmut['xǁTaskServiceǁlist_deleted__mutmut_20'] = TaskService.xǁTaskServiceǁlist_deleted__mutmut_20 # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["_mutmut_orig"] = TaskService.xǁTaskServiceǁdelete__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_1"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_1
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_2"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_2
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_3"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_3
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_4"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_4
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_5"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_5
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_6"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_6
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_7"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_7
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_8"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_8
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_9"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_9
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_10"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_10
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_11"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_11
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_12"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_12
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_13"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_13
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_14"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_14
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_15"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_15
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_16"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_16
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_17"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_17
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_18"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_18
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_19"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_19
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_20"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_20
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_21"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_21
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_22"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_22
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_23"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_23
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_24"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_24
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_25"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_25
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_26"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_26
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_27"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_27
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_28"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_28
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_29"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_29
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_30"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_30
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_31"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_31
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_32"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_32
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_33"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_33
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_34"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_34
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁdelete__mutmut["xǁTaskServiceǁdelete__mutmut_35"] = (
+    TaskService.xǁTaskServiceǁdelete__mutmut_35
+)  # type: ignore # mutmut generated
 
-mutants_xǁTaskServiceǁrestore__mutmut['_mutmut_orig'] = TaskService.xǁTaskServiceǁrestore__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_1'] = TaskService.xǁTaskServiceǁrestore__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_2'] = TaskService.xǁTaskServiceǁrestore__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_3'] = TaskService.xǁTaskServiceǁrestore__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_4'] = TaskService.xǁTaskServiceǁrestore__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_5'] = TaskService.xǁTaskServiceǁrestore__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_6'] = TaskService.xǁTaskServiceǁrestore__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_7'] = TaskService.xǁTaskServiceǁrestore__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_8'] = TaskService.xǁTaskServiceǁrestore__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_9'] = TaskService.xǁTaskServiceǁrestore__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_10'] = TaskService.xǁTaskServiceǁrestore__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_11'] = TaskService.xǁTaskServiceǁrestore__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_12'] = TaskService.xǁTaskServiceǁrestore__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_13'] = TaskService.xǁTaskServiceǁrestore__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_14'] = TaskService.xǁTaskServiceǁrestore__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_15'] = TaskService.xǁTaskServiceǁrestore__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_16'] = TaskService.xǁTaskServiceǁrestore__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_17'] = TaskService.xǁTaskServiceǁrestore__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_18'] = TaskService.xǁTaskServiceǁrestore__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_19'] = TaskService.xǁTaskServiceǁrestore__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_20'] = TaskService.xǁTaskServiceǁrestore__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_21'] = TaskService.xǁTaskServiceǁrestore__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_22'] = TaskService.xǁTaskServiceǁrestore__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_23'] = TaskService.xǁTaskServiceǁrestore__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_24'] = TaskService.xǁTaskServiceǁrestore__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_25'] = TaskService.xǁTaskServiceǁrestore__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_26'] = TaskService.xǁTaskServiceǁrestore__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_27'] = TaskService.xǁTaskServiceǁrestore__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_28'] = TaskService.xǁTaskServiceǁrestore__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_29'] = TaskService.xǁTaskServiceǁrestore__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_30'] = TaskService.xǁTaskServiceǁrestore__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_31'] = TaskService.xǁTaskServiceǁrestore__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_32'] = TaskService.xǁTaskServiceǁrestore__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁTaskServiceǁrestore__mutmut['xǁTaskServiceǁrestore__mutmut_33'] = TaskService.xǁTaskServiceǁrestore__mutmut_33 # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["_mutmut_orig"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_1"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_1
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_2"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_2
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_3"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_3
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_4"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_4
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_5"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_5
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_6"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_6
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_7"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_7
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_8"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_8
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_9"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_9
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_10"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_10
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_11"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_11
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_12"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_12
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_13"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_13
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_14"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_14
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_15"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_15
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_16"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_16
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_17"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_17
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_18"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_18
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_19"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_19
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁlist_deleted__mutmut["xǁTaskServiceǁlist_deleted__mutmut_20"] = (
+    TaskService.xǁTaskServiceǁlist_deleted__mutmut_20
+)  # type: ignore # mutmut generated
+
+mutants_xǁTaskServiceǁrestore__mutmut["_mutmut_orig"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_orig
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_1"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_1
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_2"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_2
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_3"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_3
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_4"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_4
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_5"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_5
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_6"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_6
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_7"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_7
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_8"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_8
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_9"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_9
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_10"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_10
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_11"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_11
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_12"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_12
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_13"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_13
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_14"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_14
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_15"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_15
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_16"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_16
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_17"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_17
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_18"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_18
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_19"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_19
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_20"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_20
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_21"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_21
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_22"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_22
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_23"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_23
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_24"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_24
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_25"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_25
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_26"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_26
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_27"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_27
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_28"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_28
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_29"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_29
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_30"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_30
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_31"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_31
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_32"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_32
+)  # type: ignore # mutmut generated
+mutants_xǁTaskServiceǁrestore__mutmut["xǁTaskServiceǁrestore__mutmut_33"] = (
+    TaskService.xǁTaskServiceǁrestore__mutmut_33
+)  # type: ignore # mutmut generated

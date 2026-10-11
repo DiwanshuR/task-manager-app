@@ -1,11 +1,8 @@
 import pytest
 
-from app.models.task import TASK_STATUS_TRANSITIONS, TaskStatus
 from app.models.project import Project
-from app.models.task import Task
-from app.models.user import User
-from app.models.user import UserRole
-
+from app.models.task import TASK_STATUS_TRANSITIONS, Task, TaskStatus
+from app.models.user import User, UserRole
 
 STATUS_TRANSITION_MATRIX = [
     pytest.param(

@@ -3,8 +3,8 @@ from __future__ import annotations
 from app.exceptions import (
     ArchivedTaskError,
     ProjectNotFoundError,
-    TaskStateConflictError,
     TaskNotFoundError,
+    TaskStateConflictError,
     UnauthorizedActionError,
 )
 from app.models.task import (

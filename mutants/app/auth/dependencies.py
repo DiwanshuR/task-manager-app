@@ -1,19 +1,21 @@
-from fastapi import Depends, status
+from typing import Callable
+
+from fastapi import Depends
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
-from app.database import get_db
 from app.auth.security import decode_access_token
-from app.models.user import User
-from typing import Callable
-from app.models.user import UserRole, User
-from app.repositories.user_repository import SQLAlchemyUserRepository
+from app.database import get_db
 from app.exceptions import AuthenticationError, PermissionDeniedError
+from app.models.user import User, UserRole
+from app.repositories.user_repository import SQLAlchemyUserRepository
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
+
 mutants_x_get_current_user__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -35,8 +37,7 @@ def get_current_user(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -65,8 +66,7 @@ def x_get_current_user__mutmut_orig(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -95,8 +95,7 @@ def x_get_current_user__mutmut_1(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -125,8 +124,7 @@ def x_get_current_user__mutmut_2(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -155,8 +153,7 @@ def x_get_current_user__mutmut_3(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -185,8 +182,7 @@ def x_get_current_user__mutmut_4(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -215,8 +211,7 @@ def x_get_current_user__mutmut_5(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -244,8 +239,7 @@ def x_get_current_user__mutmut_6(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -265,7 +259,7 @@ def x_get_current_user__mutmut_7(
     if payload is None:
         raise AuthenticationError(
             "Could not validate credentials",
-            )
+        )
 
     user_id = payload.get("sub")
     if user_id is None:
@@ -273,8 +267,7 @@ def x_get_current_user__mutmut_7(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -303,8 +296,7 @@ def x_get_current_user__mutmut_8(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -333,8 +325,7 @@ def x_get_current_user__mutmut_9(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -363,8 +354,7 @@ def x_get_current_user__mutmut_10(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -393,8 +383,7 @@ def x_get_current_user__mutmut_11(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -423,8 +412,7 @@ def x_get_current_user__mutmut_12(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -453,8 +441,7 @@ def x_get_current_user__mutmut_13(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -483,8 +470,7 @@ def x_get_current_user__mutmut_14(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -513,8 +499,7 @@ def x_get_current_user__mutmut_15(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -543,8 +528,7 @@ def x_get_current_user__mutmut_16(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -573,8 +557,7 @@ def x_get_current_user__mutmut_17(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -603,8 +586,7 @@ def x_get_current_user__mutmut_18(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -633,8 +615,7 @@ def x_get_current_user__mutmut_19(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -663,8 +644,7 @@ def x_get_current_user__mutmut_20(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -693,8 +673,7 @@ def x_get_current_user__mutmut_21(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -723,8 +702,7 @@ def x_get_current_user__mutmut_22(
             None,
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -753,8 +731,7 @@ def x_get_current_user__mutmut_23(
             "Could not validate credentials",
             headers=None,
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -782,8 +759,7 @@ def x_get_current_user__mutmut_24(
         raise AuthenticationError(
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -810,9 +786,8 @@ def x_get_current_user__mutmut_25(
     if user_id is None:
         raise AuthenticationError(
             "Could not validate credentials",
-            )
-    
-    
+        )
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -841,8 +816,7 @@ def x_get_current_user__mutmut_26(
             "XXCould not validate credentialsXX",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -871,8 +845,7 @@ def x_get_current_user__mutmut_27(
             "could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -901,8 +874,7 @@ def x_get_current_user__mutmut_28(
             "COULD NOT VALIDATE CREDENTIALS",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -931,8 +903,7 @@ def x_get_current_user__mutmut_29(
             "Could not validate credentials",
             headers={"XXWWW-AuthenticateXX": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -961,8 +932,7 @@ def x_get_current_user__mutmut_30(
             "Could not validate credentials",
             headers={"www-authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -991,8 +961,7 @@ def x_get_current_user__mutmut_31(
             "Could not validate credentials",
             headers={"WWW-AUTHENTICATE": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1021,8 +990,7 @@ def x_get_current_user__mutmut_32(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "XXBearerXX"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1051,8 +1019,7 @@ def x_get_current_user__mutmut_33(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1081,8 +1048,7 @@ def x_get_current_user__mutmut_34(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "BEARER"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1111,8 +1077,7 @@ def x_get_current_user__mutmut_35(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = None
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1141,8 +1106,7 @@ def x_get_current_user__mutmut_36(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(None)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1171,8 +1135,7 @@ def x_get_current_user__mutmut_37(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = None
     if user is None:
@@ -1201,8 +1164,7 @@ def x_get_current_user__mutmut_38(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(None)
     if user is None:
@@ -1231,8 +1193,7 @@ def x_get_current_user__mutmut_39(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(None))
     if user is None:
@@ -1261,8 +1222,7 @@ def x_get_current_user__mutmut_40(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is not None:
@@ -1291,8 +1251,7 @@ def x_get_current_user__mutmut_41(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1321,8 +1280,7 @@ def x_get_current_user__mutmut_42(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1351,8 +1309,7 @@ def x_get_current_user__mutmut_43(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1380,14 +1337,13 @@ def x_get_current_user__mutmut_44(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
         raise AuthenticationError(
             "Could not validate credentials",
-            )
+        )
 
     return user
 
@@ -1409,8 +1365,7 @@ def x_get_current_user__mutmut_45(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1439,8 +1394,7 @@ def x_get_current_user__mutmut_46(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1469,8 +1423,7 @@ def x_get_current_user__mutmut_47(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1499,8 +1452,7 @@ def x_get_current_user__mutmut_48(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1529,8 +1481,7 @@ def x_get_current_user__mutmut_49(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1559,8 +1510,7 @@ def x_get_current_user__mutmut_50(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1589,8 +1539,7 @@ def x_get_current_user__mutmut_51(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1619,8 +1568,7 @@ def x_get_current_user__mutmut_52(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1649,8 +1597,7 @@ def x_get_current_user__mutmut_53(
             "Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
-    
+
     repo = SQLAlchemyUserRepository(db)
     user = repo.get_by_id(int(user_id))
     if user is None:
@@ -1661,60 +1608,61 @@ def x_get_current_user__mutmut_53(
 
     return user
 
-mutants_x_get_current_user__mutmut['_mutmut_orig'] = x_get_current_user__mutmut_orig # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_1'] = x_get_current_user__mutmut_1 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_2'] = x_get_current_user__mutmut_2 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_3'] = x_get_current_user__mutmut_3 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_4'] = x_get_current_user__mutmut_4 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_5'] = x_get_current_user__mutmut_5 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_6'] = x_get_current_user__mutmut_6 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_7'] = x_get_current_user__mutmut_7 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_8'] = x_get_current_user__mutmut_8 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_9'] = x_get_current_user__mutmut_9 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_10'] = x_get_current_user__mutmut_10 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_11'] = x_get_current_user__mutmut_11 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_12'] = x_get_current_user__mutmut_12 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_13'] = x_get_current_user__mutmut_13 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_14'] = x_get_current_user__mutmut_14 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_15'] = x_get_current_user__mutmut_15 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_16'] = x_get_current_user__mutmut_16 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_17'] = x_get_current_user__mutmut_17 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_18'] = x_get_current_user__mutmut_18 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_19'] = x_get_current_user__mutmut_19 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_20'] = x_get_current_user__mutmut_20 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_21'] = x_get_current_user__mutmut_21 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_22'] = x_get_current_user__mutmut_22 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_23'] = x_get_current_user__mutmut_23 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_24'] = x_get_current_user__mutmut_24 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_25'] = x_get_current_user__mutmut_25 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_26'] = x_get_current_user__mutmut_26 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_27'] = x_get_current_user__mutmut_27 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_28'] = x_get_current_user__mutmut_28 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_29'] = x_get_current_user__mutmut_29 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_30'] = x_get_current_user__mutmut_30 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_31'] = x_get_current_user__mutmut_31 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_32'] = x_get_current_user__mutmut_32 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_33'] = x_get_current_user__mutmut_33 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_34'] = x_get_current_user__mutmut_34 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_35'] = x_get_current_user__mutmut_35 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_36'] = x_get_current_user__mutmut_36 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_37'] = x_get_current_user__mutmut_37 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_38'] = x_get_current_user__mutmut_38 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_39'] = x_get_current_user__mutmut_39 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_40'] = x_get_current_user__mutmut_40 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_41'] = x_get_current_user__mutmut_41 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_42'] = x_get_current_user__mutmut_42 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_43'] = x_get_current_user__mutmut_43 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_44'] = x_get_current_user__mutmut_44 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_45'] = x_get_current_user__mutmut_45 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_46'] = x_get_current_user__mutmut_46 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_47'] = x_get_current_user__mutmut_47 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_48'] = x_get_current_user__mutmut_48 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_49'] = x_get_current_user__mutmut_49 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_50'] = x_get_current_user__mutmut_50 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_51'] = x_get_current_user__mutmut_51 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_52'] = x_get_current_user__mutmut_52 # type: ignore # mutmut generated
-mutants_x_get_current_user__mutmut['x_get_current_user__mutmut_53'] = x_get_current_user__mutmut_53 # type: ignore # mutmut generated
+
+mutants_x_get_current_user__mutmut["_mutmut_orig"] = x_get_current_user__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_1"] = x_get_current_user__mutmut_1  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_2"] = x_get_current_user__mutmut_2  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_3"] = x_get_current_user__mutmut_3  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_4"] = x_get_current_user__mutmut_4  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_5"] = x_get_current_user__mutmut_5  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_6"] = x_get_current_user__mutmut_6  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_7"] = x_get_current_user__mutmut_7  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_8"] = x_get_current_user__mutmut_8  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_9"] = x_get_current_user__mutmut_9  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_10"] = x_get_current_user__mutmut_10  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_11"] = x_get_current_user__mutmut_11  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_12"] = x_get_current_user__mutmut_12  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_13"] = x_get_current_user__mutmut_13  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_14"] = x_get_current_user__mutmut_14  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_15"] = x_get_current_user__mutmut_15  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_16"] = x_get_current_user__mutmut_16  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_17"] = x_get_current_user__mutmut_17  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_18"] = x_get_current_user__mutmut_18  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_19"] = x_get_current_user__mutmut_19  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_20"] = x_get_current_user__mutmut_20  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_21"] = x_get_current_user__mutmut_21  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_22"] = x_get_current_user__mutmut_22  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_23"] = x_get_current_user__mutmut_23  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_24"] = x_get_current_user__mutmut_24  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_25"] = x_get_current_user__mutmut_25  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_26"] = x_get_current_user__mutmut_26  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_27"] = x_get_current_user__mutmut_27  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_28"] = x_get_current_user__mutmut_28  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_29"] = x_get_current_user__mutmut_29  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_30"] = x_get_current_user__mutmut_30  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_31"] = x_get_current_user__mutmut_31  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_32"] = x_get_current_user__mutmut_32  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_33"] = x_get_current_user__mutmut_33  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_34"] = x_get_current_user__mutmut_34  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_35"] = x_get_current_user__mutmut_35  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_36"] = x_get_current_user__mutmut_36  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_37"] = x_get_current_user__mutmut_37  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_38"] = x_get_current_user__mutmut_38  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_39"] = x_get_current_user__mutmut_39  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_40"] = x_get_current_user__mutmut_40  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_41"] = x_get_current_user__mutmut_41  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_42"] = x_get_current_user__mutmut_42  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_43"] = x_get_current_user__mutmut_43  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_44"] = x_get_current_user__mutmut_44  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_45"] = x_get_current_user__mutmut_45  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_46"] = x_get_current_user__mutmut_46  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_47"] = x_get_current_user__mutmut_47  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_48"] = x_get_current_user__mutmut_48  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_49"] = x_get_current_user__mutmut_49  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_50"] = x_get_current_user__mutmut_50  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_51"] = x_get_current_user__mutmut_51  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_52"] = x_get_current_user__mutmut_52  # type: ignore # mutmut generated
+mutants_x_get_current_user__mutmut["x_get_current_user__mutmut_53"] = x_get_current_user__mutmut_53  # type: ignore # mutmut generated
 mutants_x_require_roles__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -1816,9 +1764,10 @@ def x_require_roles__mutmut_5(*allowed_roles: UserRole) -> Callable:
 
     return role_checker
 
-mutants_x_require_roles__mutmut['_mutmut_orig'] = x_require_roles__mutmut_orig # type: ignore # mutmut generated
-mutants_x_require_roles__mutmut['x_require_roles__mutmut_1'] = x_require_roles__mutmut_1 # type: ignore # mutmut generated
-mutants_x_require_roles__mutmut['x_require_roles__mutmut_2'] = x_require_roles__mutmut_2 # type: ignore # mutmut generated
-mutants_x_require_roles__mutmut['x_require_roles__mutmut_3'] = x_require_roles__mutmut_3 # type: ignore # mutmut generated
-mutants_x_require_roles__mutmut['x_require_roles__mutmut_4'] = x_require_roles__mutmut_4 # type: ignore # mutmut generated
-mutants_x_require_roles__mutmut['x_require_roles__mutmut_5'] = x_require_roles__mutmut_5 # type: ignore # mutmut generated
+
+mutants_x_require_roles__mutmut["_mutmut_orig"] = x_require_roles__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_require_roles__mutmut["x_require_roles__mutmut_1"] = x_require_roles__mutmut_1  # type: ignore # mutmut generated
+mutants_x_require_roles__mutmut["x_require_roles__mutmut_2"] = x_require_roles__mutmut_2  # type: ignore # mutmut generated
+mutants_x_require_roles__mutmut["x_require_roles__mutmut_3"] = x_require_roles__mutmut_3  # type: ignore # mutmut generated
+mutants_x_require_roles__mutmut["x_require_roles__mutmut_4"] = x_require_roles__mutmut_4  # type: ignore # mutmut generated
+mutants_x_require_roles__mutmut["x_require_roles__mutmut_5"] = x_require_roles__mutmut_5  # type: ignore # mutmut generated

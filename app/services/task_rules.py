@@ -2,7 +2,6 @@ from datetime import date
 
 from app.domain.entities import Task, User
 
-
 MIN_TITLE_LENGTH = 1
 MAX_TITLE_LENGTH = 100
 VALID_PRIORITIES = {"low", "medium", "high"}
@@ -18,8 +17,7 @@ def normalize_title(title: str) -> str:
 
     if not MIN_TITLE_LENGTH <= len(normalized) <= MAX_TITLE_LENGTH:
         raise ValueError(
-            f"Title must be between {MIN_TITLE_LENGTH} "
-            f"and {MAX_TITLE_LENGTH} characters"
+            f"Title must be between {MIN_TITLE_LENGTH} and {MAX_TITLE_LENGTH} characters"
         )
 
     return normalized
@@ -41,6 +39,7 @@ def can_edit_task(user: User, task: Task) -> bool:
 def days_until_due(due_date: date, today: date) -> int:
     """Return days until due; negative means the task is overdue."""
     return (due_date - today).days
+
 
 def is_task_overdue(due_date: date, today: date) -> bool:
     """A task is overdue when its due date is earlier than today."""

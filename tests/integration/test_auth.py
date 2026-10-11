@@ -17,9 +17,7 @@ def test_register_user(client):
 
     assert response.status_code == 201
     assert response.json()["email"] == "alex@example.com"
-    assert datetime.fromisoformat(
-        response.json()["created_at"]
-    ).utcoffset() is not None
+    assert datetime.fromisoformat(response.json()["created_at"]).utcoffset() is not None
 
 
 def test_register_rejects_duplicate_email(client):
@@ -61,6 +59,7 @@ def test_login_rejects_wrong_password(client):
     )
 
     assert response.status_code == 401
+
 
 # 4. Test the user-enumeration case: assert the login error body for "unknown user" is byte-identical to "wrong password".
 def test_login_error_body_is_identical_for_unknown_user_and_wrong_password(

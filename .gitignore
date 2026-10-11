@@ -6,3 +6,4 @@ app.log
 DEBUG-LOG.md
 .venv/
 mutants/
+sd

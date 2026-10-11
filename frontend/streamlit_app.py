@@ -3,7 +3,6 @@ import os
 import requests
 import streamlit as st
 
-
 API_URL = os.getenv("API_URL", "http://127.0.0.1:8000").rstrip("/")
 REQUEST_TIMEOUT = 10
 TASK_PAGE_SIZE = 20
@@ -302,6 +301,7 @@ def show_page_title(title, description=None):
 
 # ---------- Login and registration ----------
 
+
 def login_register_screen():
     st.markdown(
         """
@@ -397,9 +397,7 @@ def login_register_screen():
                                 if response.status_code == 200:
                                     data = response.json()
                                     st.session_state.token = data["access_token"]
-                                    st.session_state.refresh_token = data.get(
-                                        "refresh_token"
-                                    )
+                                    st.session_state.refresh_token = data.get("refresh_token")
 
                                     me = api_request("GET", "/auth/current-user")
                                     if me is not None and me.status_code == 200:
@@ -409,9 +407,7 @@ def login_register_screen():
                                     clear_session()
                                     st.error("Could not load your user profile.")
                                 else:
-                                    st.error(
-                                        response_error(response, "Sign-in failed.")
-                                    )
+                                    st.error(response_error(response, "Sign-in failed."))
                             except (requests.RequestException, ValueError, KeyError) as exc:
                                 st.error(f"Could not sign in: {exc}")
 
@@ -434,11 +430,7 @@ def login_register_screen():
                     )
 
                 if submitted:
-                    if (
-                        not name.strip()
-                        or not register_email.strip()
-                        or not register_password
-                    ):
+                    if not name.strip() or not register_email.strip() or not register_password:
                         st.warning("Complete all fields.")
                     else:
                         with st.spinner("Creating your account…"):
@@ -470,6 +462,7 @@ def login_register_screen():
 
 # ---------- Projects ----------
 
+
 def show_projects(projects, can_create):
     show_page_title("Projects", "Create, review and update your projects.")
 
@@ -493,9 +486,7 @@ def show_projects(projects, can_create):
                     st.warning("Enter a project name.")
                 else:
                     member_emails = [
-                        email.strip()
-                        for email in member_emails_text.split(",")
-                        if email.strip()
+                        email.strip() for email in member_emails_text.split(",") if email.strip()
                     ]
 
                     response = api_request(
@@ -511,9 +502,7 @@ def show_projects(projects, can_create):
                         st.success("Project created and members assigned.")
                         st.rerun()
                     else:
-                        st.error(
-                            response_error(response, "Could not create project.")
-                        )
+                        st.error(response_error(response, "Could not create project."))
 
     else:
         st.info("Your account can view projects but cannot create them.")
@@ -567,9 +556,7 @@ def show_projects(projects, can_create):
                             st.success("Project updated.")
                             st.rerun()
                         else:
-                            st.error(
-                                response_error(response, "Could not update project.")
-                            )
+                            st.error(response_error(response, "Could not update project."))
 
             if st.button(
                 "Delete project",
@@ -584,6 +571,7 @@ def show_projects(projects, can_create):
 
 
 # ---------- Tasks ----------
+
 
 def show_tasks(projects):
     show_page_title(
@@ -684,10 +672,7 @@ def show_tasks(projects):
 
     for task in tasks:
         is_archived = task["status"] == "archived"
-        can_edit = (
-            role in {"admin", "manager"}
-            or task["created_by"] == user.get("id")
-        )
+        can_edit = role in {"admin", "manager"} or task["created_by"] == user.get("id")
         is_read_only = is_archived or not can_edit
         with st.container(border=True):
             task_col, status_col, priority_col = st.columns([3, 1, 1])
@@ -736,11 +721,7 @@ def show_tasks(projects):
                         project_names,
                         index=project_names.index(
                             next(
-                                (
-                                    p["name"]
-                                    for p in projects
-                                    if p["id"] == task["project_id"]
-                                ),
+                                (p["name"] for p in projects if p["id"] == task["project_id"]),
                                 project_names[0],
                             )
                         ),
@@ -771,9 +752,7 @@ def show_tasks(projects):
                             st.success("Task updated.")
                             st.rerun()
                         else:
-                            st.error(
-                                response_error(response, "Could not update task.")
-                            )
+                            st.error(response_error(response, "Could not update task."))
 
             if is_archived:
                 st.caption("Archived tasks are read-only.")
@@ -788,9 +767,13 @@ def show_tasks(projects):
                 else:
                     st.error(response_error(response, "Could not archive task."))
 
-            if role == "admin" and not is_archived and st.button(
-                "Delete task",
-                key=f"delete_task_{task['id']}",
+            if (
+                role == "admin"
+                and not is_archived
+                and st.button(
+                    "Delete task",
+                    key=f"delete_task_{task['id']}",
+                )
             ):
                 response = api_request("DELETE", f"/tasks/{task['id']}")
                 if response is not None and response.status_code in (200, 204):
@@ -801,6 +784,7 @@ def show_tasks(projects):
 
 
 # ---------- Dashboard ----------
+
 
 def show_dashboard(projects):
     show_page_title("Overview", "A quick look at your projects and recent tasks.")
@@ -815,7 +799,6 @@ def show_dashboard(projects):
 
     tasks = response.json()
     done_count = sum(1 for task in tasks if task["status"] == "done")
-    open_count = len(tasks) - done_count
 
     metric1, metric2, metric3 = st.columns(3)
     metric1.metric("Projects", len(projects))
@@ -837,13 +820,13 @@ def show_dashboard(projects):
             f"""
             <div class="tm-row" style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
                 <div style="flex:1; min-width:0;">
-                    <div style="font-weight:600;">{task['title']}</div>
+                    <div style="font-weight:600;">{task["title"]}</div>
                     <div style="color:var(--color-ink-muted); font-size:0.85rem;">
-                        {task.get('description') or 'No description'}
+                        {task.get("description") or "No description"}
                     </div>
                 </div>
-                <div>{chip('status', task['status'])}</div>
-                <div>{chip('priority', task['priority'])}</div>
+                <div>{chip("status", task["status"])}</div>
+                <div>{chip("priority", task["priority"])}</div>
             </div>
             """
             for task in tasks[:8]
@@ -852,6 +835,7 @@ def show_dashboard(projects):
 
 
 # ---------- Main app ----------
+
 
 def main_app():
     user = st.session_state.user or {}

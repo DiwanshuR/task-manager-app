@@ -1,19 +1,20 @@
+import base64
+import json
 from datetime import datetime, timedelta, timezone
-
-from app.auth.security import (
-    hash_password,
-    verify_password,
-    create_access_token,
-    decode_access_token
-)
 
 import pytest
 from jose import jwt
-import json
-import base64
+
+from app.auth.security import (
+    create_access_token,
+    decode_access_token,
+    hash_password,
+    verify_password,
+)
 from app.config import settings
 
-# day 2 task 3 - hashing tests 
+
+# day 2 task 3 - hashing tests
 def test_hash_password_does_not_return_plaintext():
     password = "TestPassword123!"
 
@@ -41,7 +42,7 @@ def test_password_hashing_handles_inputs_outside_bcrypt_raw_byte_limits(password
 
     assert verify_password(password, password_hash) is True
     assert verify_password(password + "wrong", password_hash) is False
-    
+
 
 def test_hash_password_uses_a_different_salt_each_time():
     password = "TestPassword123!"
@@ -59,6 +60,7 @@ def test_verify_password_rejects_corrupted_hash_without_raising():
 
 
 # ------------------------------------------------------------------
+
 
 # day 2 task 1 checking jwt expiration and security
 def test_access_token_round_trips_claims():
@@ -92,10 +94,13 @@ def test_access_token_is_valid_one_second_before_expiry(monkeypatch):
         tz=timezone.utc,
     )
 
-    assert decode_access_token(
-        token,
-        now=lambda: one_second_before_expiry,
-    ) is not None
+    assert (
+        decode_access_token(
+            token,
+            now=lambda: one_second_before_expiry,
+        )
+        is not None
+    )
 
 
 def test_access_token_is_rejected_exactly_at_expiry(monkeypatch):
@@ -123,11 +128,12 @@ def test_access_token_is_rejected_long_after_expiry(monkeypatch):
     long_after_expiry = now + timedelta(days=30)
 
     assert decode_access_token(token, now=lambda: long_after_expiry) is None
-    
-    
+
+
 # --------------------------------------------------------------------------------
-    
+
 # day 2 task 2 tests checking jwt security
+
 
 def _encode_json_segment(value: dict) -> str:
     """Encode a JWT header or payload as an unpadded base64url segment."""
@@ -181,10 +187,7 @@ def test_unsigned_alg_none_token_is_rejected():
         "type": "access",
         "exp": int((now + timedelta(minutes=5)).timestamp()),
     }
-    unsigned_token = (
-        f"{_encode_json_segment(header)}."
-        f"{_encode_json_segment(payload)}."
-    )
+    unsigned_token = f"{_encode_json_segment(header)}.{_encode_json_segment(payload)}."
 
     assert decode_access_token(unsigned_token, now=lambda: now) is None
 

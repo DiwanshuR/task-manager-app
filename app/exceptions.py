@@ -72,8 +72,7 @@ class TaskStateConflictError(ConflictError):
         self.current_status = current_status
         self.requested_status = requested_status
         super().__init__(
-            f"Cannot change task status from {current_status} "
-            f"to {requested_status}",
+            f"Cannot change task status from {current_status} to {requested_status}",
             details={
                 "current_status": current_status,
                 "requested_status": requested_status,
@@ -102,11 +101,7 @@ class UnauthorizedActionError(PermissionDeniedError):
         self.action = action
         self.resource = resource
         self.resource_id = resource_id
-        target = (
-            f" {resource} {resource_id}"
-            if resource_id is not None
-            else f" {resource}"
-        )
+        target = f" {resource} {resource_id}" if resource_id is not None else f" {resource}"
         super().__init__(
             f"Not authorized to {action}{target}",
             details={

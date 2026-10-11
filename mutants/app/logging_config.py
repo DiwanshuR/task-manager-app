@@ -2,7 +2,6 @@ import logging
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
-
 log_file = Path(__file__).resolve().parent.parent / "app.log"
 
 logging.basicConfig(
@@ -17,6 +16,3 @@ logging.basicConfig(
         )
     ],
 )
-
-
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict

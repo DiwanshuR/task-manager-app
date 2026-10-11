@@ -35,12 +35,8 @@ def test_task_create_and_filter_by_status(client, create_user):
     manager = create_user("task-manager@example.com", role=UserRole.manager)
     project = create_project(client, manager["headers"])
 
-    pending = create_task(
-        client, manager["headers"], project["id"], "Pending task", "pending"
-    )
-    created = create_task(
-        client, manager["headers"], project["id"], "Finished task"
-    )
+    pending = create_task(client, manager["headers"], project["id"], "Pending task", "pending")
+    created = create_task(client, manager["headers"], project["id"], "Finished task")
 
     assert pending.status_code == 201, pending.text
     assert created.status_code == 201, created.text
