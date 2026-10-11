@@ -122,7 +122,7 @@ def make_service():
     tasks = FakeTaskRepository()
     return TaskService(tasks, projects), tasks
 
-
+@pytest.mark.unit
 def test_create_task_uses_fake_repository_and_records_creator():
     service, task_repository = make_service()
     payload = TaskCreate(title="Test task", project_id=1)
@@ -134,7 +134,7 @@ def test_create_task_uses_fake_repository_and_records_creator():
     assert task.created_by == 10
     assert task_repository.get_by_id(task.id) is task
 
-
+@pytest.mark.unit
 def test_create_task_rejects_user_without_project_access():
     service, task_repository = make_service()
     payload = TaskCreate(title="Test task", project_id=1)
@@ -144,7 +144,7 @@ def test_create_task_rejects_user_without_project_access():
 
     assert task_repository.tasks == {}
 
-
+@pytest.mark.unit
 def test_create_task_rejects_missing_project():
     service, task_repository = make_service()
     payload = TaskCreate(title="Test task", project_id=999)
@@ -154,7 +154,7 @@ def test_create_task_rejects_missing_project():
 
     assert task_repository.tasks == {}
 
-
+@pytest.mark.unit
 def test_list_tasks_passes_filters_to_repository():
     service, task_repository = make_service()
 
@@ -178,14 +178,14 @@ def test_list_tasks_passes_filters_to_repository():
         "limit": 5,
     }
 
-
+@pytest.mark.unit
 def test_get_rejects_missing_task():
     service, _ = make_service()
 
     with pytest.raises(TaskNotFoundError):
         service.get(999, user_id=10, role="member")
 
-
+@pytest.mark.unit
 def test_update_task_changes_task_through_repository():
     service, _ = make_service()
     created = service.create(
@@ -203,7 +203,7 @@ def test_update_task_changes_task_through_repository():
 
     assert updated.title == "New title"
 
-
+@pytest.mark.unit
 def test_delete_task_soft_deletes_task_through_repository():
     service, task_repository = make_service()
     created = service.create(

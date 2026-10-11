@@ -4106,3 +4106,178 @@ Traceback (most recent call last):
     raise RuntimeError("Intentional exception-handler test failure")
 RuntimeError: Intentional exception-handler test failure
 2026-10-09 17:03:33,256 INFO httpx HTTP Request: GET http://testserver/__boom "HTTP/1.1 500 Internal Server Error"
+2026-10-09 17:20:54,975 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:55,060 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:55,304 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:55,529 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:55,775 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:56,340 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:56,573 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:56,700 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:56,821 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:56,935 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:57,046 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:57,167 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:57,244 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:57,320 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:57,385 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:57,500 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:57,610 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:57,718 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:57,788 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:57,848 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:57,915 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:58,419 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:58,756 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:58,782 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:58,810 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:58,833 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:59,150 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:59,233 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:59,313 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:59,407 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:59,532 WARNING app.routes.auth Login Failed
+2026-10-09 17:20:59,619 WARNING app.routes.auth Login Failed
+2026-10-09 17:25:30,867 WARNING app.routes.auth Login Failed
+2026-10-09 17:25:30,952 WARNING app.routes.auth Login Failed
+2026-10-09 17:25:31,014 WARNING app.routes.auth Login Failed
+2026-10-09 17:25:31,120 WARNING app.routes.auth Login Failed
+2026-10-09 17:25:31,330 WARNING app.routes.auth Login Failed
+2026-10-09 17:25:31,701 WARNING app.routes.auth Login Failed
+2026-10-09 17:25:31,856 WARNING app.routes.auth Login Failed
+2026-10-09 22:01:17,126 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:01:18,078 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 22:01:18,086 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:01:18,267 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 22:01:19,677 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:01:22,174 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 22:01:22,180 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:01:22,478 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 22:01:23,009 INFO httpx HTTP Request: GET http://testserver/projects/ "HTTP/1.1 200 OK"
+2026-10-09 22:01:26,342 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:01:28,010 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 22:01:28,016 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:01:28,230 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 22:01:28,346 INFO httpx HTTP Request: PUT http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-09 22:01:29,501 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:01:30,346 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 22:01:30,352 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:01:31,401 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:01:32,466 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 22:01:32,472 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:01:32,514 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 22:01:32,559 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 22:01:33,628 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:01:34,672 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 22:01:34,691 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:01:35,774 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:01:36,738 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 22:01:36,745 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:01:36,825 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 22:01:36,867 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-09 22:46:15,389 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:46:16,553 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 22:46:16,567 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:46:16,682 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 403 Forbidden"
+2026-10-09 22:46:17,788 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:46:19,869 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 22:46:19,877 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:46:20,164 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 22:46:20,434 INFO httpx HTTP Request: GET http://testserver/projects/ "HTTP/1.1 200 OK"
+2026-10-09 22:46:21,356 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:46:22,601 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 22:46:22,607 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:46:22,638 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 22:46:22,667 INFO httpx HTTP Request: PUT http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-09 22:46:23,412 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:46:24,107 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 22:46:24,115 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:46:24,778 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:46:25,432 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 22:46:25,437 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:46:25,461 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 22:46:25,486 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 403 Forbidden"
+2026-10-09 22:46:26,190 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:46:26,826 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 22:46:26,833 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:46:27,472 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:46:28,118 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 22:46:28,122 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:46:28,156 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 22:46:28,181 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-09 22:46:28,876 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:46:29,532 INFO app.routes.auth Login succeeded user_id=1
+2026-10-09 22:46:29,537 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:46:30,176 INFO httpx HTTP Request: POST http://testserver/auth/register "HTTP/1.1 201 Created"
+2026-10-09 22:46:31,249 INFO app.routes.auth Login succeeded user_id=2
+2026-10-09 22:46:31,255 INFO httpx HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-10-09 22:46:31,281 INFO httpx HTTP Request: POST http://testserver/projects/ "HTTP/1.1 201 Created"
+2026-10-09 22:46:31,314 INFO httpx HTTP Request: POST http://testserver/projects/1/members "HTTP/1.1 200 OK"
+2026-10-09 22:46:31,334 INFO httpx HTTP Request: GET http://testserver/projects/1 "HTTP/1.1 200 OK"
+2026-10-11 14:15:31,553 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:31,657 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:31,735 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:31,800 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:32,018 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:32,233 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:32,489 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:32,526 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:32,553 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:32,587 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:32,616 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:32,716 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:32,936 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:33,108 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:33,267 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:33,627 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:33,810 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:33,944 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:34,194 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:34,311 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:34,488 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:34,593 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:34,649 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:35,584 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:35,709 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:35,987 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:36,396 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:36,444 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:38,032 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:38,179 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:38,405 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:38,531 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:38,706 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:38,854 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:39,011 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:39,104 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:39,233 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:39,372 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:39,520 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:39,649 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:39,823 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:40,706 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:40,851 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:40,988 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:41,180 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:41,308 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:41,445 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:41,575 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:41,686 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:41,824 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:41,941 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:42,032 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:42,127 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:42,212 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:42,295 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:42,458 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:42,709 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:42,944 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:43,152 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:43,302 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:43,429 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:43,515 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:43,605 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:43,717 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:43,812 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:43,957 WARNING app.routes.auth Login Failed
+2026-10-11 14:15:44,114 WARNING app.routes.auth Login Failed

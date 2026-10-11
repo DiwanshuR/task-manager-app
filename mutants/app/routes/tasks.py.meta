@@ -1,0 +1,30 @@
+{
+    "exit_code_by_key": {
+        "app.routes.tasks.x__task_service__mutmut_1": 1,
+        "app.routes.tasks.x__task_service__mutmut_2": 1,
+        "app.routes.tasks.x__task_service__mutmut_3": 1,
+        "app.routes.tasks.x__task_service__mutmut_4": 1,
+        "app.routes.tasks.x__task_service__mutmut_5": 1,
+        "app.routes.tasks.x__task_service__mutmut_6": 1
+    },
+    "hash_by_function_name": {
+        "x__task_service": "b45cbb609512"
+    },
+    "type_check_error_by_key": {},
+    "durations_by_key": {
+        "app.routes.tasks.x__task_service__mutmut_1": 20.732096,
+        "app.routes.tasks.x__task_service__mutmut_2": 21.3452,
+        "app.routes.tasks.x__task_service__mutmut_3": 20.50294,
+        "app.routes.tasks.x__task_service__mutmut_4": 14.900729,
+        "app.routes.tasks.x__task_service__mutmut_5": 11.971744,
+        "app.routes.tasks.x__task_service__mutmut_6": 10.775332
+    },
+    "estimated_durations_by_key": {
+        "app.routes.tasks.x__task_service__mutmut_1": 5.062626713999634,
+        "app.routes.tasks.x__task_service__mutmut_2": 5.062626713999634,
+        "app.routes.tasks.x__task_service__mutmut_3": 5.062626713999634,
+        "app.routes.tasks.x__task_service__mutmut_4": 5.062626713999634,
+        "app.routes.tasks.x__task_service__mutmut_5": 5.062626713999634,
+        "app.routes.tasks.x__task_service__mutmut_6": 5.062626713999634
+    }
+}

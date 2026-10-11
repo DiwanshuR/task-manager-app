@@ -1,0 +1,30 @@
+{
+    "exit_code_by_key": {
+        "app.models.task.x_can_transition_task_status__mutmut_1": 1,
+        "app.models.task.x\u01c1Task\u01c1is_valid_status__mutmut_1": 1,
+        "app.models.task.x\u01c1Task\u01c1is_valid_status__mutmut_2": 1,
+        "app.models.task.x\u01c1Task\u01c1is_valid_status__mutmut_3": 1,
+        "app.models.task.x\u01c1Task\u01c1__eq____mutmut_1": 33,
+        "app.models.task.x\u01c1Task\u01c1__eq____mutmut_2": 33
+    },
+    "hash_by_function_name": {
+        "x_can_transition_task_status": "f22768bed726",
+        "x\u01c1Task\u01c1is_valid_status": "1e5548ce2e90",
+        "x\u01c1Task\u01c1__eq__": "26e0f5c2b481"
+    },
+    "type_check_error_by_key": {},
+    "durations_by_key": {
+        "app.models.task.x_can_transition_task_status__mutmut_1": 8.809102,
+        "app.models.task.x\u01c1Task\u01c1is_valid_status__mutmut_1": 14.427892,
+        "app.models.task.x\u01c1Task\u01c1is_valid_status__mutmut_3": 10.662158,
+        "app.models.task.x\u01c1Task\u01c1is_valid_status__mutmut_2": 15.935714
+    },
+    "estimated_durations_by_key": {
+        "app.models.task.x\u01c1Task\u01c1__eq____mutmut_1": 0,
+        "app.models.task.x\u01c1Task\u01c1__eq____mutmut_2": 0,
+        "app.models.task.x_can_transition_task_status__mutmut_1": 2.6442439479988025,
+        "app.models.task.x\u01c1Task\u01c1is_valid_status__mutmut_1": 3.5079743670021344,
+        "app.models.task.x\u01c1Task\u01c1is_valid_status__mutmut_2": 3.5079743670021344,
+        "app.models.task.x\u01c1Task\u01c1is_valid_status__mutmut_3": 3.5079743670021344
+    }
+}

@@ -1,0 +1,33 @@
+import enum
+from sqlalchemy import Column, Enum as SQLEnum
+from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
+from app.database import Base
+
+
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+
+class UserRole(str, enum.Enum):
+    admin = "admin"
+    manager = "manager"
+    member = "member"
+    
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(255), nullable=False)
+    email = Column(String(255), unique=True, index=True, nullable=False)
+    password_hash = Column(String(255), nullable=False)
+    role = Column(SQLEnum(UserRole), nullable=False, default=UserRole.member,)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    projects = relationship("Project", back_populates="owner")
+    assigned_projects = relationship(
+        "Project",
+        secondary="project_members",
+        back_populates="members",
+    )
+    
+    
