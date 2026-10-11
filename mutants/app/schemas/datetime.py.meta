@@ -1,0 +1,21 @@
+{
+    "exit_code_by_key": {
+        "app.schemas.datetime.x_as_utc__mutmut_1": 0,
+        "app.schemas.datetime.x_as_utc__mutmut_2": 1,
+        "app.schemas.datetime.x_as_utc__mutmut_3": 0
+    },
+    "hash_by_function_name": {
+        "x_as_utc": "1ac44f8c7c79"
+    },
+    "type_check_error_by_key": {},
+    "durations_by_key": {
+        "app.schemas.datetime.x_as_utc__mutmut_2": 26.076406,
+        "app.schemas.datetime.x_as_utc__mutmut_1": 51.347541,
+        "app.schemas.datetime.x_as_utc__mutmut_3": 54.652562
+    },
+    "estimated_durations_by_key": {
+        "app.schemas.datetime.x_as_utc__mutmut_1": 16.51951488299892,
+        "app.schemas.datetime.x_as_utc__mutmut_2": 16.51951488299892,
+        "app.schemas.datetime.x_as_utc__mutmut_3": 16.51951488299892
+    }
+}

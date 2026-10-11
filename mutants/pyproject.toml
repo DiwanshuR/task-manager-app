@@ -1,0 +1,24 @@
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "--strict-markers -ra"
+markers = [
+    "unit: tests of pure business logic",
+    "integration: tests involving the application, database, or HTTP",
+]
+
+# added this after getting coverage report of 90 % first time
+[tool.coverage.run]
+branch = true
+source = ["app"]
+
+[tool.coverage.report]
+fail_under = 84.3
+precision = 2
+show_missing = true
+exclude_also = ["raise NotImplementedError"]
+
+[tool.mutmut]
+source_paths = ["app/"]
+pytest_add_cli_args_test_selection = ["tests/"]
+runner = "pytest"

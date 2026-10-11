@@ -1,0 +1,15 @@
+{
+    "exit_code_by_key": {
+        "app.models.project.x\u01c1Project\u01c1__eq____mutmut_1": 33,
+        "app.models.project.x\u01c1Project\u01c1__eq____mutmut_2": 33
+    },
+    "hash_by_function_name": {
+        "x\u01c1Project\u01c1__eq__": "48687b458bf2"
+    },
+    "type_check_error_by_key": {},
+    "durations_by_key": {},
+    "estimated_durations_by_key": {
+        "app.models.project.x\u01c1Project\u01c1__eq____mutmut_1": 0,
+        "app.models.project.x\u01c1Project\u01c1__eq____mutmut_2": 0
+    }
+}

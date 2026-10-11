@@ -1,0 +1,41 @@
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "--strict-markers -ra"
+markers = [
+    "unit: tests of pure business logic",
+    "integration: tests involving the application, database, or HTTP",
+]
+
+# added this after getting coverage report of 90 % first time
+[tool.coverage.run]
+branch = true
+source = ["app"]
+
+[tool.coverage.report]
+fail_under = 84.3
+precision = 2
+show_missing = true
+exclude_also = ["raise NotImplementedError"]
+
+[tool.mutmut]
+source_paths = ["app/"]
+pytest_add_cli_args_test_selection = ["tests/"]
+runner = "pytest"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["mutants"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B"]
+ignore = ["B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"frontend/streamlit_app.py" = ["E501"]
+"tests/integration/test_projects.py" = ["E501"]
+"tests/integration/test_exception_handlers.py" = ["E501"]
+"tests/integration/conftest.py" = ["E501"]
+"tests/integration/test_auth.py" = ["E501"]
+"app/routes/tasks.py" =  ["E501"]

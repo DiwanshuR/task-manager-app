@@ -1,7 +1,17 @@
-from sqlalchemy import Column, Integer, String, DateTime
+import enum
+
+from sqlalchemy import Column, DateTime, Integer, String
+from sqlalchemy import Enum as SQLEnum
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
+
 from app.database import Base
+
+
+class UserRole(str, enum.Enum):
+    admin = "admin"
+    manager = "manager"
+    member = "member"
 
 
 class User(Base):
@@ -11,6 +21,16 @@ class User(Base):
     name = Column(String(255), nullable=False)
     email = Column(String(255), unique=True, index=True, nullable=False)
     password_hash = Column(String(255), nullable=False)
+    role = Column(
+        SQLEnum(UserRole),
+        nullable=False,
+        default=UserRole.member,
+    )
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     projects = relationship("Project", back_populates="owner")
+    assigned_projects = relationship(
+        "Project",
+        secondary="project_members",
+        back_populates="members",
+    )

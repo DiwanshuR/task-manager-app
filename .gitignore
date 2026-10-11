@@ -2,3 +2,8 @@ dvenv/
 __pycache__/
 *.pyc
 .env
+app.log
+DEBUG-LOG.md
+.venv/
+mutants/
+sd
