@@ -140,12 +140,12 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          pytest tests/unit \
+          python -m pytest tests \
             --cov=app \
+            --cov-branch \
             --cov-report=term-missing \
-            --cov-report=xml:coverage.xml \
-            --cov-fail-under=84 \
-            -q
+            --cov-report=xml \
+            --cov-fail-under=84
 
       - name: Upload coverage report
         if: always()
